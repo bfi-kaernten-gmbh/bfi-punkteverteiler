@@ -1,4 +1,7 @@
-# React-login-boilerplate
- supposed to be a production ready login boilerplate for react with a node API backend
+# Punkteverteilungssystem
 
-so far serverside is done.. Frontend will follow soon
+###done so far..
+ ####backend
+ - authentication
+ 
+ ####frontend
