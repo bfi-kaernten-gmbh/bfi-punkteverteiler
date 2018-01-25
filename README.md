@@ -1,7 +1,7 @@
 # Punkteverteilungssystem
 
-###done so far..
- ####backend
+### done so far..
+ #### backend
  - authentication
  
- ####frontend
+ #### frontend
