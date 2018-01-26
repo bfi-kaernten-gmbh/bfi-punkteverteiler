@@ -1,4 +1,8 @@
-import { FETCH_USER, FETCH_USERLIST, UPDATE_USER }from '../actions';
+import {
+  FETCH_USER,
+  FETCH_USERLIST,
+  UPDATE_USER
+} from '../actions/types';
 
 const initialState = {
   1: {
