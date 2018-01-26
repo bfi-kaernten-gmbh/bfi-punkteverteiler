@@ -17,7 +17,7 @@ exports.signin = (req, res, next) => {
 
   // passports done function adds whatever gets passed down by
   // done(null, thisHere) into the 'req' object
-  res.send({ token: tokenForUser(req.user) })
+  res.send({ token: tokenForUser(req.user), status: 'user/2' })
 
 }
 
@@ -38,8 +38,7 @@ exports.signup = (req, res, next) => {
 
     // if user with email does NOT exist, create and save user record
     const user = new User({
-      email,
-      password
+      ...req.body
     })
 
     user.save().then((user) => {
