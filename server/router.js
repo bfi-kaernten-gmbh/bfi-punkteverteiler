@@ -5,13 +5,18 @@ const User = require('./models/user');
 
 const Authentication = require('./controllers/authentication');
 
-const requireAuth = passport.authenticate('jwt', { session: false });
+const requireAuthUser = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
+const requireAuthAdmin = passport.authenticate('jwt', {session: false });
 
 module.exports = app => {
-  app.get('/', requireAuth, (req, res) => {
-    res.send({ hi: 'there' });
+  app.get('/', requireAuthUser, (req, res) => {
+    res.send({ message: 'PRAISE THE GREEN GODESS' });
   });
+
+  app.get('/users', requireAuthAdmin, (req, res) => {
+    
+  })
 
   app.post('/signin', requireSignin, Authentication.signin);
 
