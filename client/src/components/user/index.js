@@ -17,9 +17,14 @@ class UserView extends Component {
     }
 
     return (
-      <div>
-        <div>
-          <h2>{user.name}</h2>
+      <div className="fullScreenSection">
+        <div className="positioningContainer">
+          <h1>{user.name}</h1>
+          <div className="wrap">
+            <h2>{user.points}</h2>
+            <h3>Punkte</h3>
+          </div>
+          <p className="center" >asdfj asdjfk j asjdfn asjd asjdfnja ajdsfnj asdf j</p>
         </div>
 
       </div>
