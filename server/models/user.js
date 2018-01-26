@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
+const pointLogSchema = new Schema({
+  points: Number,
+  timestamps: Date
+})
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -12,7 +17,27 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String
+  },
+  status: {
+    type: String,
+    default: 'user'
+  },
+  totalPoints: {
+    type: Number,
+    default: 0
+  },
+  pointLog: [pointLogSchema]
 })
 
 // On Save Hook, encrypt password
@@ -21,6 +46,19 @@ userSchema.pre('save', function (next) {
   // get access to the user model
   const user = this;
   // console.log('user', user)
+  const { firstName, lastName } = user;
+
+  // generate Username
+  user.username = generateUsername(firstName, lastName);
+
+  // check if status is admin or user
+  console.log(user.status);
+  if(user.status !== 'user') {
+    if(user.status !== 'admin') {
+      var err = new Error('user status is wrong');
+      return next(err);
+    }
+  }
 
   // generate a salt
   bcrypt.genSalt(10, function (err, salt) {
@@ -38,6 +76,19 @@ userSchema.pre('save', function (next) {
     })
   })
 })
+
+function generateUsername(firstName, lastName) {
+  return `${parseNames(firstName)}.${parseNames(lastName)}`
+}
+
+function parseNames(el) {
+  return el.replace(/[\u00c4\u00e4äÄ]/g, "ae")
+    .replace(/[\u00dc\u00fcüÜ]/g, "ue")
+    .replace(/[\u00d6\u00f6öÖ]/g, "oe")
+    .replace(/\u00dfß/g, "ss")
+    .toLowerCase()
+  ;
+}
 
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
