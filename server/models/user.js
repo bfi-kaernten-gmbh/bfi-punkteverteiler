@@ -29,8 +29,9 @@ const userSchema = new Schema({
   username: {
     type: String
   },
-  status: {
+  role: {
     type: String,
+    enum: ['user', 'admin'],
     default: 'user'
   },
   totalPoints: {
@@ -50,15 +51,6 @@ userSchema.pre('save', function (next) {
 
   // generate Username
   user.username = generateUsername(firstName, lastName);
-
-  // check if status is admin or user
-  console.log(user.status);
-  if(user.status !== 'user') {
-    if(user.status !== 'admin') {
-      var err = new Error('user status is wrong');
-      return next(err);
-    }
-  }
 
   // generate a salt
   bcrypt.genSalt(10, function (err, salt) {

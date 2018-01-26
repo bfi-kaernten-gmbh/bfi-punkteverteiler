@@ -24,9 +24,8 @@ const signinUser = ({ email, password }, callback) => {
         dispatch({ type: AUTH_USER })
         // - Save the JWT token
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('status', res.data.status);
         // - redirect to the route '/feature'
-        callback(`/${res.data.status}`);
+        callback(`/${res.data.role}`);
       })
       .catch((e) => {
         console.log(e);

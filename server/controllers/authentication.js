@@ -8,7 +8,7 @@ const config = require('../config');
 // iat -> issued at time
 const tokenForUser = (user) => {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.userSecret);
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
 exports.signin = (req, res, next) => {
@@ -17,7 +17,7 @@ exports.signin = (req, res, next) => {
 
   // passports done function adds whatever gets passed down by
   // done(null, thisHere) into the 'req' object
-  res.send({ token: tokenForUser(req.user), status: 'user/2' })
+  res.send({ token: tokenForUser(req.user), role: req.user.role })
 
 }
 
@@ -51,3 +51,20 @@ exports.signup = (req, res, next) => {
     res.status(422).send({error: 'Email is in use', e});
   });
 };
+
+exports.roleAuth = function(roles) {
+  return function (req, res, next) {
+    var { user } = req;
+
+    User.findById(user._id).then((foundUser) => {
+      if(roles.indexOf(foundUser.role) > -1){
+        return next();
+      }
+      res.status(401).send({error: 'You are not authorized to view this content'});
+      return next('Unauthorized');
+    }, (e) => {
+      res.status(422).send({error: 'No user found.'});
+      return next(e);
+    })
+  }
+}

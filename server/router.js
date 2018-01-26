@@ -3,22 +3,22 @@ const passport = require('passport');
 const passportService = require('./services/passport');
 const User = require('./models/user');
 
-const Authentication = require('./controllers/authentication');
+const auth = require('./controllers/authentication');
 
-const requireAuthUser = passport.authenticate('jwt', { session: false });
+const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
-const requireAuthAdmin = passport.authenticate('jwt', {session: false });
 
 module.exports = app => {
-  app.get('/', requireAuthUser, (req, res) => {
+  app.get('/', requireAuth, (req, res) => {
+    console.log(req.user);
     res.send({ message: 'PRAISE THE GREEN GODESS' });
   });
 
-  app.get('/users', requireAuthAdmin, (req, res) => {
-    
+  app.get('/users', requireAuth, auth.roleAuth(['admin']), (req, res) => {
+    res.send({ message: 'it works' });
   })
 
-  app.post('/signin', requireSignin, Authentication.signin);
+  app.post('/signin', requireSignin, auth.signin);
 
-  app.post('/signup', Authentication.signup);
+  app.post('/signup', auth.signup);
 };
