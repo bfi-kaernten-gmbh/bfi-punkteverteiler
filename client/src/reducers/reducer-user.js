@@ -19,9 +19,10 @@ const initialState = {
   2: {
     id: 2,
     username: 'Wenge',
-    name: 'Dominik Wenghofer',
+    firstName: 'Dominik',
+    lastName: 'Wenghofer',
     email: 'react@gitignore.redux',
-    points: 20,
+    totalPoints: 20,
     pointLog: {
       1: {
         id: 1,
