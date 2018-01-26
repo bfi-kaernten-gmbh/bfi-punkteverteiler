@@ -3,14 +3,15 @@ import { FETCH_USER, FETCH_USERLIST, UPDATE_USER }from '../actions';
 const initialState = {
   1: {
     id: 1,
-    username: 'maceeee',
-    name: 'Markus Mälzer',
+    username: 'mar.zer',
+    firstName: 'Markus',
+    lastName: 'Mälzer',
     email: 'react@redux.git',
-    points: '24',
-    punkteLog: {
+    totalPoints: 24,
+    pointLog: {
       1: {
         id: 1,
-        punkte: '2',
+        points: '2',
         text: 'just for chillin'
       }
     }
@@ -20,16 +21,16 @@ const initialState = {
     username: 'Wenge',
     name: 'Dominik Wenghofer',
     email: 'react@gitignore.redux',
-    points: '0',
-    punkteLog: {
+    points: 20,
+    pointLog: {
       1: {
         id: 1,
-        punkte: '0',
+        points: 10,
         text: 'just for chillin'
       },
       2: {
         id: 2,
-        punkte: '2',
+        points: 2,
         text: 'idk'
       }
     }
