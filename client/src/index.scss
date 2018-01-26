@@ -34,7 +34,8 @@ div .wrap {
 }
 
 p {
-  .center {
+  &.center {
+    width: 100%;
     text-align: center;
   }
 }

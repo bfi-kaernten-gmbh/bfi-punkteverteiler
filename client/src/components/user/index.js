@@ -23,8 +23,9 @@ class UserView extends Component {
           <div className="wrap">
             <h2>{user.points}</h2>
             <h3>Punkte</h3>
+            <p className="center" >asdfj asdjfk j asjdfn asjd asjdfnja ajdsfnj asdf j</p>
           </div>
-          <p className="center" >asdfj asdjfk j asjdfn asjd asjdfnja ajdsfnj asdf j</p>
+
         </div>
 
       </div>
