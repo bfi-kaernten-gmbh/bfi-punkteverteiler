@@ -5,7 +5,6 @@ import { signinUser } from '../../actions';
 
 class Signin extends Component {
   handleSubmit = ({email, password}) => {
-    console.log(email, password);
     this.props.signinUser({ email, password }, (route) => {
       this.props.history.push(route);
     });
@@ -13,7 +12,7 @@ class Signin extends Component {
   renderAlert() {
     if (this.props.errorMessage) {
       return (
-        <div className="alert alert-danger">
+        <div>
           <strong>Oops!</strong> {this.props.errorMessage}
         </div>
       );
@@ -24,26 +23,24 @@ class Signin extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-        <fieldset className="form-group">
+        <fieldset>
           <label>Email:</label>
           <Field
             name="email"
-            className="form-control"
             type="text"
             component="input"
           />
         </fieldset>
-        <fieldset className="form-group">
+        <fieldset>
           <label>Password:</label>
           <Field
             name="password"
-            className="form-control"
             type="password"
             component="input"
           />
         </fieldset>
         {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign in </button>
+        <button action="submit">Sign in </button>
       </form>
     );
   }
