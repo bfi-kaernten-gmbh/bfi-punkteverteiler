@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import {  fetchUser } from '../../actions';
 import _ from 'lodash';
 
+import Button from '../reusable/button';
+
 class UserView extends Component {
   state = {
-    toggleLog: false
+    toggleLog: false,
+    class: ''
   }
 
   componentDidMount() {
@@ -14,13 +17,16 @@ class UserView extends Component {
   }
 
   handleOnClick = () => {
-    this.setState({toggleLog: !this.state.toggleLog})
+    this.setState({
+      toggleLog: !this.state.toggleLog,
+      class: 'animate',
+    })
   }
 
   handleLogList = () => {
     return _.map(this.props.user.pointLog, pointLog => {
       return (
-        <div className="" key={pointLog.id}>
+        <div className="container" key={pointLog.id}>
           <p>{pointLog.points} Punkte</p>
           <p>{pointLog.text}</p>
         </div>
@@ -35,18 +41,18 @@ class UserView extends Component {
       return (
         <div className="flex">
           <button className="fixed rounded" onClick={this.handleOnClick}>
-            Open
+            open
           </button>
         </div>
       );
     }
     if (!this.state.toggleLog === false) {
       return (
-        <div className="flex">
+        <div className="flex animate">
           <button className="fixed rounded" onClick={this.handleOnClick}>
             close
           </button>
-          <div>
+          <div className='logContainer'>
             {this.handleLogList()}
           </div>
         </div>
