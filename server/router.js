@@ -5,6 +5,7 @@ const User = require('./models/user');
 
 const auth = require('./controllers/authentication');
 const user = require('./controllers/user');
+const admin = require('./controllers/admin');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
@@ -14,9 +15,9 @@ module.exports = app => {
     res.send({ message: '...' });
   });
 
-  app.get('/users', requireAuth, auth.roleAuth(['admin']), (req, res) => {
-    res.send({ message: 'it works' });
-  })
+  app.get('/users', requireAuth, auth.roleAuth(['admin']), admin.getUsers);
+  app.get('/users/:id', requireAuth, auth.roleAuth(['admin']), admin.getUser);
+  // app.put('/users', requireAuth, auth.roleAuth(['admin']), admin.updateUsers);
 
   app.get('/profile',
     requireAuth,
