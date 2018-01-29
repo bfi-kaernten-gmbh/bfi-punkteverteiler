@@ -15,16 +15,19 @@ module.exports = app => {
     res.send({ message: '...' });
   });
 
+  // admin routes
   app.get('/users', requireAuth, auth.roleAuth(['admin']), admin.getUsers);
   app.get('/users/:id', requireAuth, auth.roleAuth(['admin']), admin.getUser);
-  // app.put('/users', requireAuth, auth.roleAuth(['admin']), admin.updateUsers);
+  app.patch('/users', requireAuth, auth.roleAuth(['admin']), admin.updateUsers);
 
+  // user routes
   app.get('/profile',
     requireAuth,
     auth.roleAuth(['user', 'admin']),
     user.userProfile
   );
 
+  // authentication routes
   app.post('/signin', requireSignin, auth.signin);
   app.post('/signup', auth.signup);
 };

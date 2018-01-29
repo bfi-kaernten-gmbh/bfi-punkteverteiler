@@ -1,7 +1,5 @@
 str + z für User delete
---> bzw old accounts-log
-
-no token on signup für admin user creation
+--> bzw old accounts-log ???
 
 REFACTOR comparePassword function in server/models/user.js
 --> make it a Promise cuz reasons >_>
