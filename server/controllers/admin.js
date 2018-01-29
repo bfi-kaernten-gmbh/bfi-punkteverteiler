@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const { ObjectID } = require('mongodb');
 
-const selectQuery = 'username email firstName lastName _id pointLog totalPoints'
+const excluded = 'role password'
 
 function returnDocs(users){
   res.send(users);
@@ -11,7 +11,7 @@ exports.getUsers = (req, res) => {
   // return all documents with role: user && only select properties in the
   // selectQuery variable
   User.find({role: 'user'})
-    .select(selectQuery)
+    .exclude(excluded)
     .exec()
     .then((users) => {
       res.send(users);
@@ -28,7 +28,7 @@ exports.getUser = (req, res) => {
   }
 
   User.findById(id)
-    .select(selectQuery)
+    .exclude(excluded)
     .exec()
     .then(user => {
       if(!user) {
