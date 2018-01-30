@@ -27,7 +27,7 @@ module.exports = app => {
   );
   app.patch('/users',
     requireAuth, validate.role(['admin']),
-    admin.updateUsers
+    admin.addPoints
   );
   app.delete('/users/:id',
     requireAuth, validate.id, validate.role(['admin']),

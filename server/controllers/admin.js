@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const User = require('../models/user');
 const { ObjectID } = require('mongodb');
 
@@ -42,12 +44,16 @@ exports.getUser = (req, res) => {
 
 }
 
-exports.updateUsers = (req, res) => {
-  res.send('hi');
-}
-
 exports.addPoints = (req, res) => {
-  res.send('points');
+  const ids = req.body.ids.split(',');
+  const body = _.pick(req.body, ['addPoints'])
+
+  User.update({ids},{$inc: {totalPoints: body.addPoints}}, { multi: true }).then((doc) => {
+    if(!doc) {
+      res.status.send({error: 'Users not found'})
+    }
+    res.send(doc.totalPoints);
+  }).catch(e => send(e))
 }
 
 exports.removeUser = (req, res) => {
