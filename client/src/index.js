@@ -25,7 +25,7 @@ const store = createStore(
     applyMiddleware(reduxThunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
-)
+);
 const token = localStorage.getItem('token');
 
 // dispatch an action autonatically if a JWT is stored in localStorage
