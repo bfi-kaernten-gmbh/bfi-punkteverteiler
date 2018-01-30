@@ -42,10 +42,21 @@ exports.getUser = (req, res) => {
 
 }
 
-exports.updateUser = (req, res) => {
+exports.updateUsers = (req, res) => {
   res.send('hi');
 }
 
 exports.addPoints = (req, res) => {
   res.send('points');
+}
+
+exports.removeUser = (req, res) => {
+  const { id } = req.params;
+
+  User.findByIdAndRemove(id).then((user) => {
+    if (!user) {
+      res.status(404).send({error: 'User not found!'});
+    }
+    res.send({user});
+  }).catch(e => res.send(e));
 }

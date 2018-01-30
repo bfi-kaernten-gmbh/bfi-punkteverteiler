@@ -6,6 +6,7 @@ const User = require('./models/user');
 const auth = require('./controllers/authentication');
 const user = require('./controllers/user');
 const admin = require('./controllers/admin');
+const validate = require('./services/routeValidators');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
@@ -16,14 +17,26 @@ module.exports = app => {
   });
 
   // admin routes
-  app.get('/users', requireAuth, auth.roleAuth(['admin']), admin.getUsers);
-  app.get('/users/:id', requireAuth, auth.roleAuth(['admin']), admin.getUser);
-  app.patch('/users', requireAuth, auth.roleAuth(['admin']), admin.updateUsers);
+  app.get('/users',
+    requireAuth, validate.role(['admin']),
+    admin.getUsers
+  );
+  app.get('/users/:id',
+    requireAuth, validate.id, validate.role(['admin']),
+    admin.getUser
+  );
+  app.patch('/users',
+    requireAuth, validate.role(['admin']),
+    admin.updateUsers
+  );
+  app.delete('/users/:id',
+    requireAuth, validate.id, validate.role(['admin']),
+    admin.removeUser
+  );
 
   // user routes
   app.get('/profile',
-    requireAuth,
-    auth.roleAuth(['user', 'admin']),
+    requireAuth, validate.role(['user', 'admin']), 
     user.userProfile
   );
 
