@@ -36,7 +36,7 @@ module.exports = app => {
 
   // user routes
   app.get('/profile',
-    requireAuth, validate.role(['user', 'admin']), 
+    requireAuth, validate.role(['user', 'admin']),
     user.userProfile
   );
 
