@@ -8,12 +8,6 @@ import {
 
 const ROOT_URL = 'http://dbaef1f6.ngrok.io';
 
-export {
-  signinUser,
-  authError,
-  signoutUser
-}
-
 const signinUser = ({ email, password }, callback) => {
   return dispatch => {
     // Submit email/password to the server
@@ -49,4 +43,11 @@ const signoutUser = () => {
   return {
     type: UNAUTH_USER
   };
+}
+
+
+export {
+  signinUser,
+  authError,
+  signoutUser
 }
