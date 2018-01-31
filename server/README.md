@@ -93,6 +93,31 @@ DELETE a single user through id
 }
 ```
 
+### PATCH: /users
+>__localhost:3001/users__
+
+Adds Points to Users wich id where passed in the Request.
+It also adds an entry to the PointLog Array of that user.
+#### IMPORTANT NOTE
+> seperate the id's passed in the ids property by a ","(Comma)
+
+#### Expected in Request
+```
+{
+	"ids": "5a71d6ba75322964ec52879a,5a71d6bc75322964ec52879b",
+	"addPoints": 3
+}
+```
+#### Example Response:
+```
+{
+  "n": 2,
+  "nModified": 2,
+  "ok": 1
+}
+```
+?not sure if i want to keep this as the response?
+
 ## USER ROUTES
 ### GET: /profile
 >__localhost:3001/profile__
