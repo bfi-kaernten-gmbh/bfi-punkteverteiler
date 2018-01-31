@@ -30,7 +30,7 @@ exports.getUser = (req, res) => {
   }
 
   User.findById(id)
-    .exclude(excluded)
+    .select(excluded)
     .exec()
     .then(user => {
       if(!user) {
@@ -41,7 +41,6 @@ exports.getUser = (req, res) => {
     .catch(e => {
       res.status(400).send(e);
     })
-
 }
 
 exports.addPoints = (req, res) => {
