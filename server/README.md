@@ -56,7 +56,7 @@ Get all users with the role 'user' (max number of users you get in 1 request mig
 ### GET: /users/:id
 >__localhost:3001/users/5a70845c98808845f84b3183__
 
-Get all users with the role 'user' (max number of users you get in 1 request might be added soon)
+Get a single user through id
 #### Expected in Request
 * user id in request URL
 * JWT in request header (like described in the IMPORTANT NOTE)
@@ -73,5 +73,86 @@ Get all users with the role 'user' (max number of users you get in 1 request mig
     "pointLog": [],
     "totalPoints": 0,
   }
+}
+```
+
+### DELETE: /users/:id
+>__localhost:3001/users/5a70845c98808845f84b3183__
+
+DELETE a single user through id
+#### Expected in Request
+* user id in request URL
+* JWT in request header (like described in the IMPORTANT NOTE)
+#### Example Response:
+```
+{
+  "user": {
+    "username": "markus.maelzer",
+    "email": "markus@gmail.com"
+  }
+}
+```
+
+## USER ROUTES
+### GET: /profile
+>__localhost:3001/profile__
+
+Get currently logged in users data
+#### Expected in Request
+* JWT in request header (like described in the IMPORTANT NOTE)
+#### Example Response:
+```
+{
+  "_id": "5a718b6c4f73c0832ceede56",
+  "username": "markus.maelzer",
+  "email": "markus@gmail.com",
+  "firstName": "markus",
+  "lastName": "mälzer",
+  "pointLog": [],
+  "totalPoints": 0
+}
+```
+
+## AUHTENTICATION ROUTES
+
+### POST: /signin
+> __localhost:3001/signin__
+
+Authenticate User with Email & Password
+#### Expected in Request
+```
+{
+	"email": "user@email.com",
+	"password": "admin123"
+}
+```
+#### Example Response
+```
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTcwODUyODY1M2M2ZTY5YWM2ZWZjZWMiLCJpYXQiOjE1MTczMjY4OTU1MTV9.HtM4QczWj0mmVIqf5qyA8XmEk2sui3-nwM7R-IdHyfM",
+    "role": "admin"
+}
+```
+
+### POST: /signup
+> __localhost:3001/signup__
+
+Signup User with Email + Password + firstName + lastName
+> Note: will be changed after review at 01.02.218
+
+#### Expected in Request
+```
+{
+	"email": "markus@gmail.com",
+	"password": "1234",
+	"firstName": "markus",
+	"lastName": "mälzer"
+}
+```
+#### Example Response
+```
+{
+    "message": "Your Account is now created",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTcxOGI2YzRmNzNjMDgzMmNlZWRlNTYiLCJpYXQiOjE1MTczOTA3MDA3NzB9.-4pify7MYSZ0NKVIPvz0BOtVemwW0E8ZZvP-BBI-h-A"
 }
 ```

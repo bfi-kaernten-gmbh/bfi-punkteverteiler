@@ -62,8 +62,9 @@ exports.removeUser = (req, res) => {
 
   User.findByIdAndRemove(id).then((user) => {
     if (!user) {
-      res.status(404).send({error: 'User not found!'});
+      return res.status(404).send({error: 'User not found!'});
     }
-    res.send({user});
+    const {username, email} = user;
+    res.send({ user: {username, email}});
   }).catch(e => res.send(e));
 }
