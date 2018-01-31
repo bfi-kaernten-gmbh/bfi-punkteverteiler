@@ -8,8 +8,8 @@ import { Field, reduxForm } from 'redux-form';
 
 class AdminSingleUserUpdate extends Component {
   componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props.fetchUser(id);
+    const { _id } = this.props.match.params;
+    this.props.fetchUser(_id);
   }
 
   renderField(field) {
@@ -39,7 +39,7 @@ class AdminSingleUserUpdate extends Component {
 
     return(
       <div>
-        {user.name}
+        {user.username}
         <div>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field

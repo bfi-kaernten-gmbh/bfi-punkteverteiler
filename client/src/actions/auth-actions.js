@@ -6,7 +6,7 @@ import {
   AUTH_ERROR
 } from './types';
 
-const ROOT_URL = 'http://dbaef1f6.ngrok.io';
+const ROOT_URL = 'http://localhost:3001';
 
 const signinUser = ({ email, password }, callback) => {
   return dispatch => {

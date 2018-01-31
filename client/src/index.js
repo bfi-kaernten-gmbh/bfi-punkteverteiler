@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 import './index.min.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -22,7 +23,7 @@ import { AUTH_USER } from './actions/types';
 const store = createStore(
   reducers,
   compose(
-    applyMiddleware(reduxThunk),
+    applyMiddleware(reduxThunk, promiseMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
 );
