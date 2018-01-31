@@ -15,7 +15,7 @@ example: (with axios)
 ```
 axios.get(localhost:3001/users, {
   headers: {
-    authentication: JSON WEB TOKEN
+    authorization: JSON WEB TOKEN
   }
 })
 ```
