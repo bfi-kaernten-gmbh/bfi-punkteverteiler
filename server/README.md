@@ -22,7 +22,8 @@ axios.get(localhost:3001/users, {
 
 ## ADMIN ROUTES
 ### GET: /users
-__localhost:3001/users__
+> __localhost:3001/users__
+
 Get all users with the role 'user' (max number of users you get in 1 request might be added soon)
 #### Expected in Request
 * JWT in request header (like described in the IMPORTANT NOTE)
@@ -53,7 +54,8 @@ Get all users with the role 'user' (max number of users you get in 1 request mig
 ```
 
 ### GET: /users/:id
-__localhost:3001/users/5a70845c98808845f84b3183__
+>__localhost:3001/users/5a70845c98808845f84b3183__
+
 Get all users with the role 'user' (max number of users you get in 1 request might be added soon)
 #### Expected in Request
 * user id in request URL
