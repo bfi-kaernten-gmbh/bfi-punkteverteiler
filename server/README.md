@@ -1,5 +1,5 @@
 # USAGE
-__ instal Mongodb __
+__instal Mongodb__
 https://docs.mongodb.com/manual/installation/
 ```
 npm i
