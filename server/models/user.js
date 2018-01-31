@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 
 const pointLogSchema = new Schema({
   points: Number,
-  timestamps: Date
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 const userSchema = new Schema({

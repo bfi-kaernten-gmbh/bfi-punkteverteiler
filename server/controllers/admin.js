@@ -1,13 +1,13 @@
 const _ = require('lodash');
-
-const User = require('../models/user');
 const { ObjectID } = require('mongodb');
 
-const excluded = '-role -password'
+const User = require('../models/user');
 
-function returnDocs(users){
-  res.send(users);
+const excluded = '-role -password';
+function removeWhitespace(el) {
+  return el.replace(/\s/g, '');
 }
+
 
 exports.getUsers = (req, res) => {
   // return all documents with role: user && only select properties in the
@@ -25,10 +25,6 @@ exports.getUsers = (req, res) => {
 exports.getUser = (req, res) => {
   var { id } = req.params;
 
-  if(!ObjectID.isValid(id)) {
-    return res.status(404).send({ error: 'user not found' })
-  }
-
   User.findById(id)
     .select(excluded)
     .exec()
@@ -44,17 +40,18 @@ exports.getUser = (req, res) => {
 }
 
 exports.addPoints = (req, res) => {
-  const ids = req.body.ids.split(',');
-  console.log(ids);
-  const body = _.pick(req.body, ['addPoints'])
-  console.log(body);
-
-  User.update({ids},{$inc: {totalPoints: body.addPoints}}, { multi: true }).then((doc) => {
-    if(!doc) {
-      res.status.send({error: 'Users not found'})
+  const ids = removeWhitespace(req.body.ids).split(',');
+  const {addPoints} = _.pick(req.body, ['addPoints']);
+  
+  for (var i = 0; i < ids.length; i++) {
+    if (!ObjectID.isValid(ids[i])){
+      return res.status(404).send({error: 'One of the Id`s was not valid'});
     }
-    res.send(doc.totalPoints);
-  }).catch(e => send(e))
+  }
+
+  User.update({_id: {$in: ids}},{$inc: {totalPoints: addPoints }, $push: {pointLog: {points: addPoints}}}, { multi: true }).then((docs) => {
+    res.send(docs);
+  }).catch(e => res.send(e))
 }
 
 exports.removeUser = (req, res) => {
