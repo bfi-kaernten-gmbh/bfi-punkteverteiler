@@ -1,6 +1,7 @@
 # USAGE
-__instal Mongodb__
-https://docs.mongodb.com/manual/installation/
+1. instal Mongodb -> https://docs.mongodb.com/manual/installation/
+2. if on windows -> create data/db folder in C:\ directory
+3. click on bat file in this projects root directory
 ```
 npm i
 npm start
