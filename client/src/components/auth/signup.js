@@ -14,12 +14,12 @@ class Signup extends Component {
   }
 
   handleSubmit = () => {
-
+    const username = this.parseUsername();
   }
 
   parseUsername = () => {
     let { firstName, lastName } = this.props.values || '';
-
+    firstName = firstName || ''
     return `${firstName}.${lastName}`.replace(/[\u00c4\u00e4äÄ]/g, "ae")
       .replace(/[\u00dc\u00fcüÜ]/g, "ue")
       .replace(/[\u00d6\u00f6öÖ]/g, "oe")
@@ -61,14 +61,17 @@ class Signup extends Component {
           <Field
             name="lastName"
             label="Nachname"
+            value="test"
             component={renderField}
           />
           <Field
             name="username"
             label="Benutzername"
-            normalize={value => this.parseUsername()}
+            value={this.parseUsername()}
+            normalize={value => { console.log(value);return this.parseUsername()}}
             component={renderField}
           />
+          <div>{this.parseUsername()}</div>
           <Field
             name="password"
             label="Password"
