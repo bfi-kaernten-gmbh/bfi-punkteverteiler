@@ -16,6 +16,7 @@ import AdminSingleUserUpdate from './components/admin/update-user';
 import PrivateRoute from './components/auth/private-route';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
+import Signup from './components/auth/signup';
 import reducers from './reducers';
 
 import { AUTH_USER } from './actions/types';
@@ -42,10 +43,11 @@ ReactDOM.render(
         <Route path="/" component={App} />
         <Switch>
           <PrivateRoute path="/admin/:id" component={AdminSingleUserUpdate} />
-          <PrivateRoute path="/user/:id" component={UserView} />
+          {/* <PrivateRoute path="/user/:id" component={UserView} /> */}
           <PrivateRoute path="/admin" component={AdminView} />
           <PrivateRoute path="/user" component={UserView} />
           <Route path="/signin" component={Signin} />
+          <Route path="/signup/:id" component={Signup} />
           <Route path="/signout" component={Signout} />
         </Switch>
       </div>

@@ -30,7 +30,10 @@ const userSchema = new Schema({
     required: true
   },
   username: {
-    type: String
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true
   },
   role: {
     type: String,
@@ -73,10 +76,10 @@ userSchema.pre('save', function (next) {
 })
 
 function generateUsername(firstName, lastName) {
-  return `${parseNames(firstName)}.${parseNames(lastName)}`
+  return `${parseUmlauts(firstName)}.${parseUmlauts(lastName)}`
 }
 
-function parseNames(el) {
+function parseUmlauts(el) {
   return el.replace(/[\u00c4\u00e4äÄ]/g, "ae")
     .replace(/[\u00dc\u00fcüÜ]/g, "ue")
     .replace(/[\u00d6\u00f6öÖ]/g, "oe")

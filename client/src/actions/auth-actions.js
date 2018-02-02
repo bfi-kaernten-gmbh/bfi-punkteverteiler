@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
   AUTH_USER,
   UNAUTH_USER,
-  AUTH_ERROR
+  AUTH_ERROR,
+  SIGNIN_VALID
 } from './types';
 
 const ROOT_URL = 'http://localhost:3001';
@@ -15,7 +16,7 @@ const signinUser = ({ email, password }, callback) => {
       .then( res => {
         // if request is good..
         // - Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER })
+        dispatch({ type: AUTH_USER });
         // - Save the JWT token
         localStorage.setItem('token', res.data.token);
         // - redirect to the route '/feature'
@@ -45,9 +46,28 @@ const signoutUser = () => {
   };
 }
 
+const validateSignup = (id) => {
+  return dispatch => {
+    axios.post(`${ROOT_URL}/validate/signup`, {id})
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: SIGNIN_VALID,
+          payload: res.data
+        })
+      })
+      .catch(e => {
+        dispatch({
+          type: SIGNIN_VALID,
+          payload: e.response.data
+        });
+      });
+  }
+}
 
 export {
   signinUser,
   authError,
-  signoutUser
+  signoutUser,
+  validateSignup
 }

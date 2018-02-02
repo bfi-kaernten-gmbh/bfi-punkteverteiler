@@ -43,4 +43,8 @@ module.exports = app => {
   // authentication routes
   app.post('/signin', requireSignin, auth.signin);
   app.post('/signup', auth.signup);
+
+  app.post('/validate/signup', auth.validateSignup);
+
+  app.post('/users', admin.addUser)
 };

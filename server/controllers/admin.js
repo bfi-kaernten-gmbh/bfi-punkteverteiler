@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { ObjectID } = require('mongodb');
 
 const User = require('../models/user');
+const allowedToSignup = require('../models/allowedToSignup');
 
 const excluded = '-role -password';
 function removeWhitespace(el) {
@@ -42,7 +43,7 @@ exports.getUser = (req, res) => {
 exports.addPoints = (req, res) => {
   const ids = removeWhitespace(req.body.ids).split(',');
   const {addPoints} = _.pick(req.body, ['addPoints']);
-  
+
   for (var i = 0; i < ids.length; i++) {
     if (!ObjectID.isValid(ids[i])){
       return res.status(404).send({error: 'One of the Id`s was not valid'});
@@ -64,4 +65,29 @@ exports.removeUser = (req, res) => {
     const {username, email} = user;
     res.send({ user: {username, email}});
   }).catch(e => res.send(e));
+}
+
+
+exports.addUser = (req, res, next) => {
+  let { emails } = req.body;
+
+  if(!emails || !Array.isArray(emails)) {
+    return res.status(400).send('error');
+  }
+
+  allowedToSignup.find({email: {$in: emails}}).then((docs) => {
+    if(docs.length > 0) {
+      return res.status(420).send({emails: docs, error: 'emails already used'});
+    }
+
+    emails = emails.map((email) => {
+      return new allowedToSignup({ email });
+    })
+
+    allowedToSignup.insertMany(emails).then(docs => {
+      res.send(docs);
+    }).catch(e => {
+      next(e);
+    })
+  }).catch(e => res.status(422).send(e));
 }

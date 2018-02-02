@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  fetchUser } from '../../actions';
+import {  fetchProfile } from '../../actions';
 import _ from 'lodash';
 
 import Button from '../reusable/button';
@@ -12,8 +12,7 @@ class UserView extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props.fetchUser(id);
+    this.props.fetchProfile();
   }
 
   handleOnClick = () => {
@@ -63,6 +62,9 @@ class UserView extends Component {
 
   render() {
     const { user } = this.props;
+    if(!user) {
+      return <div>loading</div>
+    }
 
     return (
       <div className="fullScreenSection">
@@ -84,9 +86,8 @@ class UserView extends Component {
   }
 }
 
-function mapStateToProps({ user }, ownProps) {
-  console.log(ownProps);
-  return { user: user[ownProps.match.params.id] };
+function mapStateToProps({ user }) {
+  return { user: user };
 }
 
-export default connect(mapStateToProps, { fetchUser })(UserView);
+export default connect(mapStateToProps, { fetchProfile })(UserView);
