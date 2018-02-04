@@ -10,9 +10,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.authenticated && this.props.history.location.pathname !== '/signin') {
-      this.props.history.push('/signin');
-    }
+
   }
   render() {
     return (

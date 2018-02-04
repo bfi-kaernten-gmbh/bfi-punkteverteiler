@@ -13,13 +13,15 @@ class Signup extends Component {
     this.props.validateSignup(id);
   }
 
-  handleSubmit = () => {
+  handleSubmit = (values) => {
     const username = this.parseUsername();
+    // action({...values, username})
   }
 
   parseUsername = () => {
     let { firstName, lastName } = this.props.values || '';
     firstName = firstName || ''
+    lastName = lastName || ''
     return `${firstName}.${lastName}`.replace(/[\u00c4\u00e4äÄ]/g, "ae")
       .replace(/[\u00dc\u00fcüÜ]/g, "ue")
       .replace(/[\u00d6\u00f6öÖ]/g, "oe")
@@ -27,14 +29,6 @@ class Signup extends Component {
       .toLowerCase()
     ;
   }
-
-  // changeUsername = () => {
-  //   console.log(this);
-  //   setTimeout(function () {
-  //     console.log(this);
-  //     this.props.change('signup', 'username', this.parseUsername());
-  //   }, 500);
-  // }
 
   render() {
     console.log(this.props);
@@ -62,13 +56,6 @@ class Signup extends Component {
             name="lastName"
             label="Nachname"
             value="test"
-            component={renderField}
-          />
-          <Field
-            name="username"
-            label="Benutzername"
-            value={this.parseUsername()}
-            normalize={value => { console.log(value);return this.parseUsername()}}
             component={renderField}
           />
           <div>{this.parseUsername()}</div>

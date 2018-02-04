@@ -74,7 +74,8 @@ exports.removeUser = (req, res) => {
   }).catch(e => res.send(e));
 }
 
-
+// TODO //
+// add check in user db not only allowedToSignup db
 exports.addUser = (req, res, next) => {
   let { emails } = req.body;
 
