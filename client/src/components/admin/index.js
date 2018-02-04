@@ -10,7 +10,7 @@ class AdminView extends Component {
   }
 
   renderUserList() {
-    return _.map(this.props.user, user => {
+    return _.map(this.props.userList, user => {
       return (
         <div key={user._id}>
           <p>{user.username}</p>
@@ -18,6 +18,7 @@ class AdminView extends Component {
           <Link to={`/admin/${user._id}`}>
             <button>bearbeiten</button>
           </Link>
+          
         </div>
       );
     })
@@ -33,8 +34,7 @@ class AdminView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
-  return { user: state.user };
+  return { userList: state.user.userList };
 }
 
 export default connect(mapStateToProps, {fetchUserList})(AdminView);

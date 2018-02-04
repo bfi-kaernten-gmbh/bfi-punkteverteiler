@@ -13,11 +13,10 @@ export default function(state = {}, action) {
   case FETCH_USER:
     return { ...state, ...action.payload.data };
   case FETCH_USERLIST:
-  console.log(action.payload.data);
-    return _.mapKeys(action.payload.data, '_id');
+    return {...state, userList: _.mapKeys(action.payload.data, '_id')};
   case UPDATE_USER:
     return {
-      ...state,
+      ...state
     };
   default:
     return state;

@@ -9,14 +9,14 @@ import { renderField } from '../helpers/render-field';
 
 class AdminSingleUserUpdate extends Component {
   componentDidMount() {
-    const { _id } = this.props.match.params;
-    this.props.fetchUser(_id);
+    const { id } = this.props.match.params;
+    this.props.fetchUser(id);
   }
 
   onSubmit(values) {
-    console.log(this.props.user.id);
-    const { id } = this.props.user;
-    this.props.updateUser(values, id, () => {
+    const { _id } = this.props.user;
+    this.props.updateUser({ids: [_id], addPoints: values.punkte}, () => {
+      console.log(_id);
       this.props.history.push('/admin');
     });
   }
@@ -28,7 +28,8 @@ class AdminSingleUserUpdate extends Component {
 
     return(
       <div>
-        {user.username}
+        <p>{user.username}</p>
+        <p>{user.totalPoints}</p>
         <div>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
@@ -60,7 +61,7 @@ function validate(values) {
 }
 
 function mapStateToProps({ user }, ownProps) {
-  return { user: user[ownProps.match.params.id] }
+  return { user }
 }
 
 export default reduxForm({
