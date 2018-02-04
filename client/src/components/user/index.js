@@ -25,7 +25,7 @@ class UserView extends Component {
   handleLogList = () => {
     return _.map(this.props.user.pointLog, pointLog => {
       return (
-        <div className="container" key={pointLog.id}>
+        <div className="container" key={pointLog._id}>
           <p>{pointLog.points} Punkte</p>
           <p>{pointLog.text}</p>
         </div>
@@ -86,8 +86,8 @@ class UserView extends Component {
   }
 }
 
-function mapStateToProps({ user }) {
-  return { user: user };
+function mapStateToProps({ user }, ownProps) {
+  return { user: user[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps, { fetchProfile })(UserView);

@@ -13,12 +13,13 @@ const tokenForUser = (user) => {
 }
 
 exports.signin = (req, res, next) => {
+  const { role, _id } = req.user;
   // User has already had their email and password auth'd
   // we just need to give them a token
 
   // passports done function adds whatever gets passed down by
   // done(null, thisHere) into the 'req' object
-  res.send({ token: tokenForUser(req.user), role: req.user.role })
+  res.send({ token: tokenForUser(req.user), role,_id});
 
 }
 
@@ -34,14 +35,15 @@ exports.validateSignup = (req, res) => {
 
 exports.signup = (req, res, next) => {
   const { username, password, email } = req.body;
-
+  console.log({username}, password, {email});
   // check if email and password exist
   if(!username || !password || !email) {
     res.status(400).send({message: 'The Green Goddess does not aprove (username/password is missing)'})
   }
 
   // See if a user with the given email exists
-  User.findOne({ email, username }).then((existingUser) => {
+  User.findOne({$or: [{username}, {email} ]}).then((existingUser) => {
+    console.log(existingUser);
     // If a user with email exists, return error
     if(existingUser) {
       return res.status(420).send({error: 'The Green Goddess does not aprove (username or email already exist)'});
@@ -51,14 +53,15 @@ exports.signup = (req, res, next) => {
     const user = new User({
       ...req.body
     })
+    console.log(user);
 
     user.save().then((user) => {
       // respond to request indicating the user was created
       return res.send({message: 'Your Account is now created', token: tokenForUser(user), username: user.username});
-    }, (e) => {
+    }).catch((e) => {
       next(e);
     });
-  }, (e) => {
+  }).catch((e) => {
     res.status(422).send({error: 'email or username is in use', e});
   });
 };

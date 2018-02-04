@@ -41,16 +41,23 @@ exports.getUser = (req, res) => {
 }
 
 exports.addPoints = (req, res) => {
-  const ids = removeWhitespace(req.body.ids).split(',');
-  const {addPoints} = _.pick(req.body, ['addPoints']);
+  let { ids, description, addPoints } = req.body;
+
+  if (!Array.isArray(ids)) {
+    return res.status(500).send({error: 'Internal Server Booboo (ids is not an array)'});
+  }
+  if(!description) {
+    description = '';
+  }
 
   for (var i = 0; i < ids.length; i++) {
+    ids[i] = removeWhitespace(ids[i]);
     if (!ObjectID.isValid(ids[i])){
       return res.status(404).send({error: 'One of the Id`s was not valid'});
     }
   }
 
-  User.update({_id: {$in: ids}},{$inc: {totalPoints: addPoints }, $push: {pointLog: {points: addPoints}}}, { multi: true }).then((docs) => {
+  User.update({_id: {$in: ids}},{$inc: {totalPoints: addPoints }, $push: {pointLog: {points: addPoints, description}}}, { multi: true }).then((docs) => {
     res.send(docs);
   }).catch(e => res.send(e))
 }
@@ -63,7 +70,7 @@ exports.removeUser = (req, res) => {
       return res.status(404).send({error: 'User not found!'});
     }
     const {username, email} = user;
-    res.send({ user: {username, email}});
+    res.send({username, email});
   }).catch(e => res.send(e));
 }
 

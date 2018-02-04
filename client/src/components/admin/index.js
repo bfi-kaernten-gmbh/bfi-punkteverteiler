@@ -18,7 +18,7 @@ class AdminView extends Component {
           <Link to={`/admin/${user._id}`}>
             <button>bearbeiten</button>
           </Link>
-          
+
         </div>
       );
     })
@@ -34,7 +34,7 @@ class AdminView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { userList: state.user.userList };
+  return { userList: state.user };
 }
 
 export default connect(mapStateToProps, {fetchUserList})(AdminView);

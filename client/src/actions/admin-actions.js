@@ -27,6 +27,7 @@ function fetchUser(id) {
       authorization: jwt
     }
   });
+  console.log(request);
   return {
     type: FETCH_USER,
     payload: request
@@ -47,11 +48,12 @@ function fetchUserList() {
   }
 }
 
-function updateUser({ids, addPoints}, callback) {
+function updateUser({ids, addPoints, description}, callback) {
   return dispatch => {
     axios.patch(`${ROOT_URL}/users`, {
       ids: ids,
-      addPoints
+      addPoints,
+      description
     }, REQUEST_OPTIONS).then(res => {
       console.log(res);
       dispatch({

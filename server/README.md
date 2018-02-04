@@ -64,16 +64,14 @@ Get a single user through id
 #### Example Response:
 ```
 {
-  "user": {
-    "_id": "5a7084d498808845f84b3185",
-    "username": "mm.mm",
-    "email": "wenge@gmail.com",
-    "firstName": "mm",
-    "lastName": "mm",
-    "__v": 0,
-    "pointLog": [],
-    "totalPoints": 0,
-  }
+  "_id": "5a7084d498808845f84b3185",
+  "username": "mm.mm",
+  "email": "wenge@gmail.com",
+  "firstName": "mm",
+  "lastName": "mm",
+  "__v": 0,
+  "pointLog": [],
+  "totalPoints": 0,
 }
 ```
 
@@ -87,10 +85,8 @@ DELETE a single user through id
 #### Example Response:
 ```
 {
-  "user": {
-    "username": "markus.maelzer",
-    "email": "markus@gmail.com"
-  }
+  "username": "markus.maelzer",
+  "email": "markus@gmail.com"
 }
 ```
 

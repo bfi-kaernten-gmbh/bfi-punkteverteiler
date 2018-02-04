@@ -13,9 +13,9 @@ class AdminSingleUserUpdate extends Component {
     this.props.fetchUser(id);
   }
 
-  onSubmit(values) {
+  onSubmit({addPoints, description}) {
     const { _id } = this.props.user;
-    this.props.updateUser({ids: [_id], addPoints: values.punkte}, () => {
+    this.props.updateUser({ids: [_id], addPoints, description}, () => {
       console.log(_id);
       this.props.history.push('/admin');
     });
@@ -23,9 +23,11 @@ class AdminSingleUserUpdate extends Component {
 
   render() {
     const { user } = this.props;
-    const { handleSubmit } = this.props;
     console.log(user);
-
+    const { handleSubmit } = this.props;
+    if(!user) {
+      return <div>loading</div>
+    }
     return(
       <div>
         <p>{user.username}</p>
@@ -34,12 +36,12 @@ class AdminSingleUserUpdate extends Component {
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
               label="Punkte"
-              name="punkte"
+              name="addPoints"
               component={renderField}
             />
             <Field
               label="Beschreibung"
-              name="text"
+              name="description"
               component={renderField}
             />
             <button type="submit">Senden</button>
@@ -61,7 +63,7 @@ function validate(values) {
 }
 
 function mapStateToProps({ user }, ownProps) {
-  return { user }
+  return { user: user[ownProps.match.params.id]}
 }
 
 export default reduxForm({

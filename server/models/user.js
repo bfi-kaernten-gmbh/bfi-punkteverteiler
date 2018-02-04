@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
 const pointLogSchema = new Schema({
-  points: Number,
+  points: {
+    type: Number,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  description: {
+    type: String
   }
 })
 
@@ -56,7 +62,6 @@ userSchema.pre('save', function (next) {
   const { firstName, lastName } = user;
 
   // generate Username
-  user.username = generateUsername(firstName, lastName);
 
   // generate a salt
   bcrypt.genSalt(10, function (err, salt) {
@@ -74,19 +79,6 @@ userSchema.pre('save', function (next) {
     })
   })
 })
-
-function generateUsername(firstName, lastName) {
-  return `${parseUmlauts(firstName)}.${parseUmlauts(lastName)}`
-}
-
-function parseUmlauts(el) {
-  return el.replace(/[\u00c4\u00e4äÄ]/g, "ae")
-    .replace(/[\u00dc\u00fcüÜ]/g, "ue")
-    .replace(/[\u00d6\u00f6öÖ]/g, "oe")
-    .replace(/\u00dfß/g, "ss")
-    .toLowerCase()
-  ;
-}
 
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {

@@ -11,9 +11,9 @@ import {
 export default function(state = {}, action) {
   switch(action.type) {
   case FETCH_USER:
-    return { ...state, ...action.payload.data };
+    return { ...state, [action.payload.data._id]: action.payload.data }
   case FETCH_USERLIST:
-    return {...state, userList: _.mapKeys(action.payload.data, '_id')};
+    return _.mapKeys(action.payload.data, '_id');
   case UPDATE_USER:
     return {
       ...state

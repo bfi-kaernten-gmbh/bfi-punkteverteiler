@@ -14,13 +14,19 @@ const signinUser = ({ email, password }, callback) => {
     // Submit email/password to the server
     axios.post(`${ROOT_URL}/signin`, {email, password})
       .then( res => {
+        console.log(res.data);
         // if request is good..
         // - Update state to indicate user is authenticated
         dispatch({ type: AUTH_USER });
         // - Save the JWT token
         localStorage.setItem('token', res.data.token);
         // - redirect to the route '/feature'
-        callback(`/${res.data.role}`);
+        const role = res.data;
+        if(role !== 'admin') {
+          callback(`/${res.data.role}/${res.data._id}`);
+        } else {
+          callback(`/${res.data.role}`);
+        }
       })
       .catch((e) => {
         console.log(e);
