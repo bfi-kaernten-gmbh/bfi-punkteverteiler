@@ -6,9 +6,12 @@ class App extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       return <Link to="/signout">Sign Out</Link>;
-    } else {
-      if(this.props.history.location.pathname !== '/signin')
-        return <Link to="/signin">Login</Link>;
+    }
+  }
+
+  componentDidMount() {
+    if (!this.props.authenticated && this.props.history.location.pathname !== '/signin') {
+      this.props.history.push('/signin');
     }
   }
   render() {

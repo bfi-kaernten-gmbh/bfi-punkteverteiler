@@ -21,11 +21,13 @@ const signinUser = ({ email, password }, callback) => {
         // - Save the JWT token
         localStorage.setItem('token', res.data.token);
         // - redirect to the route '/feature'
-        const role = res.data;
+        const {role, _id} = res.data;
+        console.log(role, _id);
         if(role !== 'admin') {
-          callback(`/${res.data.role}/${res.data._id}`);
+          console.log('hio');
+          callback(`/${role}/${_id}`);
         } else {
-          callback(`/${res.data.role}`);
+          callback(`/${role}`);
         }
       })
       .catch((e) => {
@@ -38,7 +40,6 @@ const signinUser = ({ email, password }, callback) => {
 }
 
 const authError = error => {
-  console.log(error);
   return {
     type: AUTH_ERROR,
     payload: error

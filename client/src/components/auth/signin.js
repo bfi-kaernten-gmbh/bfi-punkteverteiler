@@ -6,6 +6,7 @@ import { signinUser } from '../../actions';
 class Signin extends Component {
   handleSubmit = ({email, password}) => {
     this.props.signinUser({ email, password }, (route) => {
+      console.log(route);
       this.props.history.push(route);
     });
   }
