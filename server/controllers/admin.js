@@ -4,7 +4,7 @@ const { ObjectID } = require('mongodb');
 const User = require('../models/user');
 const allowedToSignup = require('../models/allowedToSignup');
 
-const excluded = '-role -password';
+const excluded = '-role -password -__v';
 function removeWhitespace(el) {
   return el.replace(/\s/g, '');
 }
