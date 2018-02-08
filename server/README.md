@@ -114,9 +114,36 @@ It also adds an entry to the PointLog Array of that user.
 ```
 ?not sure if i want to keep this as the response?
 
+### POST: /users
+> __localhost:3001/users__
+
 ## USER ROUTES
 ### GET: /profile
->__localhost:3001/profile__
+> __localhost:3001/profile__
+
+add new users through email. A automatically generated link will be send to all specified emails.
+
+#### Expected in Request
+```
+{
+	"emails": ["wengee@test.com", "email@test.com"]
+}
+```
+### Expected Response
+```
+[
+  {
+    "__v": 0,
+    "_id": "5a7c0b7321a78206b0c436cd",
+    "email": "wengee@test.com"
+  }
+  {
+    "__v": 0,
+    "_id": "5a7c0b7322a78206bt5c436cd",
+    "email": "email@test.com"
+  }
+]
+```
 
 Get currently logged in users data
 #### Expected in Request
@@ -177,4 +204,26 @@ Signup User with Email + Password + firstName + lastName
     "message": "Your Account is now created",
     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTcxOGI2YzRmNzNjMDgzMmNlZWRlNTYiLCJpYXQiOjE1MTczOTA3MDA3NzB9.-4pify7MYSZ0NKVIPvz0BOtVemwW0E8ZZvP-BBI-h-A"
 }
+```
+
+### POST: /validate/signup
+> __localhost:3001/validate/signup__
+
+validate if someone is allowed to Signup
+
+> validation works through a parameter in a link send to an email
+
+#### Expected in Request
+```
+{
+  id: 5a7bfc6554a98c4ba0fe91b2
+}
+```
+provide valid mongodb id
+
+#### Expected Response
+```
+true
+or
+Unauthorized
 ```
