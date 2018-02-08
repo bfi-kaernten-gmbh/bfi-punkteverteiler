@@ -7,14 +7,13 @@ import {
   SIGNIN_VALID
 } from './types';
 
-const ROOT_URL = 'http://4eab9682.ngrok.io';
+import {ROOT_URL} from './';
 
-const signinUser = ({ email, password }, callback) => {
+const signinUser = ({ username, password }, callback) => {
   return dispatch => {
     // Submit email/password to the server
-    axios.post(`${ROOT_URL}/signin`, {email, password})
+    axios.post(`${ROOT_URL}/signin`, {username, password})
       .then( res => {
-        console.log(res.data);
         // if request is good..
         // - Update state to indicate user is authenticated
         dispatch({ type: AUTH_USER });
@@ -22,16 +21,13 @@ const signinUser = ({ email, password }, callback) => {
         localStorage.setItem('token', res.data.token);
         // - redirect to the route '/feature'
         const {role, _id} = res.data;
-        console.log(role, _id);
         if(role !== 'admin') {
-          console.log('hio');
           callback(`/${role}/${_id}`);
         } else {
           callback(`/${role}`);
         }
       })
       .catch((e) => {
-        console.log(e);
         // if request is bad...
         // - Show an error to the user≈
         dispatch(authError('Bad Login Info'));
@@ -57,19 +53,22 @@ const validateSignup = (id) => {
   return dispatch => {
     axios.post(`${ROOT_URL}/validate/signup`, {id})
       .then((res) => {
-        console.log(res);
         dispatch({
           type: SIGNIN_VALID,
           payload: res.data
         })
       })
-      .catch(e => {
+      .catch(e => {;
         dispatch({
           type: SIGNIN_VALID,
-          payload: e.response.data
+          payload: 'error'
         });
       });
   }
+}
+
+const signupUser = (newUser) => {
+
 }
 
 export {

@@ -9,7 +9,6 @@ export default (state = {}, action) => {
     case AUTH_ERROR:
       return { ...state, error: action.payload }
     case SIGNIN_VALID: {
-      console.log(action.payload);
       return { ...state, signupValid: action.payload }
     }
 

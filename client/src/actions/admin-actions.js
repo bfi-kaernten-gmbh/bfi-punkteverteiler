@@ -7,6 +7,7 @@ import {
 } from './types';
 
 import {ROOT_URL} from './';
+
 const jwt = localStorage.getItem('token');
 const REQUEST_OPTIONS = {
   headers: {
