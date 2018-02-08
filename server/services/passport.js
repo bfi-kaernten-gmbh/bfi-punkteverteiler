@@ -8,13 +8,13 @@ const config = require('../config');
 
 // Create local Strategy
 const localOptions = {
-  usernameField: 'email'
+  usernameField: 'username'
 }
-const localLogin = new LocalStrategy(localOptions, function (email, password, done) {
+const localLogin = new LocalStrategy(localOptions, function (username, password, done) {
   // Verify this email and password, call done with the user
   // if it is the correct email and password
   // otherwise, call done with false
-  User.findOne({ email }).then((user) => {
+  User.findOne({ username }).then((user) => {
     if(!user) { return done(null, false)}
 
     // compare passwords - is 'password' equal to user.password?
