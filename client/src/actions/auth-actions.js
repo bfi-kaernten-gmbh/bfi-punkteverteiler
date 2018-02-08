@@ -4,7 +4,8 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  SIGNIN_VALID
+  SIGNUP_VALID,
+  SIGNUP_USER
 } from './types';
 
 import {ROOT_URL} from './';
@@ -54,26 +55,34 @@ const validateSignup = (id) => {
     axios.post(`${ROOT_URL}/validate/signup`, {id})
       .then((res) => {
         dispatch({
-          type: SIGNIN_VALID,
+          type: SIGNUP_VALID,
           payload: res.data
         })
       })
       .catch(e => {;
         dispatch({
-          type: SIGNIN_VALID,
+          type: SIGNUP_VALID,
           payload: 'error'
         });
       });
   }
 }
 
-const signupUser = (newUser) => {
-
+const signupUser = (newUser, callback) => {
+  return dispatch => {
+    axios.post(`${ROOT_URL}/signup`, newUser)
+      .then((res) => {
+        dispatch({type: AUTH_USER})
+        localStorage.setItem('token', res.data.token);
+        callback(`/user/${res.data._id}`);
+      })
+  }
 }
 
 export {
   signinUser,
   authError,
   signoutUser,
-  validateSignup
+  validateSignup,
+  signupUser
 }

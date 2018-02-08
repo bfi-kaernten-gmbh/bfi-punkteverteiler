@@ -4,7 +4,7 @@ import { Field,  reduxForm, getFormValues,getFormInitialValues } from 'redux-for
 import { Redirect } from 'react-router-dom';
 import mapKeys from 'lodash/mapKeys';
 
-import { validateSignup } from '../../actions';
+import { validateSignup, signupUser } from '../../actions';
 import { renderField, createRules } from '../helpers';
 
 const validate = {
@@ -12,6 +12,7 @@ const validate = {
   required: createRules({ required: true }),
   password: createRules({ passwordConfirm: 'passwordConfirm', required: true })
 }
+
 class Signup extends Component {
   componentWillMount() {
     var {pathname: id} = this.props.history.location;
@@ -21,7 +22,12 @@ class Signup extends Component {
 
   handleSubmit = (values) => {
     const username = this.parseUsername();
-    // action({...values, username})
+    this.props.signupUser({
+      ...values,
+      username
+    }, (location) => {
+      this.props.history.push(location);
+    })
   }
 
   parseUsername = () => {
@@ -92,35 +98,6 @@ class Signup extends Component {
   }
 }
 
-// function validate(values) {
-//   const errors = {};
-//   const { email, firstName, lastName, password, passwordConfirm } = values;
-//
-//   if(!email) {
-//     errors.email = 'test';
-//   }
-//   if(!firstName) {
-//     errors.firstName = 'Please enter your lastName';
-//   }
-//   if(!lastName) {
-//     errors.lastName = 'Please enter your lastName';
-//   }
-//   if(!password) {
-//     errors.password = 'Please enter your password';
-//   }
-//   if(!passwordConfirm) {
-//     errors.passwordConfirm = 'Please enter your confirm your password';
-//   }
-//
-//   if(password && passwordConfirm) {
-//     if(password !== passwordConfirm) {
-//       errors.password = 'passwords must match';
-//     }
-//   }
-//
-//   return errors;
-// }
-
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth,
@@ -131,5 +108,5 @@ const mapStateToProps = (state, ownProps) => {
 export default reduxForm({
   form: 'signup',
 })(
-  connect(mapStateToProps, { validateSignup })(Signup)
+  connect(mapStateToProps, { validateSignup, signupUser })(Signup)
 );

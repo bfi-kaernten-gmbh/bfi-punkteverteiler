@@ -61,7 +61,7 @@ exports.signup = (req, res, next) => {
 
     user.save().then((user) => {
       // respond to request indicating the user was created
-      return res.send({message: 'Your Account is now created', token: tokenForUser(user), username: user.username});
+      return res.send({message: 'Your Account is now created', token: tokenForUser(user), _id: user._id});
     }).catch((e) => {
       next(e);
     });
