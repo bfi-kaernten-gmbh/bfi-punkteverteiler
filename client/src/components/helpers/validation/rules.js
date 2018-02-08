@@ -14,7 +14,21 @@ phoneNumber = phoneNumber => value =>
   phoneNumber && value && !/^(0|[1-9][0-9]{9})$/i.test(value)
     ? 'Invalid phone number, must be 10 digits'
     : undefined,
-required = required => value => required && !value ? 'Required' : undefined;
+required = required => value => required && !value ? 'Required' : undefined,
+passwordConfirm = name => (value, allValues) =>
+  name && value && value !== allValues[name]
+    ? 'Passwords must match'
+    : undefined;
 
 
-export default {minValue, maxValue, required};
+export default {
+  minValue,
+  maxValue,
+  minLength,
+  maxLength,
+  email,
+  alphaNumeric,
+  phoneNumber,
+  required,
+  passwordConfirm
+};

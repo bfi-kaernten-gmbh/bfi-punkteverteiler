@@ -5,9 +5,13 @@ import { Redirect } from 'react-router-dom';
 import mapKeys from 'lodash/mapKeys';
 
 import { validateSignup } from '../../actions';
-import { renderField, validate } from '../helpers';
+import { renderField, createRules } from '../helpers';
 
-const validation = validate({ maxValue: 20, required: true });
+const validate = {
+  email: createRules({ email: true, required: true }),
+  required: createRules({ required: true }),
+  password: createRules({ passwordConfirm: 'passwordConfirm', required: true })
+}
 class Signup extends Component {
   componentWillMount() {
     var {pathname: id} = this.props.history.location;
@@ -48,31 +52,38 @@ class Signup extends Component {
             type="email"
             label="Email"
             component={renderField}
-            validate={validation}
+            validate={validate.email}
           />
           <Field
             name="firstName"
             label="Vorname"
             component={renderField}
+            validate={validate.required}
           />
           <Field
             name="lastName"
             label="Nachname"
             value="test"
             component={renderField}
+            validate={validate.required}
           />
-          <div>{this.parseUsername()}</div>
+          <div>
+            <label>Username: </label>
+            {this.parseUsername()}
+          </div>
           <Field
             name="password"
             label="Passwort"
             type="password"
             component={renderField}
+            validate={validate.password}
           />
           <Field
             name="passwordConfirm"
             label="Passwort bestätigen"
             type="password"
             component={renderField}
+            validate={validate.required}
           />
           <button>Signup</button>
         </form>
