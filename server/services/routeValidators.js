@@ -2,9 +2,10 @@ const {ObjectID} = require('mongodb');
 const User = require('../models/user');
 
 exports.id = (req, res, next) => {
-  if(!ObjectID.isValid(req.params.id)) {
-    res.status(404).send({error: 'User not found - id invalid'});
-    return next('User not found - id invalid');
+  const id = req.params.id || req.body.id;
+  if(!ObjectID.isValid(id)) {
+    res.status(404).send({error: 'id invalid'});
+    return next('id invalid');
   }
   next();
 }

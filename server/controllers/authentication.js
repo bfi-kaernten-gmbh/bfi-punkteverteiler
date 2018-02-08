@@ -25,9 +25,13 @@ exports.signin = (req, res, next) => {
 
 exports.validateSignup = (req, res) => {
   const { id: _id } = req.body;
+  if(!_id) {
+    return res.status(400).send('bad request (provide an id)')
+  }
+
   allowedToSignup.findById(_id).then((doc) => {
     if(!doc) {
-      return res.status(404).send('id not found');
+      return res.status(403).send('Unauthorized');
     }
     res.send(true);
   }).catch(e => res.status(403).send('error'))
