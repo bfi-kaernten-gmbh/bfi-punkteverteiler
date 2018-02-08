@@ -14,9 +14,10 @@ for now the server url is: __localhost:3001/__
 You need to include the JWT in the property 'authentication' in your REQUEST HEADER
 example: (with axios)
 ```
+const jwt = localStorage.getItem('token');
 axios.get(localhost:3001/users, {
   headers: {
-    authorization: JSON WEB TOKEN
+    authorization: jwt
   }
 })
 ```
@@ -37,7 +38,6 @@ Get all users with the role 'user' (max number of users you get in 1 request mig
     "email": "mm@mm.at",
     "firstName": "mm",
     "lastName": "mm",
-    "__v": 0,
     "pointLog": [],
     "totalPoints": 0
   },
@@ -47,7 +47,6 @@ Get all users with the role 'user' (max number of users you get in 1 request mig
     "email": "markus@gmail.com",
     "firstName": "markus",
     "lastName": "mälzer",
-    "__v": 0,
     "pointLog": [],
     "totalPoints": 0
   }
@@ -69,7 +68,6 @@ Get a single user through id
   "email": "wenge@gmail.com",
   "firstName": "mm",
   "lastName": "mm",
-  "__v": 0,
   "pointLog": [],
   "totalPoints": 0,
 }
@@ -96,12 +94,13 @@ DELETE a single user through id
 Adds Points to Users wich id where passed in the Request.
 It also adds an entry to the PointLog Array of that user.
 #### IMPORTANT NOTE
-> seperate the id's passed in the ids property by a ","(Comma)
+> id's must be passed as an ARRAY in an object with the property ids
+  it can be a single id aswell but it still has to be an array
 
 #### Expected in Request
 ```
 {
-	"ids": "5a71d6ba75322964ec52879a,5a71d6bc75322964ec52879b",
+	"ids": ["5a71d6ba75322964ec52879a","5a71d6bc75322964ec52879b"],
 	"addPoints": 3
 }
 ```
@@ -140,19 +139,20 @@ Get currently logged in users data
 ### POST: /signin
 > __localhost:3001/signin__
 
-Authenticate User with Email & Password
+Authenticate User with Username & Password
 #### Expected in Request
 ```
 {
-	"email": "user@email.com",
+	"username": "firstname.lastname",
 	"password": "admin123"
 }
 ```
 #### Example Response
 ```
 {
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTcwODUyODY1M2M2ZTY5YWM2ZWZjZWMiLCJpYXQiOjE1MTczMjY4OTU1MTV9.HtM4QczWj0mmVIqf5qyA8XmEk2sui3-nwM7R-IdHyfM",
-    "role": "admin"
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTcwODUyODY1M2M2ZTY5YWM2ZWZjZWMiLCJpYXQiOjE1MTczMjY4OTU1MTV9.HtM4QczWj0mmVIqf5qyA8XmEk2sui3-nwM7R-IdHyfM",
+  "role": "admin",
+  "_id": "5a7bfc6554a98c4ba0fe91b2"
 }
 ```
 
