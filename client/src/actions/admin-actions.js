@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
   FETCH_USER,
   FETCH_USERLIST,
-  UPDATE_USER
+  UPDATE_USER,
+  MULTISELECT
 } from './types';
 
 import {ROOT_URL} from './';
@@ -18,7 +19,8 @@ const REQUEST_OPTIONS = {
 export {
   fetchUser,
   fetchUserList,
-  updateUser
+  updateUser,
+  multiselect
 }
 
 function fetchUser(id) {
@@ -51,8 +53,9 @@ function fetchUserList() {
 
 function updateUser({ids, addPoints, description}, callback) {
   return dispatch => {
+    debugger;
     axios.patch(`${ROOT_URL}/users`, {
-      ids: ids,
+      ids,
       addPoints,
       description
     }, REQUEST_OPTIONS).then(res => {
@@ -62,5 +65,13 @@ function updateUser({ids, addPoints, description}, callback) {
       })
       callback()
     });
+  }
+}
+
+function multiselect(id) {
+  // console.log(id);
+  return {
+    type: MULTISELECT,
+    id,
   }
 }

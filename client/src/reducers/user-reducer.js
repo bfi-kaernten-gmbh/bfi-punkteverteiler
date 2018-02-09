@@ -3,7 +3,8 @@ import _ from 'lodash';
 import {
   FETCH_USER,
   FETCH_USERLIST,
-  UPDATE_USER
+  UPDATE_USER,
+  MULTISELECT
 } from '../actions/types';
 
 
