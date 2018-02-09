@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux'
 import { signinUser } from '../../actions';
+import { renderField } from '../helpers';
 
 class Signin extends Component {
-  handleSubmit = ({email, password}) => {
-    this.props.signinUser({ email, password }, (route) => {
+  handleSubmit = ({username, password}) => {
+    this.props.signinUser({ username, password }, (route) => {
       console.log(route);
       this.props.history.push(route);
     });
@@ -24,22 +25,17 @@ class Signin extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-        <fieldset>
-          <label>Email:</label>
           <Field
-            name="email"
-            type="text"
-            component="input"
+            name="username"
+            label="Email:"
+            component={renderField}
           />
-        </fieldset>
-        <fieldset>
-          <label>Password:</label>
           <Field
             name="password"
             type="password"
-            component="input"
+            label="Password:"
+            component={renderField}
           />
-        </fieldset>
         {this.renderAlert()}
         <button action="submit">Sign in </button>
       </form>

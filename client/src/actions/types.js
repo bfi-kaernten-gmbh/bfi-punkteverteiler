@@ -8,4 +8,4 @@ export const UPDATE_USER = 'update_user';
 export const AUTH_USER = 'auth_user';
 export const UNAUTH_USER = 'unauth_user';
 export const AUTH_ERROR = 'auth_error';
-export const SIGNIN_VALID = 'signin_valid';
+export const SIGNUP_VALID = 'signup_valid';
