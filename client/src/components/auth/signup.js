@@ -46,6 +46,7 @@ class Signup extends Component {
     // console.log(this.props);
     const { handleSubmit } = this.props;
     const { signupValid } = this.props.auth;
+    console.log(signupValid);
     if(!signupValid) {
       return <div>loading</div>;
     } else if (signupValid === 'error') {
@@ -99,7 +100,6 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.auth.email);
   return {
     auth: state.auth,
     values: getFormValues('signup')(state),
@@ -110,8 +110,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default reduxForm({
-  form: 'signup',
-  enableReinitialize: true
+  form: 'signup'
 })(
   connect(mapStateToProps, { validateSignup, signupUser })(Signup)
 );

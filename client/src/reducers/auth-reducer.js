@@ -9,7 +9,7 @@ export default (state = {}, action) => {
     case AUTH_ERROR:
       return { ...state, error: action.payload }
     case SIGNUP_VALID: {
-      const { signupValid, email } = action.payload;
+      const { signupValid, email } = action.payload || '';
       return { ...state, signupValid, email }
     }
 

@@ -62,7 +62,7 @@ const validateSignup = (id) => {
       .catch(e => {;
         dispatch({
           type: SIGNUP_VALID,
-          payload: 'error'
+          payload: {signupValid: 'error'}
         });
       });
   }
