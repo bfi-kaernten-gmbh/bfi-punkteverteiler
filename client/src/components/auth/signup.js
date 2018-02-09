@@ -99,14 +99,19 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state.auth.email);
   return {
     auth: state.auth,
-    values: getFormValues('signup')(state)
+    values: getFormValues('signup')(state),
+    initialValues: {
+      email: state.auth.email || 'email'
+    }
   };
 };
 
 export default reduxForm({
   form: 'signup',
+  enableReinitialize: true
 })(
   connect(mapStateToProps, { validateSignup, signupUser })(Signup)
 );
