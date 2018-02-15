@@ -21,6 +21,21 @@ axios.get(localhost:3001/users, {
   }
 })
 ```
+Also there has to be a config.js file in the mail folder wich has to look like this:
+```
+var nodemailer = require('nodemailer');
+
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'email@gmail.com',
+    pass: 'password'
+  }
+})
+
+module.exports = transporter;
+```
 
 ## ADMIN ROUTES
 ### GET: /users
@@ -116,6 +131,30 @@ It also adds an entry to the PointLog Array of that user.
 
 ### POST: /users
 > __localhost:3001/users__
+
+recieves emails in an array and saves them to the signup valid db.
+then sends emails to the emails saved in the db.
+
+#### Expected in Request
+```
+{
+  "emails": ["wengee@test.com", "email@test.com"]
+}
+```
+
+#### Expected Response
+```
+[
+  {
+    "_id": 5a7c0b7321a78206b0c436cc,
+    "email": "wengee@test.com"
+  }
+  {
+    "_id": 5a7c0b7321a78206b0c436cd,
+    "email": "email@test.com"
+  }
+]
+```
 
 ## USER ROUTES
 ### GET: /profile

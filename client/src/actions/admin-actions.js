@@ -3,7 +3,9 @@ import axios from 'axios';
 import {
   FETCH_USER,
   FETCH_USERLIST,
-  UPDATE_USER
+  UPDATE_USER,
+  ADD_USER,
+  ERROR
 } from './types';
 
 import {ROOT_URL} from './';
@@ -64,3 +66,31 @@ function updateUser({ids, addPoints, description}, callback) {
     });
   }
 }
+
+export const addUsers = (emails) => {
+  return dispatch => {
+    axios.post(`${ROOT_URL}/users`, { emails }, REQUEST_OPTIONS)
+      .then((res) => {
+        const { data: emails } = res;
+        dispatch({
+          type: ADD_USER,
+          emails
+        })
+      })
+      .catch((e) => {
+        console.log(e.response);
+        console.log(e);
+        if(e.response.data.op) {
+          dispatch(generalError(`The email "${e.response.data.op.email}" is already in use`));
+        } else {
+          dispatch(generalError('plese provide valid input'));
+        }
+      })
+    ;
+  }
+}
+
+const generalError = (message) => ({
+  type: ERROR,
+  message
+});

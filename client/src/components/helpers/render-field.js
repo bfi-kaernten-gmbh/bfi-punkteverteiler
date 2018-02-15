@@ -4,6 +4,7 @@ export const renderField = field => {
   // destructuring -> takes the propertie specified from an object
   // you can go deeper if you just use it again
   const { touched, error } = field.meta;
+  console.log(field);
 
   const className = `form-group ${touched && error ? 'has-danger': ''}`;
   return (

@@ -24,48 +24,57 @@ exports.signin = (req, res, next) => {
 }
 
 exports.validateSignup = (req, res) => {
-  const { id: _id } = req.body;
-  if(!_id) {
+  const { id } = req.body;
+  if(!id) {
     return res.status(400).send('bad request (provide an id)')
   }
 
-  allowedToSignup.findById(_id).then((doc) => {
+  allowedToSignup.findById(id).then((doc) => {
     if(!doc) {
       return res.status(403).send('Unauthorized');
     }
-    res.send(true);
-  }).catch(e => res.status(403).send('error'))
+    res.send({ signupValid: true, email: doc.email});
+  }).catch(e => res.status(403).send({ signupValid: 'error' }))
 }
 
 exports.signup = (req, res, next) => {
+  const { id } = req.params;
   const { username, password, email } = req.body;
-  console.log({username}, password, {email});
+
   // check if email and password exist
   if(!username || !password || !email) {
-    res.status(400).send({message: 'The Green Goddess does not aprove (username/password is missing)'})
+    res.status(400).send({error: 'The Green Goddess does not aprove (username/password is missing)'})
   }
 
-  // See if a user with the given email exists
-  User.findOne({$or: [{username}, {email} ]}).then((existingUser) => {
-    console.log(existingUser);
-    // If a user with email exists, return error
-    if(existingUser) {
-      return res.status(420).send({error: 'The Green Goddess does not aprove (username or email already exist)'});
+  allowedToSignup.findById(id).then((allowed) => {
+    if(!allowed) {
+      return res.status(400).send({error: 'you are not allowed to signup'})
     }
 
-    // if user with email does NOT exist, create and save user record
-    const user = new User({
-      ...req.body
-    })
-    console.log(user);
+    User.findOne({$or: [{username}, {email} ]}).then((existingUser) => {
+      console.log(existingUser);
+      // If a user with email exists, return error
+      if(existingUser) {
+        return res.status(420).send({error: 'The Green Goddess does not aprove (username or email already exist)'});
+      }
 
-    user.save().then((user) => {
-      // respond to request indicating the user was created
-      return res.send({message: 'Your Account is now created', token: tokenForUser(user), _id: user._id});
+      // if user with email does NOT exist, create and save user record
+      const user = new User({
+        ...req.body
+      })
+      console.log(user);
+
+      user.save().then((user) => {
+        // respond to request indicating the user was created
+        allowedToSignup.findByIdAndRemove(id).then((del) => {
+          console.log(del);
+        }).catch(e => { next(e) })
+        return res.send({message: 'Your Account is now created', token: tokenForUser(user), _id: user._id});
+      }).catch((e) => {
+        next(e);
+      });
     }).catch((e) => {
-      next(e);
+      res.status(422).send({error: 'email or username is in use', e});
     });
-  }).catch((e) => {
-    res.status(422).send({error: 'email or username is in use', e});
-  });
+  })
 };

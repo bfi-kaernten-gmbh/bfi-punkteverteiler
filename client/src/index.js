@@ -19,6 +19,8 @@ import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import reducers from './reducers';
 
+import AddUsers from './components/admin/add-users';
+
 import { AUTH_USER } from './actions/types';
 
 const store = createStore(
@@ -36,6 +38,7 @@ if (token) {
   // add sth for status redirect
 }
 
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
@@ -49,6 +52,7 @@ ReactDOM.render(
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
           <Route path="/signout" component={Signout} />
+          <Route path="/donk" component={AddUsers} />
           <Route component={Signin} />
         </Switch>
       </div>
