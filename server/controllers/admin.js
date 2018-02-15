@@ -75,10 +75,10 @@ exports.removeUser = (req, res) => {
 }
 
 // TODO //
-// add check in user db not only allowedToSignup db
+// send emails
 exports.addUser = (req, res, next) => {
   let { emails } = req.body;
-
+  
   if(!emails || !Array.isArray(emails) || emails.length <= 0) {
     return res.status(400).send('bad request');
   }
@@ -95,6 +95,7 @@ exports.addUser = (req, res, next) => {
     })
 
     allowedToSignup.insertMany(emails).then(docs => {
+      console.log(docs);
       res.send(docs);
     }).catch(e => {
       next(e);

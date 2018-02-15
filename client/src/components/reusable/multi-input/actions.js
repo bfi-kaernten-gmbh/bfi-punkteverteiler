@@ -1,7 +1,7 @@
 import uuid from 'uuid/v4';
 
 export const TAG = 'tag';
-export const TAG_INPUT = 'tag_input';
+export const RESET_TAGS = 'reset_tags';
 export const HANDLE_INPUT = 'handle_input';
 
 export const tag = (text, id) => ({
@@ -14,3 +14,5 @@ export const handleInput = (input) => ({
   type: HANDLE_INPUT,
   input
 });
+
+export const resetTags = () => ({type: RESET_TAGS});

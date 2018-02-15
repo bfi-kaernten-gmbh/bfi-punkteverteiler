@@ -19,7 +19,7 @@ import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import reducers from './reducers';
 
-import multiInput from './components/reusable/multiSelectInput';
+import AddUsers from './components/admin/add-users';
 
 import { AUTH_USER } from './actions/types';
 
@@ -52,7 +52,7 @@ ReactDOM.render(
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
           <Route path="/signout" component={Signout} />
-          <Route path="/donk" component={multiInput} />
+          <Route path="/donk" component={AddUsers} />
           <Route component={Signin} />
         </Switch>
       </div>

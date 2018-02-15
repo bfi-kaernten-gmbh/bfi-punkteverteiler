@@ -2,19 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { tag, handleInput } from './actions';
+import { tag, handleInput, resetTags } from './actions';
 import Tag from './tag';
 
-class multiSelectInput extends Component {
+class MultiInput extends Component {
+  handleSubmit = () => {
+    const tags = _.map(this.props.tags, (tag) => {
+      return tag.text;
+    });
+    this.props.handleSubmit(tags);
+    this.props.resetTags();
+  }
+
   handleChange = (e) => {
-    this.props.handleInput(e.target.value)
+    this.props.handleInput(e.target.value);
   }
 
   handleKeyDown = (e) => {
     const { which: key } = e;
     if(key === 13 || key === 9) {
       e.preventDefault();
-      this.props.tag(e.target.value);
+      this.saveTag();
+    }
+  }
+
+  saveTag = () => {
+    const { input } = this.props;
+    if (input !== '') {
+      this.props.tag(this.props.input);
       this.props.handleInput('');
     }
   }
@@ -44,9 +59,10 @@ class multiSelectInput extends Component {
           <input value={input}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            onBlur={this.saveTag}
           />
         </div>
-        <button>Send</button>
+        <button onClick={this.handleSubmit}>Send</button>
       </div>
     )
   }
@@ -58,5 +74,5 @@ const mapStateToProps = ({multiInput}) => ({
 })
 
 export default connect(
-  mapStateToProps, { tag, handleInput }
-)(multiSelectInput)
+  mapStateToProps, { tag, handleInput, resetTags }
+)(MultiInput);

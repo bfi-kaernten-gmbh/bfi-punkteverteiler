@@ -5,21 +5,25 @@ export default class Tag extends Component {
     edit: false,
     input: this.props.text
   }
+
   handleKeyDown = (e) => {
     const { which: key } = e;
-    if(key === 13 || key === 9) {
+    console.log(key);
+    if(key === 13) {
       e.preventDefault();
-      this.props.updateTag(e.target.value, this.props.id);
+      this.toggleEdit();
     }
   }
+
   toggleEdit = () => {
     this.setState({edit: !this.state.edit});
     setTimeout(() => {
-      console.log('foucs');
-      if(this.state.edit)
+      if(this.state.edit) {
         this.inputName.focus();
+      }
     }, 100);
   }
+
   handleOnChange = (e) => {
     this.props.updateTag(e.target.value, this.props.id);
   }
@@ -33,6 +37,7 @@ export default class Tag extends Component {
           value={text}
           onChange={this.handleOnChange}
           onBlur={this.toggleEdit}
+          onKeyDown={this.handleKeyDown}
          />
       );
     } else {
