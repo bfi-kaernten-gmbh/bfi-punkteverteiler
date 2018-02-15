@@ -21,6 +21,21 @@ axios.get(localhost:3001/users, {
   }
 })
 ```
+Also there has to be a config.js file in the mail folder wich has to look like this:
+```
+var nodemailer = require('nodemailer');
+
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'email@gmail.com',
+    pass: 'password'
+  }
+})
+
+module.exports = transporter;
+```
 
 ## ADMIN ROUTES
 ### GET: /users
