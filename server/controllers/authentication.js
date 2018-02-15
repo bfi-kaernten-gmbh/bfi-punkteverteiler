@@ -77,5 +77,4 @@ exports.signup = (req, res, next) => {
       res.status(422).send({error: 'email or username is in use', e});
     });
   })
-  // See if a user with the given email exists
 };

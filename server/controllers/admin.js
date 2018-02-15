@@ -3,6 +3,7 @@ const { ObjectID } = require('mongodb');
 
 const User = require('../models/user');
 const allowedToSignup = require('../models/allowedToSignup');
+const createMail = require('../mail/email');
 
 const excluded = '-role -password -__v';
 function removeWhitespace(el) {
@@ -78,14 +79,13 @@ exports.removeUser = (req, res) => {
 // send emails
 exports.addUser = (req, res, next) => {
   let { emails } = req.body;
-  
+
   if(!emails || !Array.isArray(emails) || emails.length <= 0) {
     return res.status(400).send('bad request');
   }
   console.log(emails);
 
   User.find({email: {$in: emails}}).then((docs) => {
-    console.log('hi');
     if(docs.length > 0) {
       return res.status(420).send({emails: docs, error: 'emails already used'});
     }
@@ -96,12 +96,15 @@ exports.addUser = (req, res, next) => {
 
     allowedToSignup.insertMany(emails).then(docs => {
       console.log(docs);
+      const newMail = new createMail(docs);
+      newMail.start();
       res.send(docs);
     }).catch(e => {
+      return res.status(400).send(e);
       next(e);
     })
   }).catch(e => {
     console.log(e);
-    return res.status(400).send(e)
+    return res.status(400).send({error: e, message: 'One of the emails provided was already used'})
   });
 }

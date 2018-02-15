@@ -22,10 +22,13 @@ class Signup extends Component {
 
   handleSubmit = (values) => {
     const username = this.parseUsername();
+    var {pathname: id} = this.props.history.location;
+    id = id.replace('/signup/', '');
+
     this.props.signupUser({
       ...values,
       username
-    }, (location) => {
+    },id, (location) => {
       this.props.history.push(location);
     })
   }

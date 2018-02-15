@@ -12,3 +12,4 @@ export const SIGNUP_VALID = 'signup_valid';
 
 // ADMIN TYPES
 export const ADD_USER = 'add_user';
+export const ERROR = 'error';
