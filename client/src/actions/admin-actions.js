@@ -4,7 +4,9 @@ import {
   FETCH_USER,
   FETCH_USERLIST,
   UPDATE_USER,
-  MULTISELECT
+  MULTISELECT,
+  FILTER,
+  TOGGLE_CHECKED
 } from './types';
 
 import {ROOT_URL} from './';
@@ -20,7 +22,9 @@ export {
   fetchUser,
   fetchUserList,
   updateUser,
-  multiselect
+  multiselect,
+  filter,
+  toggleChecked
 }
 
 function fetchUser(id) {
@@ -69,9 +73,18 @@ function updateUser({ids, addPoints, description}, callback) {
 }
 
 function multiselect(id) {
-  // console.log(id);
+  console.log(id);
   return {
     type: MULTISELECT,
     id,
   }
 }
+
+function filter(value) {
+  return {
+    type: FILTER,
+    filter: value
+  }
+}
+
+const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchUserList, multiselect, updateUser } from '../../actions';
+import { fetchUserList, multiselect, updateUser, filter, toggleChecked } from '../../actions';
 import { ListItem } from '../reusable/adminListComponent';
+import UserFilteredList from './filtered-users';
 
 class AdminView extends Component {
   state = {
     addPoints: '',
     description: '',
-    filter: ''
   }
 
   componentDidMount() {
@@ -24,19 +24,28 @@ class AdminView extends Component {
   }
 
   renderUserList() {
-    console.log();
-        return _.map(this.props.userList, user => {
-          return (
-            <ListItem toggleSelected={this.props.multiselect} key={user._id} id={user._id} name={user.username}/>
-          );
-        })
+    return _.map(this.props.userList, user => {
+      return (
+        <ListItem
+          toggleChecked={this.props.toggleChecked}
+          toggleSelected={this.props.multiselect}
+          key={user._id}
+          id={user._id}
+          name={user.username}
+          checked={}
+        />
+      );
+    })
   }
 
   render() {
     return(
       <div>
         <div>
-          <input onChange={this.handleChange = (e) => {this.setState({filter: e.target.value})}}/>
+          <input onChange={this.handleChange = (e) => {this.props.filter(e.target.value)}}/>
+        </div>
+        <div>
+          <UserFilteredList />
         </div>
         { this.renderUserList() }
         <form onSubmit={this.handleSubmit}>
@@ -53,4 +62,7 @@ function mapStateToProps(state) {
   return { userList: state.user, selected: state.select };
 }
 
-export default connect(mapStateToProps, {fetchUserList, multiselect, updateUser})(AdminView);
+export default connect(
+  mapStateToProps,
+  { fetchUserList, multiselect, updateUser, filter, toggleChecked }
+)(AdminView);
