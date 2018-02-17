@@ -22,10 +22,13 @@ class Signup extends Component {
 
   handleSubmit = (values) => {
     const username = this.parseUsername();
+    var {pathname: id} = this.props.history.location;
+    id = id.replace('/signup/', '');
+
     this.props.signupUser({
       ...values,
       username
-    }, (location) => {
+    },id, (location) => {
       this.props.history.push(location);
     })
   }
@@ -46,6 +49,7 @@ class Signup extends Component {
     // console.log(this.props);
     const { handleSubmit } = this.props;
     const { signupValid } = this.props.auth;
+    console.log(signupValid);
     if(!signupValid) {
       return <div>loading</div>;
     } else if (signupValid === 'error') {
@@ -101,12 +105,15 @@ class Signup extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.auth,
-    values: getFormValues('signup')(state)
+    values: getFormValues('signup')(state),
+    initialValues: {
+      email: state.auth.email || 'email'
+    }
   };
 };
 
 export default reduxForm({
-  form: 'signup',
+  form: 'signup'
 })(
   connect(mapStateToProps, { validateSignup, signupUser })(Signup)
 );

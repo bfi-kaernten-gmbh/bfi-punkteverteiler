@@ -12,3 +12,8 @@ export const SIGNUP_VALID = 'signup_valid';
 
 export const FILTER = 'filter';
 export const TOGGLE_CHECKED = 'toggle_checked';
+
+// ADMIN TYPES
+export const ADD_USER = 'add_user';
+export const ERROR = 'error';
+

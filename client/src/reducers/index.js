@@ -5,6 +5,8 @@ import UserReducer from './user-reducer';
 import authReducer from './auth-reducer';
 import multiselectReducer from './multiselect-reducer';
 import filterReducer from './filter-reducer';
+import adminReducer from './admin-reducer';
+import multiInput from '../components/reusable/multi-input/reducer';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
   select: multiselectReducer,
-  filter: filterReducer
+  filter: filterReducer,
+  admin: adminReducer,
+  multiInput
 });
 
 export default rootReducer;

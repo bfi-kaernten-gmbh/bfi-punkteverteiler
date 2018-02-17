@@ -62,15 +62,16 @@ const validateSignup = (id) => {
       .catch(e => {;
         dispatch({
           type: SIGNUP_VALID,
-          payload: 'error'
+          payload: {signupValid: 'error'}
         });
       });
   }
 }
 
-const signupUser = (newUser, callback) => {
+const signupUser = (newUser, id, callback) => {
+  console.log(newUser);
   return dispatch => {
-    axios.post(`${ROOT_URL}/signup`, newUser)
+    axios.post(`${ROOT_URL}/signup/${id}`, newUser)
       .then((res) => {
         dispatch({type: AUTH_USER})
         localStorage.setItem('token', res.data.token);
