@@ -4,6 +4,9 @@ import {
   FETCH_USER,
   FETCH_USERLIST,
   UPDATE_USER,
+  MULTISELECT,
+  FILTER,
+  TOGGLE_CHECKED,
   ADD_USER,
   ERROR
 } from './types';
@@ -20,7 +23,10 @@ const REQUEST_OPTIONS = {
 export {
   fetchUser,
   fetchUserList,
-  updateUser
+  updateUser,
+  multiselect,
+  filter,
+  toggleChecked
 }
 
 function fetchUser(id) {
@@ -54,7 +60,7 @@ function fetchUserList() {
 function updateUser({ids, addPoints, description}, callback) {
   return dispatch => {
     axios.patch(`${ROOT_URL}/users`, {
-      ids: ids,
+      ids,
       addPoints,
       description
     }, REQUEST_OPTIONS).then(res => {
@@ -66,6 +72,23 @@ function updateUser({ids, addPoints, description}, callback) {
     });
   }
 }
+
+
+function multiselect(id) {
+  return {
+    type: MULTISELECT,
+    id,
+  }
+}
+
+function filter(value) {
+  return {
+    type: FILTER,
+    filter: value
+  }
+}
+
+const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });
 
 export const addUsers = (emails) => {
   return dispatch => {
@@ -94,3 +117,4 @@ const generalError = (message) => ({
   type: ERROR,
   message
 });
+
