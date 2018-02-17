@@ -23,16 +23,19 @@ class AdminView extends Component {
     this.props.updateUser({ids: selected, addPoints, description}, () => {console.log(this.state);})
   }
 
+  handleFilterInput = (e) => {
+    this.props.filter(e.target.value);
+  }
+
   renderUserList() {
     return _.map(this.props.userList, user => {
       return (
         <ListItem
           toggleChecked={this.props.toggleChecked}
           toggleSelected={this.props.multiselect}
-          key={user._id}
-          id={user._id}
+          key={user._id} id={user._id}
           name={user.username}
-          checked={}
+          checked={user.checked ? user.checked : false}
         />
       );
     })
@@ -42,15 +45,31 @@ class AdminView extends Component {
     return(
       <div>
         <div>
-          <input onChange={this.handleChange = (e) => {this.props.filter(e.target.value)}}/>
+          <input onChange={this.handleFilterInput} />
         </div>
         <div>
           <UserFilteredList />
         </div>
         { this.renderUserList() }
         <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange = (e) => {this.setState({addPoints: e.target.value})}} type="number" name="addPoints" label="Punkte" value={this.state.addPoints}/>
-          <input onChange={this.handleChange = (e) => {this.setState({description: e.target.value})}} type="text" name="description" label="Beschreibung" value={this.state.description} />
+          <input
+            onChange={
+              this.handleChange = (e) => {this.setState({addPoints: e.target.value})}
+            }
+            type="number"
+            name="addPoints"
+            label="Punkte"
+            value={this.state.addPoints}
+          />
+          <input
+            onChange={
+              this.handleChange = (e) => {this.setState({description: e.target.value})}
+            }
+            type="text"
+            name="description"
+            label="Beschreibung"
+            value={this.state.description}
+          />
           <button >Speichern</button>
         </form>
       </div>

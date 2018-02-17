@@ -57,7 +57,6 @@ function fetchUserList() {
 
 function updateUser({ids, addPoints, description}, callback) {
   return dispatch => {
-    debugger;
     axios.patch(`${ROOT_URL}/users`, {
       ids,
       addPoints,
@@ -73,7 +72,6 @@ function updateUser({ids, addPoints, description}, callback) {
 }
 
 function multiselect(id) {
-  console.log(id);
   return {
     type: MULTISELECT,
     id,

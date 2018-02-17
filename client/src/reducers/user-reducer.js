@@ -4,7 +4,6 @@ import {
   FETCH_USER,
   FETCH_USERLIST,
   UPDATE_USER,
-  MULTISELECT,
   TOGGLE_CHECKED
 } from '../actions/types';
 

@@ -1,20 +1,22 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
 
-const userListSelected = state => state.user;
-const userFiltered = state => state.filter;
+const userListSelector = state => state.user;
+const filterSelector = state => state.filter;
 
-
-const getFilteredUsers = (user, filter) => {
-  const filtered = _.filter(
-    user,
-    {'username': filter }
-  )
-  return filtered;
+const getFilteredUsers = (users, filter) => {
+  const { input, by } = filter;
+  if(input) {
+    return _.filter(users, (user) => {
+      return user[by].toLowerCase().search(input.toLowerCase()) !== -1;
+    });
+  } else {
+    return [];
+  }
 }
 
 export default createSelector(
-  userListSelected,
-  userFiltered,
+  userListSelector,
+  filterSelector,
   getFilteredUsers
 );

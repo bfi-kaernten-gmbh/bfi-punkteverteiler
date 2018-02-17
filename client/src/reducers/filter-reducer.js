@@ -1,12 +1,13 @@
 import {
-  FILTER
+  FILTER,
 } from '../actions/types';
 
-export default function(state = {}, action) {
+export default function(state = {by: 'username'}, action) {
   switch(action.type) {
     case FILTER:
-    return action.filter;
-
+      return { ...state, input: action.filter};
+    case 'filter_by':
+      return { ...state, by: action.by }
     default:
       return state;
   }
