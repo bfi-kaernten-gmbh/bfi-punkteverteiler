@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field,  reduxForm, getFormValues,getFormInitialValues } from 'redux-form';
+import { Field,  reduxForm, getFormValues } from 'redux-form';
 import { Redirect } from 'react-router-dom';
-import mapKeys from 'lodash/mapKeys';
 
 import { validateSignup, signupUser } from '../../actions';
 import { renderField, createRules } from '../helpers';

@@ -20,15 +20,6 @@ const REQUEST_OPTIONS = {
   }
 };
 
-export {
-  fetchUser,
-  fetchUserList,
-  updateUser,
-  multiselect,
-  filter,
-  toggleChecked
-}
-
 function fetchUser(id) {
   const jwt = localStorage.getItem('token');
   const request = axios.get(`${ROOT_URL}/users/${id}`, {
@@ -118,3 +109,11 @@ const generalError = (message) => ({
   message
 });
 
+export {
+  fetchUser,
+  fetchUserList,
+  updateUser,
+  multiselect,
+  filter,
+  toggleChecked
+}

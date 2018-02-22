@@ -57,17 +57,11 @@ class AdminSingleUserUpdate extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-}
-
 function mapStateToProps({ user }, ownProps) {
   return { user: user[ownProps.match.params.id]}
 }
 
 export default reduxForm({
-  validate,
   form: 'UpdateUser'
 })(
   connect(mapStateToProps, {fetchUser, updateUser})(AdminSingleUserUpdate)

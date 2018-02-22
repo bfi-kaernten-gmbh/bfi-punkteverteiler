@@ -1,6 +1,3 @@
-import _ from 'lodash';
-
-
 import {
   TAG,
   RESET_TAGS,

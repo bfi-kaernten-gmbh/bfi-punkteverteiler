@@ -4,8 +4,7 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  SIGNUP_VALID,
-  SIGNUP_USER
+  SIGNUP_VALID
 } from './types';
 
 import {ROOT_URL} from './';

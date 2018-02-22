@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import {  fetchProfile } from '../../actions';
 import _ from 'lodash';
 
-import Button from '../reusable/button';
-
 class UserView extends Component {
   state = {
     toggleLog: false,
@@ -27,15 +25,13 @@ class UserView extends Component {
       return (
         <div className="container" key={pointLog._id}>
           <p>{pointLog.points} Punkte</p>
-          <p>{pointLog.text}</p>
+          <p>{pointLog.description}</p>
         </div>
       );
     })
   }
 
   renderLog = () => {
-    const { user } = this.props;
-
     if (!this.state.toggleLog === true) {
       return (
         <div className="flex">
@@ -74,13 +70,11 @@ class UserView extends Component {
             <h2>{user.totalPoints}</h2>
             <h3>Punkte</h3>
             <p className="center" >
-              asdfj asdjfk j asjdfn asjd asjdfnja ajdsfnj asdf j
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             </p>
           </div>
             {this.renderLog()}
         </div>
-
-
       </div>
     );
   }
