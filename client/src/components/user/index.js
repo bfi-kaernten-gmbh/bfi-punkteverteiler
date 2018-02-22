@@ -22,8 +22,18 @@ class UserView extends Component {
 
   handleLogList = () => {
     return _.map(this.props.user.pointLog, pointLog => {
+      const date = new Date(pointLog.createdAt);
+      const dateOptions = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        weekday: 'short',
+        hour: 'numeric',
+        minute: 'numeric',  
+      };
       return (
         <div className="container" key={pointLog._id}>
+          <p>{date.toLocaleDateString('de-DE', dateOptions)}</p>
           <p>{pointLog.points} Punkte</p>
           <p>{pointLog.description}</p>
         </div>
