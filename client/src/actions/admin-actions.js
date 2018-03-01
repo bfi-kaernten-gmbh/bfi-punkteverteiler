@@ -47,7 +47,7 @@ function fetchUserList() {
   }
 }
 
-function updateUser({ids, addPoints, description}, callback) {
+function updateUser({ids, addPoints, description}) {
   return dispatch => {
     axios.patch(`${ROOT_URL}/users`, {
       ids,
@@ -55,27 +55,20 @@ function updateUser({ids, addPoints, description}, callback) {
       description
     }, REQUEST_OPTIONS).then(res => {
       dispatch({
-        type: UPDATE_USER
+        type: UPDATE_USER,
+        ids,
+        addPoints
       })
-      callback()
+    }).catch((e) => {
+      console.log(e);
     });
   }
 }
 
 
-function multiselect(id) {
-  return {
-    type: MULTISELECT,
-    id,
-  }
-}
+const multiselect = (id) => ({ type: MULTISELECT,id });
 
-function filter(value) {
-  return {
-    type: FILTER,
-    filter: value
-  }
-}
+const filter = (value) => ({ type: FILTER, filter: value });
 
 const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });
 

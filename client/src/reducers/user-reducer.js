@@ -17,11 +17,16 @@ export default function(state = {}, action) {
     const { id } = action;
     return { ...state, [id]: { ...state[id], checked: state[id].checked ? !state[id].checked : true } };
   case FETCH_USERLIST:
-    return _.mapValues(_.mapKeys(action.payload.data, '_id'), (o) => ({...state[o._id], ...o }));
+    return _.mapValues(_.mapKeys(action.payload.data, '_id'), (obj) => ({...state[obj._id], ...obj }));
   case UPDATE_USER:
-    return {
-      ...state
-    };
+    console.log(action.ids);
+    var updatedUsers = _.mapValues(_.pick(state, action.ids), (obj) => ({
+          ...obj,
+          totalPoints: Number(obj.totalPoints) + Number(action.addPoints),
+          checked: false
+        })
+      );
+    return {...state, ...updatedUsers};
   default:
     return state;
   }

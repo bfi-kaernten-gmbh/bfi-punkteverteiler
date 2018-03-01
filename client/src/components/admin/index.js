@@ -20,7 +20,8 @@ class AdminView extends Component {
     e.preventDefault();
     const { addPoints, description } = this.state;
     const { selected } = this.props.selected;
-    this.props.updateUser({ids: selected, addPoints, description}, () => {console.log(this.state);})
+    this.props.updateUser({ids: selected, addPoints, description})
+    this.setState({addPoints: '', description: ''});
   }
 
   handleFilterInput = (e) => {
