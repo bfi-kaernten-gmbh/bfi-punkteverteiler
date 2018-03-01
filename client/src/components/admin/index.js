@@ -12,6 +12,7 @@ class AdminView extends Component {
   }
 
   componentDidMount() {
+    this.props.filter('');
     this.props.fetchUserList();
   }
 
@@ -23,7 +24,11 @@ class AdminView extends Component {
   }
 
   handleFilterInput = (e) => {
-    this.props.filter(e.target.value);
+    clearTimeout(this.timeout);
+    const value = e.target.value;
+    this.timeout = setTimeout(() => {
+      this.props.filter(value);
+    }, 300);
   }
 
   renderUserList() {

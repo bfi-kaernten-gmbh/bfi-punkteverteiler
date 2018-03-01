@@ -16,14 +16,12 @@ class AdminSingleUserUpdate extends Component {
   onSubmit({addPoints, description}) {
     const { _id } = this.props.user;
     this.props.updateUser({ids: [_id], addPoints, description}, () => {
-      console.log(_id);
       this.props.history.push('/admin');
     });
   }
 
   render() {
     const { user } = this.props;
-    console.log(user);
     const { handleSubmit } = this.props;
     if(!user) {
       return <div>loading</div>

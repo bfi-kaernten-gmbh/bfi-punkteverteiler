@@ -12,12 +12,12 @@ import {
 export default function(state = {}, action) {
   switch(action.type) {
   case FETCH_USER:
-    return { ...state, [action.payload.data._id]: {...action.payload.data} };
+    return { ...state, [action.payload.data._id]: {...state[action.payload.data._id] ,...action.payload.data} };
   case TOGGLE_CHECKED:
     const { id } = action;
     return { ...state, [id]: { ...state[id], checked: state[id].checked ? !state[id].checked : true } };
   case FETCH_USERLIST:
-    return _.mapKeys(action.payload.data, '_id');
+    return _.mapValues(_.mapKeys(action.payload.data, '_id'), (o) => ({...state[o._id], ...o }));
   case UPDATE_USER:
     return {
       ...state

@@ -27,7 +27,6 @@ function fetchUser(id) {
       authorization: jwt
     }
   });
-  console.log(request);
   return {
     type: FETCH_USER,
     payload: request
@@ -55,7 +54,6 @@ function updateUser({ids, addPoints, description}, callback) {
       addPoints,
       description
     }, REQUEST_OPTIONS).then(res => {
-      console.log(res);
       dispatch({
         type: UPDATE_USER
       })

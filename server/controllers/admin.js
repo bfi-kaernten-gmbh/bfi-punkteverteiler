@@ -75,8 +75,6 @@ exports.removeUser = (req, res) => {
   }).catch(e => res.send(e));
 }
 
-// TODO //
-// send emails
 exports.addUser = (req, res, next) => {
   let { emails } = req.body;
 

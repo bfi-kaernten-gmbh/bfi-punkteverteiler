@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 const PrivateRoute = ({ component: Component, ...rest, authenticated }) => (
   <Route {...rest} render={props => {
-    console.log(authenticated);
     return (
     authenticated ? (
       <Component {...props}/>

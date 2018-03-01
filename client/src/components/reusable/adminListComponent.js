@@ -14,7 +14,7 @@ export class ListItem extends Component {
           <button>bearbeiten</button>
         </Link>
         <input type="checkbox"
-          onClick={this.handleOnClick}
+          onChange={this.handleOnClick}
           checked={this.props.checked}
         />
       </div>

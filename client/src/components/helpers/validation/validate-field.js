@@ -1,6 +1,5 @@
 import rules from './rules';
 export const createRules = checkRules => {
-  console.log(checkRules);
   let validations = [];
 
   for (let ruleName in checkRules) {

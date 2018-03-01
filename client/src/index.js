@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
 
 import './index.min.css';
+
 import registerServiceWorker from './registerServiceWorker';
 
 import App from './components/App';
