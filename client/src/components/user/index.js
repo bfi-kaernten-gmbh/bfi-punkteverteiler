@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 class UserView extends Component {
   state = {
-    toggleLog: false,
-    class: ''
+    log: true,
+    class: 'flex fixed' + ' ' + 'closed'
   }
 
   componentDidMount() {
@@ -15,9 +15,17 @@ class UserView extends Component {
 
   handleOnClick = () => {
     this.setState({
-      toggleLog: !this.state.toggleLog,
-      class: 'animate',
+      log: !this.state.log,
     })
+    if(this.state.log) {
+      this.setState({
+        class: 'flex fixed' + ' ' + 'open'
+      })
+    } else {
+      this.setState({
+        class: 'flex fixed' + ' ' + 'closed'
+      })
+    }
   }
 
   handleLogList = () => {
@@ -29,7 +37,7 @@ class UserView extends Component {
         day: 'numeric',
         weekday: 'short',
         hour: 'numeric',
-        minute: 'numeric',  
+        minute: 'numeric',
       };
       return (
         <div className="container" key={pointLog._id}>
@@ -42,28 +50,24 @@ class UserView extends Component {
   }
 
   renderLog = () => {
-    if (!this.state.toggleLog === true) {
-      return (
-        <div className="flex">
-          <button className="fixed rounded" onClick={this.handleOnClick}>
-            open
-          </button>
+    const { log } = this.state;
+    if(log) {
+      var text = 'open'
+    } else {
+      var text = 'close'
+    }console.log(this.state.class);
+    return (
+      <div className={this.state.class}>
+        <button className="fixed rounded" onClick={this.handleOnClick}>
+            {text}
+        </button>
+        <div className='logContainer'>
+          {this.handleLogList()}
         </div>
-      );
-    }
-    if (!this.state.toggleLog === false) {
-      return (
-        <div className="flex animate">
-          <button className="fixed rounded" onClick={this.handleOnClick}>
-            close
-          </button>
-          <div className='logContainer'>
-            {this.handleLogList()}
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
+
 
 
   render() {
@@ -75,16 +79,14 @@ class UserView extends Component {
     return (
       <div className="fullScreenSection">
         <div className="positioningContainer">
-          <h1>{user.firstName + ' ' + user.lastName}</h1>
+          <h1>{user.firstName}</h1>
+          <h1>{user.lastName}</h1>
           <div className="wrap">
             <h2>{user.totalPoints}</h2>
             <h3>Punkte</h3>
-            <p className="center" >
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            </p>
           </div>
-            {this.renderLog()}
         </div>
+        {this.renderLog()}
       </div>
     );
   }
