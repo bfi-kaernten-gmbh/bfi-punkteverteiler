@@ -7,7 +7,11 @@ import Message from './reusable/message';
 class App extends Component {
   renderLinks() {
     if (this.props.authenticated) {
-      return <Link to="/signout">Sign Out</Link>;
+      return (
+        <div className="bar">
+          <Link to="/signout">Sign Out</Link>
+        </div>
+      );
     }
   }
 
