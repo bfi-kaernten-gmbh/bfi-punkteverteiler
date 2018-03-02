@@ -10,31 +10,17 @@ class App extends Component {
       return <Link to="/signout">Sign Out</Link>;
     }
   }
-  renderMessage() {
-    const { errorMessage, successMessage } = this.props;
-    if(errorMessage || successMessage) {
-      return (
-        <Message
-          message={errorMessage || successMessage}
-          error={errorMessage ? true : false}
-        />
-      );
-    }
-  }
 
   render() {
     return (
       <div>
         {this.renderLinks()}
-        {this.renderMessage()}
+        <Message />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  const { errorMessage, successMessage } = state.admin;
-  return { authenticated: state.auth.authenticated, errorMessage, successMessage };
-}
+const mapStateToProps = ({auth: authenticated}) => ({ authenticated });
 
 export default connect(mapStateToProps)(App);

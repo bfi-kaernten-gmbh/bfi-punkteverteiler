@@ -60,6 +60,7 @@ function updateUser({ids, addPoints, description}) {
         ids,
         addPoints
       })
+      dispatch(successMessage('Die Punkte wurden erfolgreich hinzugefügt'));
     }).catch((e) => {
       console.log(e);
     });
@@ -84,24 +85,22 @@ export const addUsers = (emails) => {
         })
       })
       .catch((e) => {
-        console.log(e.response);
-        console.log(e);
         if(e.response.data.op) {
-          dispatch(generalError(`The email "${e.response.data.op.email}" is already in use`));
+          dispatch(errorMessage(`The email "${e.response.data.op.email}" is already in use`));
         } else {
-          dispatch(generalError('plese provide valid input'));
+          dispatch(errorMessage('plese provide valid input'));
         }
       })
     ;
   }
 }
 
-const generalError = (message) => ({
+export const errorMessage = (message) => ({
   type: ERROR,
   message
 });
 
-const successMessage = (message) => ({
+export const successMessage = (message) => ({
   type: SUCCESS,
   message
 })
