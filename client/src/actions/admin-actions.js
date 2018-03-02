@@ -8,7 +8,8 @@ import {
   FILTER,
   TOGGLE_CHECKED,
   ADD_USER,
-  ERROR
+  ERROR,
+  SUCCESS
 } from './types';
 
 import {ROOT_URL} from './';
@@ -47,7 +48,7 @@ function fetchUserList() {
   }
 }
 
-function updateUser({ids, addPoints, description}, callback) {
+function updateUser({ids, addPoints, description}) {
   return dispatch => {
     axios.patch(`${ROOT_URL}/users`, {
       ids,
@@ -55,27 +56,21 @@ function updateUser({ids, addPoints, description}, callback) {
       description
     }, REQUEST_OPTIONS).then(res => {
       dispatch({
-        type: UPDATE_USER
+        type: UPDATE_USER,
+        ids,
+        addPoints
       })
-      callback()
+      dispatch(successMessage('Die Punkte wurden erfolgreich hinzugefügt'));
+    }).catch((e) => {
+      console.log(e);
     });
   }
 }
 
 
-function multiselect(id) {
-  return {
-    type: MULTISELECT,
-    id,
-  }
-}
+const multiselect = (id) => ({ type: MULTISELECT,id });
 
-function filter(value) {
-  return {
-    type: FILTER,
-    filter: value
-  }
-}
+const filter = (value) => ({ type: FILTER, filter: value });
 
 const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });
 
@@ -90,22 +85,25 @@ export const addUsers = (emails) => {
         })
       })
       .catch((e) => {
-        console.log(e.response);
-        console.log(e);
         if(e.response.data.op) {
-          dispatch(generalError(`The email "${e.response.data.op.email}" is already in use`));
+          dispatch(errorMessage(`The email "${e.response.data.op.email}" is already in use`));
         } else {
-          dispatch(generalError('plese provide valid input'));
+          dispatch(errorMessage('plese provide valid input'));
         }
       })
     ;
   }
 }
 
-const generalError = (message) => ({
+export const errorMessage = (message) => ({
   type: ERROR,
   message
 });
+
+export const successMessage = (message) => ({
+  type: SUCCESS,
+  message
+})
 
 export {
   fetchUser,

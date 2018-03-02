@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { fetchUserList, multiselect, updateUser, filter, toggleChecked } from '../../actions';
+import {
+  fetchUserList, multiselect,
+  updateUser, filter, toggleChecked,
+  errorMessage
+} from '../../actions';
 import { ListItem } from '../reusable/adminListComponent';
 import UserFilteredList from './filtered-users';
 
@@ -20,7 +24,12 @@ class AdminView extends Component {
     e.preventDefault();
     const { addPoints, description } = this.state;
     const { selected } = this.props.selected;
-    this.props.updateUser({ids: selected, addPoints, description}, () => {console.log(this.state);})
+    if(selected) {
+      this.props.updateUser({ids: selected, addPoints, description})
+      this.setState({addPoints: '', description: ''});
+    } else {
+      this.props.errorMessage('Select Users');
+    }
   }
 
   handleFilterInput = (e) => {
@@ -87,5 +96,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchUserList, multiselect, updateUser, filter, toggleChecked }
+  { fetchUserList, multiselect, updateUser, filter, toggleChecked, errorMessage }
 )(AdminView);
