@@ -11,8 +11,11 @@ h1 {
   padding: 0;
   box-sizing: border-box;
   transition: 200ms;
+  &.padding {
+    padding: 5px;
+  }
   @include respond-to($small) {
-    font-size: 48pt;
+    font-size: 31pt;
     transition: 400ms;
   }
 }
@@ -21,6 +24,9 @@ h2 {
   color: $accent;
   transition: 300ms;
   font-size: 24pt;
+  &.padding {
+    padding: 10px;
+  }
   @include respond-to($small) {
     font-size: 48pt;
   }
@@ -28,6 +34,9 @@ h2 {
 
 h3 {
   font-size: 24pt;
+  &.padding {
+    padding: 10px;
+  }
 }
 
 h4 {

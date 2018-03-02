@@ -15,10 +15,18 @@
     position: fixed;
     bottom: 0;
     z-index: 100;
+    &-right {
+      @extend .fixed;
+      right: 0;
+    }
+    &.position {
+      bottom: -30px;
+      right: -30px;
+    }
   }
 
   &.rounded {
-    @extend .shadow;
+    @extend .shadow-big;
     border-radius: 50px;
   }
 }
