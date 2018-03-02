@@ -51,10 +51,11 @@ class UserView extends Component {
 
   renderLog = () => {
     const { log } = this.state;
+    var text;
     if(log) {
-      var text = 'open log';
+      text = 'open log';
     } else {
-      var text = 'close';
+      text = 'close';
     }
     return (
       <div className={this.state.class}>

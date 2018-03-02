@@ -16,7 +16,6 @@ import AdminView from './components/admin';
 import AdminSingleUserUpdate from './components/admin/update-user';
 import PrivateRoute from './components/auth/private-route';
 import Signin from './components/auth/signin';
-import Signout from './components/auth/signout';
 import Signup from './components/auth/signup';
 import reducers from './reducers';
 
@@ -33,7 +32,7 @@ const store = createStore(
 );
 const token = localStorage.getItem('token');
 
-// dispatch an action autonatically if a JWT is stored in localStorage
+// dispatch an action automatically if a JWT is stored in localStorage
 if (token) {
   store.dispatch({ type: AUTH_USER })
   // add sth for status redirect
@@ -49,10 +48,9 @@ ReactDOM.render(
           <PrivateRoute path="/admin/:id" component={AdminSingleUserUpdate} />
           <PrivateRoute path="/user/:id" component={UserView} />
           <PrivateRoute path="/admin" component={AdminView} />
-          {/* <PrivateRoute path="/user" component={UserView} /> */}
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
-          <Route path="/signout" component={Signout} />
+          {/* <Route path="/signout" component={Signout} /> */}
           <Route path="/donk" component={AddUsers} />
           <Route component={Signin} />
         </Switch>

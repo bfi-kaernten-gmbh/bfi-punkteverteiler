@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Message from './reusable/message';
+import Signout from './auth/signout';
 
 class App extends Component {
-  renderLinks() { 
+  renderLinks() {
     if (this.props.authenticated) {
       return (
         <div className="bar">
-          <Link to="/signout">Sign Out</Link>
+          <Signout />
         </div>
       );
     }

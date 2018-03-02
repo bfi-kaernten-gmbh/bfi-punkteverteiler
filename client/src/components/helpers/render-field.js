@@ -5,7 +5,7 @@ export const renderField = field => {
   // you can go deeper if you just use it again
   const { touched, error } = field.meta;
 
-  const className = `form-group ${touched && error ? 'has-danger': ''}`;
+  const className = `form-group ${touched && error ? 'error': ''}`;
   return (
     <fieldset className={className}>
       <label>{field.label}</label>

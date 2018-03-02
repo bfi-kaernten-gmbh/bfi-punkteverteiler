@@ -21,7 +21,6 @@ const signinUser = ({ username, password }, callback) => {
         localStorage.setItem('token', res.data.token);
         // - redirect to the route '/feature'
         const {role, _id} = res.data;
-        console.log(role);
         if(role !== 'admin') {
           callback(`/${role}/${_id}`);
         } else {
@@ -43,7 +42,7 @@ const authError = error => {
   }
 }
 
-const signoutUser = () => {
+const signoutUser = (callback) => {
   localStorage.removeItem('token');
   return {
     type: UNAUTH_USER

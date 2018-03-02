@@ -23,21 +23,23 @@ class Signin extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-          <Field
-            name="username"
-            label="Username:"
-            component={renderField}
-          />
-          <Field
-            name="password"
-            type="password"
-            label="Password:"
-            component={renderField}
-          />
-        {this.renderAlert()}
-        <button action="submit">Sign in </button>
-      </form>
+      <div className="SigninContainer">
+        <form className="signin" onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+            <Field
+              name="username"
+              label="Username:"
+              component={renderField}
+            />
+            <Field
+              name="password"
+              type="password"
+              label="Password:"
+              component={renderField}
+            />
+          {this.renderAlert()}
+          <button action="submit">Sign in </button>
+        </form>
+      </div>
     );
   }
 }
