@@ -48,36 +48,39 @@ div {
     height: auto;
     padding-top: 80px;
   }
-  &.flex {
-    max-width: 1200px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    transition: 300ms;
-    &.fixed {
-      position: fixed;
-    }
-  }
   &.logContainer {
     @extend .shadowHigh;
+    max-width: 1200px;
     width: 100%;
     background-color: white;
     color: black;
     height: 500px;
     padding: 20px;
+    div.log {
+      width: 100%;
+      padding: 0px 20px 0px 20px;
+    }
   }
+
   &.container {
     width: 100%;
-    border-bottom: 1px solid #ebebeb;
   }
   &.closed {
     @include animation('moveBottom .5s 1');
   }
   &.open {
     @include animation('moveTop .5s 1');
+  }
+}
+
+div .card {
+  @extend .shadow;
+  width: 100%;
+  background-color: white;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  &.margin {
+    margin-top: 20px;
   }
 }
 
@@ -89,4 +92,22 @@ div {
 @include keyframes(moveBottom) {
   0%   { bottom: 0px; }
   100% { bottom: -700px; }
+}
+
+
+/* Single style */
+
+.flex {
+  display: flex;
+  &.centered {
+    justify-content: center;
+    position: absolute;
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.start {
+  bottom: -700px;
 }

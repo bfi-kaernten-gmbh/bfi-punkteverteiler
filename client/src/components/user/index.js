@@ -6,7 +6,7 @@ import _ from 'lodash';
 class UserView extends Component {
   state = {
     log: true,
-    class: 'flex fixed closed'
+    class: 'logContainer flex centered fixed start'
   }
 
   componentDidMount() {
@@ -19,11 +19,11 @@ class UserView extends Component {
     })
     if(this.state.log) {
       this.setState({
-        class: 'flex fixed open'
+        class: 'logContainer flex centered fixed open'
       })
     } else {
       this.setState({
-        class: 'flex fixed closed'
+        class: 'logContainer flex centered fixed closed'
       })
     }
   }
@@ -62,7 +62,7 @@ class UserView extends Component {
         <button className="fixed rounded" onClick={this.handleOnClick}>
           {text}
         </button>
-        <div className='logContainer'>
+        <div className='log'>
           {this.handleLogList()}
         </div>
       </div>
@@ -78,9 +78,11 @@ class UserView extends Component {
     return (
       <div className="fullScreenSection">
         <div className="positioningContainer">
-          <h1>{user.firstName}</h1>
-          <h1>{user.lastName}</h1>
-          <div className="wrap">
+          <div className="container">
+            <h1>{user.firstName}</h1>
+            <h1>{user.lastName}</h1>
+          </div>
+          <div className="card margin flex centered wrap">
             <h2>{user.totalPoints}</h2>
             <h3>Punkte</h3>
           </div>
