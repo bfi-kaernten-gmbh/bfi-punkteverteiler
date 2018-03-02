@@ -6,7 +6,7 @@ import _ from 'lodash';
 class UserView extends Component {
   state = {
     log: true,
-    class: 'flex fixed' + ' ' + 'closed'
+    class: 'flex fixed closed'
   }
 
   componentDidMount() {
@@ -19,11 +19,11 @@ class UserView extends Component {
     })
     if(this.state.log) {
       this.setState({
-        class: 'flex fixed' + ' ' + 'open'
+        class: 'flex fixed open'
       })
     } else {
       this.setState({
-        class: 'flex fixed' + ' ' + 'closed'
+        class: 'flex fixed closed'
       })
     }
   }
@@ -33,7 +33,7 @@ class UserView extends Component {
       const date = new Date(pointLog.createdAt);
       const dateOptions = {
         year: 'numeric',
-        month: 'numeric',
+        month: 'long',
         day: 'numeric',
         weekday: 'short',
         hour: 'numeric',
@@ -41,7 +41,7 @@ class UserView extends Component {
       };
       return (
         <div className="container" key={pointLog._id}>
-          <p>{date.toLocaleDateString('de-DE', dateOptions)}</p>
+          <p>{date.toLocaleDateString('de-DE', dateOptions).replace(/,/g, ' -')}</p>
           <p>{pointLog.points} Punkte</p>
           <p>{pointLog.description}</p>
         </div>
@@ -52,14 +52,14 @@ class UserView extends Component {
   renderLog = () => {
     const { log } = this.state;
     if(log) {
-      var text = 'open'
+      var text = 'open log';
     } else {
-      var text = 'close'
-    }console.log(this.state.class);
+      var text = 'close';
+    }
     return (
       <div className={this.state.class}>
         <button className="fixed rounded" onClick={this.handleOnClick}>
-            {text}
+          {text}
         </button>
         <div className='logContainer'>
           {this.handleLogList()}
@@ -67,8 +67,6 @@ class UserView extends Component {
       </div>
     );
   }
-
-
 
   render() {
     const { user } = this.props;

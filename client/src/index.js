@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
 
-import './index.min.css';
+import './scss/index.min.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
