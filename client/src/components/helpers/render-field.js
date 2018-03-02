@@ -5,12 +5,12 @@ export const renderField = field => {
   // you can go deeper if you just use it again
   const { touched, error } = field.meta;
 
-  const className = `form-group ${touched && error ? 'error': ''}`;
+  const className = `column flex-align-center justify-center ${touched && error ? 'error': ''}`;
   return (
     <fieldset className={className}>
       <label>{field.label}</label>
       <input
-        className='form-control '
+        className='form-control'
         type={field.type || "text"}
         value={field.input.value || ""}
         {...field.input}

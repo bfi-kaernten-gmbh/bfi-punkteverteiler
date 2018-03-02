@@ -23,8 +23,8 @@ class Signin extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="SigninContainer">
-        <form className="signin" onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+      <div className="fullScreenSection signin container-fullWidth row flex-align-stretch justify-start">
+        <form className="col-3 bg-dark-grey column flex-align-center justify-center" onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
             <Field
               name="username"
               label="Username:"
@@ -37,8 +37,9 @@ class Signin extends Component {
               component={renderField}
             />
           {this.renderAlert()}
-          <button action="submit">Sign in </button>
+          <button className="btn" action="submit">Sign in </button>
         </form>
+        <div className="shadow-left col"></div>
       </div>
     );
   }
