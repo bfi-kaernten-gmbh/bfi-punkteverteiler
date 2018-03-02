@@ -1,0 +1,51 @@
+// main: ../index.scss
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 48pt;
+  color: white;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 200ms;
+  @include respond-to($phone) {
+    font-size: 24pt;
+    transition: 400ms;
+  }
+}
+
+h2 {
+  color: $accent;
+  transition: 300ms;
+  font-size: 250pt;
+  @include respond-to($tablet-landscape) {
+    text-align: center;
+    width: 100%;
+    transition: 300ms;
+  }
+  @include respond-to($phone) {
+    font-size: 48pt;
+  }
+}
+h3 {
+  font-size: 24pt;
+}
+
+p {
+  font-size: 12pt;
+  &.center {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: red;
+  }
+}

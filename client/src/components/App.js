@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Message from './reusable/message';
 
 class App extends Component {
-  renderLinks() {
+  renderLinks() { 
     if (this.props.authenticated) {
       return (
         <div className="bar">
@@ -25,6 +25,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({auth: authenticated}) => ({ authenticated });
+const mapStateToProps = ({auth: {authenticated}}) => ({ authenticated });
 
 export default connect(mapStateToProps)(App);

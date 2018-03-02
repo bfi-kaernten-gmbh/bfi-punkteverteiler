@@ -1,0 +1,26 @@
+// main: ../index.scss
+
+button {
+  outline: none;
+  width: 100px;
+  height: 100px;
+  font-size: 12pt;
+  background-color: #eb3b5a;
+  border: none;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+
+  &.fixed {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+  }
+
+  &.rounded {
+    @extend .shadowHigh;
+    border-radius: 50px;
+  }
+}

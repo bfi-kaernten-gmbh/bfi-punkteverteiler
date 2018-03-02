@@ -1,0 +1,12 @@
+// main: ../index.scss
+
+$phone : '(max-width: 575px)';
+$phone-landscape: '(max-height: 500px)';
+$tablet-landscape: '(min-width: 575px) and (max-width: 979px)';
+$large-desktop: '(min-width: 1200px)';
+
+@mixin respond-to($media) {
+    @media all and #{$media} {
+        @content;
+    }
+}

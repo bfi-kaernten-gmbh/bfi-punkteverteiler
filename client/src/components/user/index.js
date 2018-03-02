@@ -6,7 +6,7 @@ import _ from 'lodash';
 class UserView extends Component {
   state = {
     log: true,
-    class: 'flex fixed' + ' ' + 'closed'
+    class: 'logContainer flex centered fixed start'
   }
 
   componentDidMount() {
@@ -19,11 +19,11 @@ class UserView extends Component {
     })
     if(this.state.log) {
       this.setState({
-        class: 'flex fixed' + ' ' + 'open'
+        class: 'logContainer flex centered fixed open'
       })
     } else {
       this.setState({
-        class: 'flex fixed' + ' ' + 'closed'
+        class: 'logContainer flex centered fixed closed'
       })
     }
   }
@@ -33,7 +33,7 @@ class UserView extends Component {
       const date = new Date(pointLog.createdAt);
       const dateOptions = {
         year: 'numeric',
-        month: 'numeric',
+        month: 'long',
         day: 'numeric',
         weekday: 'short',
         hour: 'numeric',
@@ -41,7 +41,7 @@ class UserView extends Component {
       };
       return (
         <div className="container" key={pointLog._id}>
-          <p>{date.toLocaleDateString('de-DE', dateOptions)}</p>
+          <p>{date.toLocaleDateString('de-DE', dateOptions).replace(/,/g, ' -')}</p>
           <p>{pointLog.points} Punkte</p>
           <p>{pointLog.description}</p>
         </div>
@@ -52,23 +52,21 @@ class UserView extends Component {
   renderLog = () => {
     const { log } = this.state;
     if(log) {
-      var text = 'open'
+      var text = 'open log';
     } else {
-      var text = 'close'
-    }console.log(this.state.class);
+      var text = 'close';
+    }
     return (
       <div className={this.state.class}>
         <button className="fixed rounded" onClick={this.handleOnClick}>
-            {text}
+          {text}
         </button>
-        <div className='logContainer'>
+        <div className='log'>
           {this.handleLogList()}
         </div>
       </div>
     );
   }
-
-
 
   render() {
     const { user } = this.props;
@@ -79,9 +77,11 @@ class UserView extends Component {
     return (
       <div className="fullScreenSection">
         <div className="positioningContainer">
-          <h1>{user.firstName}</h1>
-          <h1>{user.lastName}</h1>
-          <div className="wrap">
+          <div className="container">
+            <h1>{user.firstName}</h1>
+            <h1>{user.lastName}</h1>
+          </div>
+          <div className="card margin flex centered wrap">
             <h2>{user.totalPoints}</h2>
             <h3>Punkte</h3>
           </div>
