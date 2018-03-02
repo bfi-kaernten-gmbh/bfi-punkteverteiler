@@ -24,7 +24,7 @@ class Message extends Component {
       );
     }
     else {
-      return <div></div>;
+      return <div className="message"></div>;
     }
   }
 };
