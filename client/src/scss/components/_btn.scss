@@ -1,12 +1,10 @@
 // main: ../index.scss
 
-button {
-  outline: none;
+.btn {
   width: 100px;
   height: 100px;
   font-size: 12pt;
   background-color: #eb3b5a;
-  border: none;
   &:hover {
     color: white;
     cursor: pointer;
@@ -20,7 +18,7 @@ button {
   }
 
   &.rounded {
-    @extend .shadowHigh;
+    @extend .shadow;
     border-radius: 50px;
   }
 }

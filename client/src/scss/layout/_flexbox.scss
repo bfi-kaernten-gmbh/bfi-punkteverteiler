@@ -1,0 +1,46 @@
+// main: ../index.scss
+
+.flexbox {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.row {
+  @include prefix(flex-flow, 'row wrap');
+  @extend .flexbox;
+}
+.column {
+  @include prefix(flex-flow, 'column wrap');
+  @extend .flexbox;
+}
+.flex-align-center {
+  @include prefixW(align-items, center);
+  @include prefixW(align-content, center);
+}
+.flex-align-start {
+  @include prefixW(align-items, flex-start);
+  @include prefixW(align-content, flex-start);
+}
+.flex-align-end {
+  @include prefixW(align-items, flex-end);
+  @include prefixW(align-content, flex-end);
+}
+.flex-align-stretch {
+  @include prefixW(align-items, stretch);
+}
+.justify-center {
+  @include prefix(justify-content, center);
+}
+.justify-space-between {
+  @include prefix(justify-content, space-between);
+}
+.justify-end {
+  @include prefix(justify-content, flex-end);
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+.align-self-start {
+  align-self: flex-start;
+}

@@ -1,0 +1,11 @@
+// main: ../index.scss
+
+@include keyframes(moveTop) {
+  0%   { bottom: -700px; }
+  100% { bottom: 0px; }
+}
+
+@include keyframes(moveBottom) {
+  0%   { bottom: 0px; }
+  100% { bottom: -700px; }
+}

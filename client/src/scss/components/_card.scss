@@ -1,0 +1,16 @@
+// main: ../index.scss
+.card {
+  @extend .shadow;
+  background-color: white;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  &.margin {
+    margin-top: 20px;
+  }
+
+  &-top {
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+}

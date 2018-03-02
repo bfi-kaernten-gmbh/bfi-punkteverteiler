@@ -4,17 +4,23 @@
 
 @import "base/base";
 @import "base/typography";
+@import "base/colors";
+
+@import "layout/flexbox";
+@import "layout/grid";
+@import "layout/basic-layouts";
+
+@import "singleStyles/shadows";
 
 @import "components/btn";
+@import "components/form";
+@import "components/card";
 
-@import "m-index.scss";
+@import "animations/index";
+@import "animations/keyframes";
 
-.shadow {
-  box-shadow: 0px 40px 50px -30px rgba(0,0,0,0.5);
-}
-.shadowHigh {
-  box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.3);
-}
+
+
 
 /* Header bar */
 
@@ -28,86 +34,4 @@ div {
     position: fixed;
     z-index: 99;
   }
-}
-
-/* SECTIONS */
-
-div {
-  &.fullScreenSection {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    background: $bg-gradient no-repeat scroll center center/cover;
-  }
-  &.positioningContainer {
-    max-width: 1200px;
-    min-width: 300px;
-    width: 80%;
-    height: auto;
-    padding-top: 80px;
-  }
-  &.logContainer {
-    @extend .shadowHigh;
-    max-width: 1200px;
-    width: 100%;
-    background-color: white;
-    color: black;
-    height: 500px;
-    padding: 20px;
-    div.log {
-      width: 100%;
-      padding: 0px 20px 0px 20px;
-    }
-  }
-
-  &.container {
-    width: 100%;
-  }
-  &.closed {
-    @include animation('moveBottom .5s 1');
-  }
-  &.open {
-    @include animation('moveTop .5s 1');
-  }
-}
-
-div .card {
-  @extend .shadow;
-  width: 100%;
-  background-color: white;
-  padding-bottom: 30px;
-  border-radius: 10px;
-  &.margin {
-    margin-top: 20px;
-  }
-}
-
-@include keyframes(moveTop) {
-  0%   { bottom: -700px; }
-  100% { bottom: 0px; }
-}
-
-@include keyframes(moveBottom) {
-  0%   { bottom: 0px; }
-  100% { bottom: -700px; }
-}
-
-
-/* Single style */
-
-.flex {
-  display: flex;
-  &.centered {
-    justify-content: center;
-    position: absolute;
-  }
-  &.wrap {
-    flex-wrap: wrap;
-  }
-}
-
-.start {
-  bottom: -700px;
 }

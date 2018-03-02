@@ -6,13 +6,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 48pt;
+  font-size: 24pt;
   color: white;
   padding: 0;
   box-sizing: border-box;
   transition: 200ms;
-  @include respond-to($phone) {
-    font-size: 24pt;
+  @include respond-to($small) {
+    font-size: 48pt;
     transition: 400ms;
   }
 }
@@ -20,18 +20,26 @@ h1 {
 h2 {
   color: $accent;
   transition: 300ms;
-  font-size: 250pt;
-  @include respond-to($tablet-landscape) {
-    text-align: center;
-    width: 100%;
-    transition: 300ms;
-  }
-  @include respond-to($phone) {
+  font-size: 24pt;
+  @include respond-to($small) {
     font-size: 48pt;
   }
 }
+
 h3 {
   font-size: 24pt;
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
 }
 
 p {
@@ -49,4 +57,30 @@ a {
   &:hover {
     color: red;
   }
+}
+
+li {
+  font-size: 12pt;
+}
+
+// text transformations
+.regular {
+  font-weight: 400 !important;
+}
+.bold {
+  font-weight: 700 !important;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+// align classes
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
 }

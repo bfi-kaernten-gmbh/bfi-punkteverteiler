@@ -79,8 +79,7 @@ class UserView extends Component {
       <div className="fullScreenSection">
         <div className="positioningContainer">
           <div className="container">
-            <h1>{user.firstName}</h1>
-            <h1>{user.lastName}</h1>
+            <h1>{`${user.firstName} ${user.lastName}`}</h1>
           </div>
           <div className="card margin flex centered wrap">
             <h2>{user.totalPoints}</h2>

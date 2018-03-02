@@ -1,0 +1,8 @@
+// main: ../index.scss
+
+.closed {
+  @include animation('moveBottom .5s 1');
+}
+.open {
+  @include animation('moveTop .5s 1');
+}

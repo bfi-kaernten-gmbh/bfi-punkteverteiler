@@ -31,3 +31,230 @@
         @content;
     }
 }
+
+//main:../main.scss
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+
+  // -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+@mixin prefixW($property, $value) {
+  -webkit-#{$property}: #{$value};
+  // -moz-#{$property}: #{$value};
+  // -ms-#{$property}: #{$value};
+  // -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin user-select($vals: none) {
+  @include prefix('user-select', $vals);
+}
+
+@mixin appearance($vals: none) {
+  @include prefix('appearance', $vals);
+}
+
+@mixin bg-gradient($pos: top, $startColor: #3c3c3c, $endColor: #999999) {
+  background-color: $startColor;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from($startColor),
+    to($endColor)
+  );
+  background-image: -webkit-linear-gradient($pos, $startColor, $endColor);
+  background-image: -moz-linear-gradient($pos, $startColor, $endColor);
+  background-image: -ms-linear-gradient($pos, $startColor, $endColor);
+  background-image: linear-gradient($pos, $startColor, $endColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorStr='#{$startColor}',
+      endColorStr='#{$endColor}'
+    );
+}
+
+@mixin transparent-gradient($pos: top, $start: rgba(0, 0, 0, 0), $end: rgba(0, 0, 0, 0.8), $x: 0%, $y: 100%) {
+  background: -webkit-linear-gradient($pos, $start $x, $end $y);
+  background: -moz-linear-gradient($pos, $start $x, $end $y);
+  background: -ms-linear-gradient($pos, $start $x, $end $y);
+
+  // background: -o-linear-gradient($pos, $start $x, $end $y);
+  background: linear-gradient($pos, $start $x, $end $y);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop($x, $start),
+    color-stop($y, $end)
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(
+      startColorstr='#{$start}',
+      endColorstr='#{$end}',
+      GradientType=0
+    );
+
+  /* IE6-9 */
+}
+
+@mixin bg-size($vals: cover) {
+  @include prefix('background-size', $vals);
+}
+
+@mixin border-radius($radius: 5px) {
+  @include prefix('border-radius', $radius);
+}
+
+@mixin box-shadow($vals) {
+  -webkit-box-shadow: $vals;
+  -moz-box-shadow: $vals;
+  box-shadow: $vals;
+}
+
+// BOX SIZING
+@mixin box-sizing($type: border-box) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing: $type;
+  box-sizing: $type;
+}
+
+// DOUBLE BORDER
+@mixin double-borders($colorOne: #3c3c3c, $colorTwo: #999999, $radius: 0) {
+  border: 1px solid $colorOne;
+
+  @include prefix('box-shadow', 0 0 0 1px $colorTwo);
+
+  @include border-radius($radius);
+}
+
+// TRIPLE BORDER
+@mixin triple-borders($colorOne: #3c3c3c, $colorTwo: #999999, $colorThree: black, $radius: 0) {
+  border: 1px solid $colorOne;
+
+  @include border-radius($radius);
+
+  @include prefix('box-shadow', 0 0 0 1px $colorTwo, 0 0 0 2px $colorThree);
+}
+
+// MASONRY
+@mixin column-count($vals: 2) {
+  @include prefix('column-count', $vals);
+}
+
+@mixin column-gap($vals: 10) {
+  @include prefix('column-gap', $vals + px);
+}
+
+// ROTATE
+@mixin rotate($deg: 0) {
+  @include prefix('transform', rotate($deg + deg));
+}
+
+@mixin rotateX($deg: 0) {
+  @include prefix('transform', rotateX($deg + deg));
+}
+
+@mixin rotateY($deg: 0) {
+  @include prefix('transform', rotateY($deg + deg));
+}
+
+@mixin rotateZ($deg: 0) {
+  @include prefix('transform', rotateZ($deg + deg));
+}
+
+// SCALE
+@mixin scale($scale: 1) {
+  @include prefix('transform', scale($scale));
+}
+
+@mixin scaleX($scaleX: 1) {
+  @include prefix('transform', scaleX($scaleX));
+}
+
+@mixin scaleY($scaleY: 1) {
+  @include prefix('transform', scaleY($scaleY));
+}
+
+@mixin scaleXY($scaleX: 0, $scaleY: 1) {
+  @include prefix('transform', scale($scaleX, $scaleY));
+}
+
+// SKEW
+@mixin skew($x: 0, $y: 0) {
+  @include prefix('transform', skew($x, $y));
+}
+
+@mixin skewX($x: 0) {
+  @include prefix('transform', skewX($x));
+}
+
+@mixin skewY($y: 0) {
+  @include prefix('transform', skewY($y));
+}
+
+// TRANSLATE
+@mixin translate3d($x: 0, $y: 0, $z: 0) {
+  @include prefix('transform', translate3d($x, $y, $z));
+}
+
+@mixin translate($x: 0, $y: 0) {
+  @include prefix('transform', translate($x, $y));
+}
+
+@mixin translateX($x: 0) {
+  @include prefix('transform', translateX($x));
+}
+
+@mixin translateY($y: 0) {
+  @include prefix('transform', translateY($y));
+}
+
+// BACKFACE VISIBILITY
+@mixin backface($vals: hidden) {
+  @include prefix('backface-visibility', $vals);
+}
+
+// TRANSITION
+@mixin transition($vals: all 0.3s ease) {
+  @include prefix('transition', $vals);
+}
+
+@mixin transition-duration($duration: 0.3s) {
+  @include prefix('transition-duration', $duration);
+}
+
+@mixin transition-delay($delay: 0s) {
+  @include prefix('transition-delay', $delay);
+}
+
+// TRANSFORM ORIGIN
+@mixin transform-origin($vals: 50% 50%) {
+  @include prefix('transform-origin', $vals);
+}
+
+// TRANSFORM STYLE
+@mixin transform-style($vals: flat) {
+  @include prefix('transform-style', $vals);
+}
+
+// PERSPECTIVE
+@mixin perspective($vals) {
+  @include prefix('perspective', $vals);
+}
+
+// ANIMATION
+@mixin animation($content) {
+  @include prefix('animation', $content);
+}
+
+@mixin animation-delay($vals: 1s) {
+  @include prefix('animation-delay', $vals);
+}
+@mixin centered() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include translate(-50%, -50%);
+}

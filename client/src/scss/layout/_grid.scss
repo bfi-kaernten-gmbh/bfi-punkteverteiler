@@ -1,0 +1,80 @@
+// main: ../index.scss
+
+@mixin flex($vals) {
+  @include prefix(flex, $vals);
+}
+
+.col,
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12,
+.col-fluid,
+.col-md-4,
+.col-md-8 {
+  padding: 0.7rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+@include respond-to($medium) {
+  .col {
+    @include flex(1 1 0);
+  }
+  .col-1 {
+    @include flex(0 0 8.333333%);
+  }
+  .col-2 {
+    @include flex(0 0 calc(8.333333% * 2));
+  }
+  .col-3 {
+    @include flex(0 0 calc(8.333333% * 3));
+  }
+  .col-4 {
+    @include flex(0 0 calc(8.333333% * 4));
+  }
+  .col-5 {
+    @include flex(0 0 calc(8.333333% * 5));
+  }
+  .col-6 {
+    @include flex(0 0 calc(8.333333% * 6));
+  }
+  .col-7 {
+    @include flex(0 0 calc(8.333333% * 7));
+  }
+  .col-8 {
+    @include flex(0 0 calc(8.333333% * 8));
+  }
+  .col-9 {
+    @include flex(0 0 calc(8.333333% * 9));
+  }
+  .col-10 {
+    @include flex(0 0 calc(8.333333% * 10));
+  }
+  .col-11 {
+    @include flex(0 0 calc(8.333333% * 11));
+  }
+  .col-12 {
+    @include flex(0 0 100%);
+  }
+}
+
+
+@include respond-to($medium-large) {
+  .col-md-8 {
+    @include flex(0 0 calc(8.333333% * 8));
+    max-width: calc(8.333333% * 8);
+  }
+  .col-md-4 {
+    @include flex(0 0 calc(8.333333% * 4));
+    max-width: calc(8.333333% * 4);
+  }
+}
