@@ -17,34 +17,21 @@ h1 {
   }
 }
 
-div .wrap {
-  @extend .shadow;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  padding-bottom: 30px;
-  margin-top: 30px;
-  border-radius: 10px;
-
-  h2 {
-    color: $accent;
+h2 {
+  color: $accent;
+  transition: 300ms;
+  font-size: 250pt;
+  @include respond-to($tablet-landscape) {
+    text-align: center;
+    width: 100%;
     transition: 300ms;
-    font-size: 250pt;
-    @include respond-to($tablet-landscape) {
-      text-align: center;
-      width: 100%;
-      transition: 300ms;
-    }
-    @include respond-to($phone) {
-      font-size: 150pt;
-    }
   }
-  h3 {
-    font-size: 24pt;
+  @include respond-to($phone) {
+    font-size: 48pt;
   }
+}
+h3 {
+  font-size: 24pt;
 }
 
 p {
