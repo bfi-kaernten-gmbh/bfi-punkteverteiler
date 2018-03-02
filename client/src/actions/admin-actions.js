@@ -8,7 +8,8 @@ import {
   FILTER,
   TOGGLE_CHECKED,
   ADD_USER,
-  ERROR
+  ERROR,
+  SUCCESS
 } from './types';
 
 import {ROOT_URL} from './';
@@ -99,6 +100,11 @@ const generalError = (message) => ({
   type: ERROR,
   message
 });
+
+const successMessage = (message) => ({
+  type: SUCCESS,
+  message
+})
 
 export {
   fetchUser,

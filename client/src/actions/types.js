@@ -18,3 +18,4 @@ export const TOGGLE_CHECKED = 'toggle_checked';
 // ADMIN TYPES
 export const ADD_USER = 'add_user';
 export const ERROR = 'error';
+export const SUCCESS = 'success';

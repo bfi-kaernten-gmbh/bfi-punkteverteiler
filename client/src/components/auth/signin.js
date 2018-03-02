@@ -7,7 +7,6 @@ import { renderField } from '../helpers';
 class Signin extends Component {
   handleSubmit = ({username, password}) => {
     this.props.signinUser({ username, password }, (route) => {
-      console.log(route);
       this.props.history.push(route);
     });
   }
