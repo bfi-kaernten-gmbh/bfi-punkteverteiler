@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/users', {
+const dbConnect = process.env.dbConnect ? `${process.env.dbConnect}` : 'mongodb://localhost:27017/users';
+mongoose.connect(dbConnect, {
   useMongoClient: true
 });
 

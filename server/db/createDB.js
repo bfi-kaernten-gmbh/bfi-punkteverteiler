@@ -35,15 +35,20 @@ const users = [
 
 var i = 0;
 function sth() {
-  if(i <= users.length) {
+  if(i < users.length) {
+    console.log(users[i]);
     const user = new User({
       ...users[i]
     })
     user.save().then((doc) => {
       console.log(doc);
+      i++;
+      sth();
+    }).catch((e) => {
+      console.log('catch');
+      console.log(e);
     })
-    i++;
-    sth();
+
   }
 };
 sth();

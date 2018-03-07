@@ -1,4 +1,4 @@
 // Hold application secrets and config
 module.exports = {
-  secret: 'praisethegreengodess'
+  secret: process.env.JWTsecret || 'praisethegreengoddess'
 }

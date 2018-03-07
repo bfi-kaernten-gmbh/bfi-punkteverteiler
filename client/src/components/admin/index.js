@@ -56,7 +56,7 @@ class AdminView extends Component {
 
   render() {
     return(
-      <div>
+      <div className="outer-container">
         <div>
           <input onChange={this.handleFilterInput} />
         </div>
