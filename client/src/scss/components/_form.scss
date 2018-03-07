@@ -11,7 +11,21 @@
     }
   }
 }
+input {
+  padding: 8px 12px;
+  border-left: 3px solid $secondary-dark;
+  background-color: $secondary-light;
+}
+input[type=checkbox] {
+  margin-left: 8px;
+}
+label {
 
+}
+
+
+.add-multiple-points {
+}
 form {
   padding: 16px;
   background-color: $secondary;
@@ -35,6 +49,8 @@ form {
     }
   }
   label {
-
+    display: inline-block;
+    padding: 8px 0 4px 0;
+    color: white;
   }
 }

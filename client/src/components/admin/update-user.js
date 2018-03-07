@@ -27,9 +27,9 @@ class AdminSingleUserUpdate extends Component {
       return <div>loading</div>
     }
     return(
-      <div>
-        <p>{user.username}</p>
-        <p>{user.totalPoints}</p>
+      <div className="outer-container">
+        <h2>{user.username}</h2>
+        <h2>{user.totalPoints} Punkte</h2>
         <div>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
@@ -42,9 +42,9 @@ class AdminSingleUserUpdate extends Component {
               name="description"
               component={renderField}
             />
-            <button type="submit">Senden</button>
+            <button className="btn" type="submit">Senden</button>
             <Link to="/admin">
-              <button>
+              <button className="btn">
                 Abbrechen
               </button>
             </Link>

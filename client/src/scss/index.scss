@@ -35,3 +35,26 @@ div {
     z-index: 99;
   }
 }
+
+
+.messageContainer {
+  position: fixed;
+  top: 50px;
+  z-index: 101;
+  height: 80px;
+  background-color: $secondary;
+  width: 100%;
+  color: white;
+  padding: 0 16px;
+
+  &.error {
+    background-color: rgb(159, 38, 38);
+  }
+  &.success {
+    background-color: rgb(60, 143, 43);
+  }
+}
+
+.admin-list-item {
+  width: 100%;
+}

@@ -15,11 +15,11 @@ class Message extends Component {
     ;
     if(className) {
       return (
-        <div className={`messageContainer ${className}`}>
+        <div className={`messageContainer row flex-align-center ${className}`}>
           <div className="message">
             {errorMessage ? errorMessage : successMessage}
           </div>
-          <button onClick={this.handleClose}>Close</button>
+          <button className="btn" onClick={this.handleClose}>Close</button>
         </div>
       );
     }

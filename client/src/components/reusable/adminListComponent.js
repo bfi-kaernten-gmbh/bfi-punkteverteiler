@@ -8,10 +8,10 @@ export class ListItem extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="admin-list-item">
         <p>{this.props.name}</p>
         <Link to={`/admin/${this.props.id}`}>
-          <button>bearbeiten</button>
+          <button className="btn">bearbeiten</button>
         </Link>
         <input type="checkbox"
           onChange={this.handleOnClick}

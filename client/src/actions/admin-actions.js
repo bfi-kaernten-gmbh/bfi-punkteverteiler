@@ -14,10 +14,10 @@ import {
 
 import {ROOT_URL} from './';
 
-const jwt = localStorage.getItem('token');
+// const jwt = localStorage.getItem('token');
 const REQUEST_OPTIONS = {
   headers: {
-    authorization: jwt
+    authorization: localStorage.getItem('token')
   }
 };
 

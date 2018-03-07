@@ -56,15 +56,20 @@ class AdminView extends Component {
 
   render() {
     return(
-      <div className="outer-container">
-        <div>
+      <div className="outer-container row flex-align-start justify-start">
+        <div className="col-12 column justify-start flex-align-start">
+          <label>Filter nach Username </label>
           <input onChange={this.handleFilterInput} />
         </div>
-        <div>
+        <div className="col-6">
+          { this.renderUserList() }
+        </div>
+
+        <div className="col-6">
           <UserFilteredList />
         </div>
-        { this.renderUserList() }
-        <form onSubmit={this.handleSubmit}>
+        <form className="add-multiple-points col-12" onSubmit={this.handleSubmit} >
+          <label>Punkte</label>
           <input
             onChange={
               this.handleChange = (e) => {this.setState({addPoints: e.target.value})}
@@ -74,6 +79,7 @@ class AdminView extends Component {
             label="Punkte"
             value={this.state.addPoints}
           />
+          <label>Beschreibung</label>
           <input
             onChange={
               this.handleChange = (e) => {this.setState({description: e.target.value})}
@@ -83,7 +89,7 @@ class AdminView extends Component {
             label="Beschreibung"
             value={this.state.description}
           />
-          <button >Speichern</button>
+          <button className="btn" >Speichern</button>
         </form>
       </div>
     );
