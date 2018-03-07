@@ -15,19 +15,22 @@ import {
 import {ROOT_URL} from './';
 
 // const jwt = localStorage.getItem('token');
-const REQUEST_OPTIONS = {
-  headers: {
-    authorization: localStorage.getItem('token')
+// const REQUEST_OPTIONS = {
+//   headers: {
+//     authorization: localStorage.getItem('token')
+//   }
+// };
+
+const requestOptions = () => {
+  return {
+    headers: {
+      authorization: localStorage.getItem('token'),
+    }
   }
-};
+}
 
 function fetchUser(id) {
-  const jwt = localStorage.getItem('token');
-  const request = axios.get(`${ROOT_URL}/users/${id}`, {
-    headers: {
-      authorization: jwt
-    }
-  });
+  const request = axios.get(`${ROOT_URL}/users/${id}`, requestOptions());
   return {
     type: FETCH_USER,
     payload: request
@@ -35,12 +38,7 @@ function fetchUser(id) {
 }
 
 function fetchUserList() {
-  const jwt = localStorage.getItem('token');
-  const request = axios.get(`${ROOT_URL}/users`, {
-    headers: {
-      authorization: jwt
-    }
-  });
+  const request = axios.get(`${ROOT_URL}/users`, requestOptions());
 
   return {
     type: FETCH_USERLIST,
@@ -54,7 +52,7 @@ function updateUser({ids, addPoints, description}) {
       ids,
       addPoints,
       description
-    }, REQUEST_OPTIONS).then(res => {
+    }, requestOptions()).then(res => {
       dispatch({
         type: UPDATE_USER,
         ids,
@@ -76,7 +74,7 @@ const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });
 
 export const addUsers = (emails) => {
   return dispatch => {
-    axios.post(`${ROOT_URL}/users`, { emails }, REQUEST_OPTIONS)
+    axios.post(`${ROOT_URL}/users`, { emails }, requestOptions())
       .then((res) => {
         const { data: emails } = res;
         dispatch({
