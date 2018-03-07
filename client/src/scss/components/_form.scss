@@ -1,12 +1,40 @@
 // main: ../index.scss
 
-.SigninContainer {
-  width: 100%;
-  height: 100vh;
+.signin {
+  .shadow-left {
+
+  }
+  form {
+    min-width: 350px;
+    input {
+
+    }
+  }
 }
 
 form {
+  padding: 16px;
+  background-color: $secondary;
   fieldset {
-    // .error
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin: 8px;
+  }
+  input {
+    @include transition();
+    width: 100%;
+    padding: 8px 12px;
+    border-left: 3px solid $secondary-dark;
+    background-color: $secondary-light;
+    color: white;
+
+    &:focus {
+      border-color: $accent;
+      background-color: $secondary-dark;
+    }
+  }
+  label {
+
   }
 }

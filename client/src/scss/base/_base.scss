@@ -42,10 +42,12 @@ hr {
   border: 0;
 }
 
-button {
-  cursor: pointer;
+button, input, textarea {
   outline: none;
   border: none;
+}
+button, a {
+  cursor: pointer;
 }
 
 ul,
