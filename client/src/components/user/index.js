@@ -6,7 +6,7 @@ import _ from 'lodash';
 class UserView extends Component {
   state = {
     log: true,
-    class: 'logContainer flex centered fixed start'
+    class: 'card-log'
   }
 
   componentDidMount() {
@@ -19,11 +19,11 @@ class UserView extends Component {
     })
     if(this.state.log) {
       this.setState({
-        class: 'logContainer flex centered fixed open'
+        class: 'card-log open'
       })
     } else {
       this.setState({
-        class: 'logContainer flex centered fixed closed'
+        class: 'card-log closed'
       })
     }
   }
@@ -41,8 +41,7 @@ class UserView extends Component {
       };
       return (
         <div className="container" key={pointLog._id}>
-          <p>{date.toLocaleDateString('de-DE', dateOptions).replace(/,/g, ' -')}</p>
-          <p>{pointLog.points} Punkte</p>
+          <p>{date.toLocaleDateString('de-DE', dateOptions).replace(/,/g, ' -')} {pointLog.points} | Punkte</p>
           <p>{pointLog.description}</p>
         </div>
       );
@@ -53,18 +52,18 @@ class UserView extends Component {
     const { log } = this.state;
     var text;
     if(log) {
-      text = 'open log';
+      text = '+';
     } else {
-      text = 'close';
+      text = '-';
     }
     return (
       <div className={this.state.class}>
-        <button className="fixed rounded" onClick={this.handleOnClick}>
-          {text}
-        </button>
-        <div className='log'>
+        <div className='container'>
           {this.handleLogList()}
         </div>
+        <button className="btn fixed-right position rounded shadow-big" onClick={this.handleOnClick}>
+          {text}
+        </button>
       </div>
     );
   }
@@ -76,14 +75,12 @@ class UserView extends Component {
     }
 
     return (
-      <div className="fullScreenSection">
-        <div className="positioningContainer">
-          <div className="container">
-            <h1>{`${user.firstName} ${user.lastName}`}</h1>
-          </div>
-          <div className="card margin flex centered wrap">
-            <h2>{user.totalPoints}</h2>
-            <h3>Punkte</h3>
+      <div className="fullScreenSection outer-container">
+        <div className="container">
+          <h1 className="padding">{`${user.firstName} ${user.lastName}`}</h1>
+          <div className="card shadow-bottom margin padding row flex-align-center">
+            <h2 className="padding">{user.totalPoints}</h2>
+            <h3 className="padding">Punkte</h3>
           </div>
         </div>
         {this.renderLog()}

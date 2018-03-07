@@ -7,7 +7,16 @@
   &.margin {
     margin-top: 20px;
   }
-
+  &.padding {
+    padding: 15px;
+  }
+  &-log {
+    @extend .card;
+    height: 100vh;
+    position: fixed;
+    top: 100vh;
+    margin-top: 40px;
+  }
   &-top {
     background-color: white;
     border-top-right-radius: 10px;

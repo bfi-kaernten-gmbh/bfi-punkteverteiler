@@ -22,9 +22,18 @@
     position: fixed;
     bottom: 0;
     z-index: 100;
+    &-right {
+      @extend .fixed;
+      right: 0;
+    }
+    &.position {
+      bottom: -30px;
+      right: -30px;
+    }
   }
 
   &.rounded {
+    @extend .shadow-big;
     width: 100px;
     height: 100px;
     @extend .shadow;
