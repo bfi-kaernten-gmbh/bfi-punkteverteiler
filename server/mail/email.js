@@ -1,7 +1,7 @@
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const transporter = require('./config');
 
-var mailOptions = {
+let mailOptions = {
   from: 'itlabPunkteSystem@gmail.com',
   subject: 'Einladung zum BFI Gewinnspiel',
 };

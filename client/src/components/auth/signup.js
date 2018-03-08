@@ -16,6 +16,7 @@ class Signup extends Component {
   componentWillMount() {
     var {pathname: id} = this.props.history.location;
     id = id.replace('/signup/', '');
+    console.log(id);
     this.props.validateSignup(id);
   }
 

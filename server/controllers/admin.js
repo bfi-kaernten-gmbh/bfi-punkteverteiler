@@ -75,7 +75,7 @@ exports.removeUser = (req, res) => {
   }).catch(e => res.send(e));
 }
 
-exports.addUser = (req, res, next) => {
+exports.addUsers = (req, res, next) => {
   let { emails } = req.body;
 
   if(!emails || !Array.isArray(emails) || emails.length <= 0) {

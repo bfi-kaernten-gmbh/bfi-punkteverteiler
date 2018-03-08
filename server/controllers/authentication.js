@@ -3,6 +3,7 @@ const jwt = require('jwt-simple');
 const User = require('../models/user');
 const allowedToSignup = require('../models/allowedToSignup');
 const config = require('../config');
+const forgotPasswordEmail = require('../mail/forgot-password');
 
 // JSON WEBTOKENS
 // sub -> subject -> who does this token belong to
@@ -78,3 +79,49 @@ exports.signup = (req, res, next) => {
     });
   })
 };
+
+
+exports.changePassword = (req, res, next) => {
+  const { username } = req.user;
+  const password = req.hashedPassword;
+
+  if(!password) {
+    return res.status(400).send('sth went wrong')
+  }
+
+  User.findOneAndUpdate({ username }, {password}).then((doc) => {
+    console.log(doc);
+    res.send('Successfully changed Password');
+  }).catch(e => res.send(e));
+}
+
+exports.resetPassword = (req, res, next) => {
+  const { _id, hashedPassword } = req;
+
+  User.findByIdAndUpdate({_id}, {password: hashedPassword}).then((doc) => {
+    console.log(doc);
+    res.send('Successfully changed Password');
+  }).catch(e => res.send(e));
+}
+
+// generate Token for stuff
+const forgotPasswordToken = (id) => {
+  const date = new Date();
+  const timestamp = date.getTime();
+  const expirationTime = date.setDate(date.getDate() + 1);
+  return jwt.encode({ sub: id, iat: timestamp, exp: expirationTime }, config.secret);
+}
+
+exports.forgotPassword = (req, res, next) => {
+  const { username, email } = req.body;
+
+  User.findOne({$or: [{username}, {email} ]}).then((user) => {
+    // console.log(user);
+    if(!user) {
+      return res.status(404).send('User not found');
+    }
+    const token = forgotPasswordToken(user._id);
+    forgotPasswordEmail(user.email, token)
+    res.send('Kindly check your email for further instructions');
+  }).catch(e => res.send(e))
+}

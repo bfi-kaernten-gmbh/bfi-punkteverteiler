@@ -156,6 +156,28 @@ then sends emails to the emails saved in the db.
 ]
 ```
 
+### GET: /pending-users
+> __localhost:3001/pending-users__
+
+get a list of users who havent signed up yet and are registered in the database
+
+#### Expected in Request
+* JWT in request header (like described in the IMPORTANT NOTE)
+
+#### Expected Response
+```
+[
+  {
+    "_id": "5aa1429608e14a128c600f63",
+    "email": "test@test.at"
+  },
+  {
+    "_id": "5aa1429608e14a128c600f63",
+    "email": "test2@test2.at"
+  }
+]
+```
+
 ## USER ROUTES
 ### GET: /profile
 > __localhost:3001/profile__
@@ -265,4 +287,70 @@ provide valid mongodb id
 true
 or
 Unauthorized
+```
+
+### POST: /password/change
+> __localhost:3001/password/change__
+
+change password
+
+#### Expected in Request
+* JWT in request header (like described in the IMPORTANT NOTE)
+
+```
+{
+	password: 1234,
+	newPassword: 4321
+}
+```
+
+#### Expected Response
+```
+'Successfully changed Password'
+```
+
+
+### POST: /password/forgot
+> __localhost:3001/password/forgot__
+
+check provided email or username and send email with link to reset password
+
+#### Expected in Request
+```
+{
+	"email": "markus.maelzer@gmail.com"
+}
+or
+{
+	"username": "markus.maelzer"
+}
+or
+{
+	"username": "markus.maelzer",
+  "email": "markus.maelzer@gmail.com"
+}
+```
+
+#### Expected Response
+```
+'Kindly check your email for further instructions'
+```
+
+### POST: /password/reset
+> __localhost:3001/password/reset__
+
+check token and hash password then change it
+
+#### Expected in Request
+
+```
+{
+	"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YTk3Yzk5ZTUyOTRlZjFhMTQyZDUyYzMiLCJpYXQiOjE1MjA1MTI3NzI0MjAsImV4cCI6MTUyMDU5OTE3MjQyMH0.u1F3Df_cG51LdNPqRhVDIU7zvfYS4PbGSgx64vHCdhQ",
+	"newPassword": "4321"
+}
+```
+
+#### Expected Response
+```
+'Successfully changed Password'
 ```

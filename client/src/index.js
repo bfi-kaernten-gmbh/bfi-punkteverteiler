@@ -51,7 +51,7 @@ ReactDOM.render(
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
           {/* <Route path="/signout" component={Signout} /> */}
-          <Route path="/donk" component={AddUsers} />
+          <PrivateRoute path="/donk" component={AddUsers} />
           <Route component={Signin} />
         </Switch>
       </div>
