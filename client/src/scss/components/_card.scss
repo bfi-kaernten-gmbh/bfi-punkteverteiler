@@ -4,6 +4,11 @@
   background-color: white;
   padding-bottom: 30px;
   border-radius: 10px;
+  position: relative;
+  &-dark {
+    @extend .card;
+    background-color: $secondary;
+  }
   &.margin {
     margin-top: 20px;
   }
@@ -21,5 +26,17 @@
     background-color: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+  }
+  &.bottom-left {
+    width: 100%;
+    position: relative;
+    margin: 10px;
+    @include respond-to($medium-large) {
+      position: absolute;
+      margin: 0px !important;
+      width: 48.7%;
+      left: 10px;
+      bottom: 10px;
+    }
   }
 }

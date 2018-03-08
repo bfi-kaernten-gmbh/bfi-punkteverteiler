@@ -8,15 +8,18 @@ export class ListItem extends Component {
   }
   render() {
     return (
-      <div className="admin-list-item">
-        <p>{this.props.name}</p>
-        <Link to={`/admin/${this.props.id}`}>
-          <button className="btn">bearbeiten</button>
-        </Link>
-        <input type="checkbox"
+      <div className="admin-list-item card padding margin row flex-align-center">
+        <input
+          type="checkbox"
           onChange={this.handleOnClick}
           checked={this.props.checked}
         />
+        <h4>{this.props.name}</h4>
+
+          <Link className="position-right" to={`/admin/${this.props.id}`}>
+            <button className="btn">bearbeiten</button>
+          </Link>
+        
       </div>
     );
   }

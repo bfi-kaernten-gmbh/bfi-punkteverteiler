@@ -15,9 +15,18 @@ input {
   padding: 8px 12px;
   border-left: 3px solid $secondary-dark;
   background-color: $secondary-light;
+  &.fullWidth {
+    width: 100%;
+  }
 }
 input[type=checkbox] {
   margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid $accent;
+  box-shadow: none;
 }
 label {
 
@@ -33,10 +42,10 @@ form {
     width: 100%;
     max-width: 300px;
     text-align: center;
-    margin: 8px;
   }
-  input {
+  input, textarea {
     @include transition();
+    resize: none;
     width: 100%;
     padding: 8px 12px;
     border-left: 3px solid $secondary-dark;
@@ -49,8 +58,13 @@ form {
     }
   }
   label {
+    width: 100%;
     display: inline-block;
     padding: 8px 0 4px 0;
     color: white;
   }
+}
+
+textarea {
+  height: 100px;
 }

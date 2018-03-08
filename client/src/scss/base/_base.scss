@@ -55,3 +55,11 @@ ol {
   padding: 0;
   list-style-type: none;
 }
+
+::-moz-selection {
+  background: rgba(0,0,0,0.1);
+}
+
+::selection {
+  background: rgba(0,0,0,0.1);
+}

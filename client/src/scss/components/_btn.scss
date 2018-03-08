@@ -39,4 +39,14 @@
     @extend .shadow;
     border-radius: 50px;
   }
+
+}
+
+.position-right {
+  position: relative;
+
+  @include respond-to($medium-small) {
+    position: absolute;
+    right: 0;
+  }
 }

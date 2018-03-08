@@ -51,18 +51,21 @@ class MultiInput extends Component {
   render() {
     const { input: input = '' } = this.props;
     return (
-      <div>
-        <div>
+      <div className="container-middle-small">
+        <h3 className="white">E-Mail des Empfängers</h3>
+        <div className="card-dark padding shadow-bottom">
+          <div className="fullWidth">
+            <input className="fullWidth" value={input}
+              onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
+              onBlur={this.saveTag}
+            />
+          </div>
+          <button className="btn" onClick={this.handleSubmit}>Send</button>
+        </div>
+        <div className="container margin-top">
           {this.renderTags()}
         </div>
-        <div>
-          <input value={input}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onBlur={this.saveTag}
-          />
-        </div>
-        <button onClick={this.handleSubmit}>Send</button>
       </div>
     )
   }

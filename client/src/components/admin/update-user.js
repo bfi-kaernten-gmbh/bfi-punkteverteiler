@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser, updateUser } from '../../actions';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { UserLog } from '../reusable/pointLog';
 
 import { renderField } from '../helpers/render-field';
 
@@ -27,29 +28,35 @@ class AdminSingleUserUpdate extends Component {
       return <div>loading</div>
     }
     return(
-      <div className="outer-container">
-        <h2>{user.username}</h2>
-        <h2>{user.totalPoints} Punkte</h2>
-        <div>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field
-              label="Punkte"
-              name="addPoints"
-              component={renderField}
-            />
-            <Field
-              label="Beschreibung"
-              name="description"
-              component={renderField}
-            />
-            <button className="btn" type="submit">Senden</button>
-            <Link to="/admin">
-              <button className="btn">
-                Abbrechen
-              </button>
-            </Link>
-          </form>
+      <div className="outer-container fullHeight-gradiant">
+        <div className="row justify-center container">
+          <div className="card-dark shadow-bottom padding">
+            <h3 className="accent padding">{user.username}</h3>
+            <h4 className="white padding-left">{user.totalPoints} Punkte</h4>
+            <h4 className="white padding-left">{user.email} Punkte</h4>
+            <div>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Field
+                  label="Punkte"
+                  name="addPoints"
+                  component={renderField}
+                />
+                <Field
+                  label="Beschreibung"
+                  name="description"
+                  component={renderField}
+                />
+                <button className="btn" type="submit">Senden</button>
+                <Link to="/admin">
+                  <button className="btn">
+                    Abbrechen
+                  </button>
+                </Link>
+              </form>
+            </div>
+          </div>
         </div>
+        <UserLog user={this.props.user}/>
       </div>
     );
   }
