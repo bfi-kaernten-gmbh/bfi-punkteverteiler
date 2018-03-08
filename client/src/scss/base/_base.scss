@@ -57,9 +57,11 @@ ol {
 }
 
 ::-moz-selection {
-  background: rgba(0,0,0,0.1);
+  color: white;
+  background-color: $secondary-dark;
 }
 
 ::selection {
-  background: rgba(0,0,0,0.1);
+  color: white;
+  background-color: $secondary-dark;
 }

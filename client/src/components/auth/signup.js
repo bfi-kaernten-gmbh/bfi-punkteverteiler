@@ -55,47 +55,54 @@ class Signup extends Component {
       return <Redirect to="/donk" />;
     } else {
       return (
-        <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-          <Field
-            name="email"
-            type="email"
-            label="Email"
-            component={renderField}
-            validate={validate.email}
-          />
-          <Field
-            name="firstName"
-            label="Vorname"
-            component={renderField}
-            validate={validate.required}
-          />
-          <Field
-            name="lastName"
-            label="Nachname"
-            value="test"
-            component={renderField}
-            validate={validate.required}
-          />
-          <div>
-            <label>Username: </label>
-            {this.parseUsername()}
+        <div className="fullHeight-gradiant row justify-center">
+          <div className="container-middle-big">
+            <div className="card-dark padding">
+              <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+                <Field
+                  name="email"
+                  type="email"
+                  label="Email"
+                  component={renderField}
+                  validate={validate.email}
+                />
+                <Field
+                  name="firstName"
+                  label="Vorname"
+                  component={renderField}
+                  validate={validate.required}
+                />
+                <Field
+                  name="lastName"
+                  label="Nachname"
+                  value="test"
+                  component={renderField}
+                  validate={validate.required}
+                />
+                <div>
+                  <label>Username: </label>
+                  {this.parseUsername()}
+                </div>
+                <Field
+                  name="password"
+                  label="Passwort"
+                  type="password"
+                  component={renderField}
+                  validate={validate.password}
+                />
+                <Field
+                  name="passwordConfirm"
+                  label="Passwort bestätigen"
+                  type="password"
+                  component={renderField}
+                  validate={validate.required}
+                />
+                <button>Signup</button>
+              </form>
+            </div>
           </div>
-          <Field
-            name="password"
-            label="Passwort"
-            type="password"
-            component={renderField}
-            validate={validate.password}
-          />
-          <Field
-            name="passwordConfirm"
-            label="Passwort bestätigen"
-            type="password"
-            component={renderField}
-            validate={validate.required}
-          />
-          <button>Signup</button>
-        </form>
+        </div>
+
       )
     }
   }
