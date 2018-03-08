@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {  fetchProfile } from '../../actions';
-import _ from 'lodash';
 
 import { UserLog } from '../reusable/pointLog';
 

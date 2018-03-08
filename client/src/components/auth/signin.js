@@ -5,6 +5,12 @@ import { signinUser } from '../../actions';
 import { renderField } from '../helpers';
 
 class Signin extends Component {
+  componentDidMount() {
+    if(this.props.authenticated) {
+      this.props.history.push(this.props.role);
+    }
+  }
+
   handleSubmit = ({username, password}) => {
     this.props.signinUser({ username, password }, (route) => {
       this.props.history.push(route);
@@ -45,8 +51,8 @@ class Signin extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { errorMessage: state.auth.error };
+const mapStateToProps = ({auth}) => {
+  return { errorMessage: auth.error, authenticated: auth.authenticated, role: auth.role };
 }
 
 export default reduxForm({

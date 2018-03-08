@@ -24,7 +24,6 @@ export class UserLog extends Component {
   }
 
   handleLogList = () => {
-    const user = this.props.user;
     return _.map(this.props.user.pointLog, pointLog => {
       const date = new Date(pointLog.createdAt);
       const dateOptions = {

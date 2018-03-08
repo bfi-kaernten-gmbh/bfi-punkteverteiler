@@ -14,18 +14,17 @@ const signinUser = ({ username, password }, callback) => {
     // Submit email/password to the server
     axios.post(`${ROOT_URL}/signin`, {username, password})
       .then( res => {
-        // if request is good..
-        // - Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER });
-        // - Save the JWT token
-        localStorage.setItem('token', res.data.token);
-        // - redirect to the route '/feature'
-        const {role, _id} = res.data;
+        let {role, _id, token} = res.data;
         if(role !== 'admin') {
-          callback(`/${role}/${_id}`);
-        } else {
-          callback(`/${role}`);
+          role = `user/${_id}`;
         }
+        console.log(role);
+        dispatch({ type: AUTH_USER, role });
+        
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
+
+        callback(`/${role}`);
       })
       .catch((e) => {
         // if request is bad...
@@ -44,6 +43,7 @@ const authError = error => {
 
 const signoutUser = (callback) => {
   localStorage.removeItem('token');
+  localStorage.removeItem('role');
   return {
     type: UNAUTH_USER
   };
@@ -72,9 +72,10 @@ const signupUser = (newUser, id, callback) => {
   return dispatch => {
     axios.post(`${ROOT_URL}/signup/${id}`, newUser)
       .then((res) => {
-        dispatch({type: AUTH_USER})
-        localStorage.setItem('token', res.data.token);
-        callback(`/user/${res.data._id}`);
+        const { token, _id } = res.data;
+        dispatch({type: AUTH_USER, role: `user/${_id}`})
+        localStorage.setItem('token', token);
+        callback(`/user/${_id}`);
       })
   }
 }

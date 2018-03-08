@@ -31,10 +31,11 @@ const store = createStore(
   )
 );
 const token = localStorage.getItem('token');
+let role = localStorage.getItem('role');
 
 // dispatch an action automatically if a JWT is stored in localStorage
 if (token) {
-  store.dispatch({ type: AUTH_USER })
+  store.dispatch({ type: AUTH_USER, role })
   // add sth for status redirect
 }
 
@@ -50,8 +51,7 @@ ReactDOM.render(
           <PrivateRoute path="/admin" component={AdminView} />
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
-          {/* <Route path="/signout" component={Signout} /> */}
-          <PrivateRoute path="/donk" component={AddUsers} />
+          <PrivateRoute path="/add-users" component={AddUsers} />
           <Route component={Signin} />
         </Switch>
       </div>
