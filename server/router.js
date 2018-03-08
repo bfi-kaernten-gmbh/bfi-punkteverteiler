@@ -25,6 +25,11 @@ module.exports = app => {
     requireAuth, validate.id, validate.role(['admin']),
     admin.getUser
   );
+  app.get('/pendingUsers',
+    requireAuth, validate.role(['admin']),
+    admin.pendingUsers
+  );
+  
   app.patch('/users',
     requireAuth, validate.role(['admin']),
     admin.addPoints
@@ -33,6 +38,8 @@ module.exports = app => {
     requireAuth, validate.id, validate.role(['admin']),
     admin.removeUser
   );
+
+  app.post('/users', admin.addUser)
 
   // user routes
   app.get('/profile',
@@ -45,5 +52,5 @@ module.exports = app => {
   app.post('/signup/:id', validate.id, auth.signup);
 
   app.post('/validate/signup',validate.id, auth.validateSignup);
-  app.post('/users', admin.addUser)
+  app.post('/')
 };

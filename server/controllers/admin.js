@@ -106,3 +106,18 @@ exports.addUser = (req, res, next) => {
     return res.status(400).send({error: e, message: 'One of the emails provided was already used'})
   });
 }
+
+
+exports.pendingUsers = (req, res, next) => {
+  allowedToSignup.find({})
+    .select('email _id')
+    .exec()
+    .then((users) => {
+      if (users.length <= 0) {
+        return res.status(404).send({message: 'no pending users'})
+      }
+      res.send(users);
+    }).catch((e) => {
+      res.status(400).send(e)
+    })
+}
