@@ -65,7 +65,7 @@ class AdminView extends Component {
         </div>
         <div className="col-6 column"></div>
 
-          <div className="col-6 column justify-start flex-align-start">
+          <div className="col-6 column justify-start flex-align-start margin-bottom-350">
             <h3 className="white">Gefilterte User Liste</h3>
             <UserFilteredList />
           </div>
@@ -100,9 +100,6 @@ class AdminView extends Component {
               <button className="btn" >Speichern</button>
             </div>
           </form>
-
-
-
       </div>
     );
   }

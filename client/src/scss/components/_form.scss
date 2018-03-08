@@ -20,19 +20,11 @@ input {
   }
 }
 input[type=checkbox] {
-
-  &:before {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border: 1px solid $accent;
-    box-shadow: none;
-    content: "";
-  }
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
-label {
 
-}
 
 
 .add-multiple-points {
