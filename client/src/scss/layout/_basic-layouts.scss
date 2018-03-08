@@ -14,6 +14,10 @@
   margin: 0 auto;
   padding: 10px 12px;
 
+  &-small {
+    @extend .container;
+    max-width: 320px;
+  }
   &-middle-small {
     @extend .container;
     max-width: 500px;
@@ -52,6 +56,13 @@
 }
 .halfHeight {
   height: 50vh;
+}
+.fullHeight {
+  min-height: 100vh;
+  &-gradiant {
+    @extend .fullHeight;
+    background: $bg-gradient no-repeat scroll center center/cover;
+  }
 }
 
 .outer-container {

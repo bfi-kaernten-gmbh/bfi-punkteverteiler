@@ -21,7 +21,7 @@ class AddUsers extends Component {
 
   render() {
     return(
-      <div>
+      <div className="fullHeight-gradiant row justify-center flex-align-center">
         <MultiInput
           handleSubmit={this.props.addUsers}
         />

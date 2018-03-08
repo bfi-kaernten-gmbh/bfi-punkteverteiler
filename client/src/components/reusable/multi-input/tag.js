@@ -33,6 +33,7 @@ export default class Tag extends Component {
     if(this.state.edit) {
       return (
         <input
+          className="fullWidth"
           ref={(input) => { this.inputName = input; }}
           value={text}
           onChange={this.handleOnChange}
@@ -41,7 +42,7 @@ export default class Tag extends Component {
          />
       );
     } else {
-      return <span onClick={this.toggleEdit}>{text}</span>;
+      return <span className="white" onClick={this.toggleEdit}>{text}</span>;
     }
   }
 

@@ -11,6 +11,8 @@
 @import "layout/basic-layouts";
 
 @import "singleStyles/shadows";
+@import "singleStyles/border";
+@import "singleStyles/scrollable";
 
 @import "components/btn";
 @import "components/form";
@@ -57,4 +59,10 @@ div {
 
 .admin-list-item {
   width: 100%;
+}
+
+.fixed-left-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
