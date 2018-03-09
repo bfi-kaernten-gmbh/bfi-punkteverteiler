@@ -12,6 +12,7 @@
   }
 }
 input {
+  color: white;
   padding: 8px 12px;
   border-left: 3px solid $secondary-dark;
   background-color: $secondary-light;
@@ -25,10 +26,6 @@ input[type=checkbox] {
   margin-right: 8px;
 }
 
-
-
-.add-multiple-points {
-}
 form {
   padding: 16px;
   background-color: $secondary;
@@ -36,7 +33,19 @@ form {
     width: 100%;
     max-width: 300px;
     text-align: center;
+    margin-bottom: 12px;
+
+    .text-help {
+      color: white;
+    }
+
+    &.error {
+      .text-help {
+        color: rgb(210, 49, 49);
+      }
+    }
   }
+  
   input, textarea {
     @include transition();
     resize: none;
@@ -56,6 +65,9 @@ form {
     display: inline-block;
     padding: 8px 0 4px 0;
     color: white;
+  }
+  > button.btn {
+    margin-top: 14px;
   }
 }
 

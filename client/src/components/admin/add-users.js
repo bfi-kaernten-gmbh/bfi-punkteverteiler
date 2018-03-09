@@ -23,6 +23,7 @@ class AddUsers extends Component {
     return(
       <div className="fullHeight-gradiant row justify-center flex-align-center">
         <MultiInput
+          title="E-Mail der Empfängers"
           handleSubmit={this.props.addUsers}
         />
         <div>

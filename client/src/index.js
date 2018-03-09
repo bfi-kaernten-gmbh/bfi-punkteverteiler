@@ -9,6 +9,7 @@ import promiseMiddleware from 'redux-promise';
 import './scss/index.min.css';
 
 import registerServiceWorker from './registerServiceWorker';
+import reducers from './reducers';
 
 import App from './components/App';
 import UserView from './components/user';
@@ -17,9 +18,9 @@ import AdminSingleUserUpdate from './components/admin/update-user';
 import PrivateRoute from './components/auth/private-route';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
-import reducers from './reducers';
-
 import AddUsers from './components/admin/add-users';
+import ChangePassword from './components/auth/change-password';
+
 
 import { AUTH_USER } from './actions/types';
 
@@ -52,6 +53,7 @@ ReactDOM.render(
           <Route path="/signin" component={Signin} />
           <Route path="/signup/:id" component={Signup} />
           <PrivateRoute path="/add-users" component={AddUsers} />
+          <PrivateRoute path="/change-password" component={ChangePassword} />
           <Route component={Signin} />
         </Switch>
       </div>

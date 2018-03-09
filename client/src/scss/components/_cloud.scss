@@ -1,0 +1,20 @@
+// main: ../index.scss
+
+.cloud {
+  width: 250px;
+  height: 200px;
+  svg {
+    width: 250px;
+
+  }
+  h2,svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+  }
+  h2 {
+    z-index: 5;
+    top: 48%;
+  }
+}

@@ -49,11 +49,12 @@ class MultiInput extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { input: input = '' } = this.props;
     return (
       <div className="container-middle-small">
-        <h3 className="white">E-Mail des Empfängers</h3>
         <div className="card-dark padding shadow-bottom">
+          <h3 className="white padding-bottom">{this.props.title}</h3>
           <div className="fullWidth">
             <input className="fullWidth" value={input}
               onChange={this.handleChange}

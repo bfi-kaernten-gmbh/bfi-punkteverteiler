@@ -9,9 +9,9 @@ class App extends Component {
   renderLinks() {
     if (this.props.auth.authenticated) {
       return (
-        <div className="col-4">
-          <Signout />
+        <div className="col row flex-align-center justify-end">
           <Link to="/change-password"> Change Password</Link>
+          <Signout />
         </div>
       );
     }
@@ -19,9 +19,15 @@ class App extends Component {
   renderAdminLinks() {
     if(this.props.auth.role === "admin") {
       return (
-        <div className="col-6">
+        <div className="col">
           <Link to="/admin"> Home</Link>
           <Link to="/add-users"> add Users</Link>
+        </div>
+      )
+    } else {
+      return (
+        <div className="col">
+          <Link to={this.props.auth.role}>Home</Link>
         </div>
       )
     }
@@ -30,10 +36,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="bar row flex-align-center justify-space-between">
+        <nav className={`row flex-align-center justify-space-between ${this.props.auth.authenticated ? '' : 'hidden'}`}>
           {this.renderAdminLinks()}
           {this.renderLinks()}
-        </div>
+        </nav>
         <Message />
       </div>
     );

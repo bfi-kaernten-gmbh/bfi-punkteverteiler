@@ -23,10 +23,6 @@ body {
     @include transition(0.3s);
     @include prefix(box-sizing, border-box);
   }
-  &::selection {
-    background-color: $accent;
-    color: #fff;
-  }
 }
 
 fieldset {
@@ -58,10 +54,10 @@ ol {
 
 ::-moz-selection {
   color: white;
-  background-color: $secondary-dark;
+  background-color: $accent;
 }
 
 ::selection {
   color: white;
-  background-color: $secondary-dark;
+  background-color: $accent;
 }

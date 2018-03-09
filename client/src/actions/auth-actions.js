@@ -4,12 +4,13 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  SIGNUP_VALID
+  SIGNUP_VALID,
 } from './types';
 
-import {ROOT_URL} from './';
+import {ROOT_URL, requestOptions} from './';
+import {errorMessage, successMessage} from './message-actions';
 
-const signinUser = ({ username, password }, callback) => {
+export const signinUser = ({ username, password }, callback) => {
   return dispatch => {
     // Submit email/password to the server
     axios.post(`${ROOT_URL}/signin`, {username, password})
@@ -18,30 +19,28 @@ const signinUser = ({ username, password }, callback) => {
         if(role !== 'admin') {
           role = `user/${_id}`;
         }
-        console.log(role);
+
         dispatch({ type: AUTH_USER, role });
-        
+
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
 
         callback(`/${role}`);
       })
       .catch((e) => {
-        // if request is bad...
-        // - Show an error to the user≈
         dispatch(authError('Bad Login Info'));
       });
   }
 }
 
-const authError = error => {
+export const authError = error => {
   return {
     type: AUTH_ERROR,
     payload: error
   }
 }
 
-const signoutUser = (callback) => {
+export const signoutUser = (callback) => {
   localStorage.removeItem('token');
   localStorage.removeItem('role');
   return {
@@ -49,7 +48,7 @@ const signoutUser = (callback) => {
   };
 }
 
-const validateSignup = (id) => {
+export const validateSignup = (id) => {
   return dispatch => {
     axios.post(`${ROOT_URL}/validate/signup`, {id})
       .then((res) => {
@@ -67,23 +66,28 @@ const validateSignup = (id) => {
   }
 }
 
-const signupUser = (newUser, id, callback) => {
-  console.log(newUser);
+export const signupUser = (newUser, id, callback) => {
   return dispatch => {
     axios.post(`${ROOT_URL}/signup/${id}`, newUser)
       .then((res) => {
         const { token, _id } = res.data;
-        dispatch({type: AUTH_USER, role: `user/${_id}`})
+        let role = `user/${_id}`;
+        dispatch({type: AUTH_USER, role})
         localStorage.setItem('token', token);
-        callback(`/user/${_id}`);
+        localStorage.setItem('role', role);
+        callback(role);
       })
   }
 }
 
-export {
-  signinUser,
-  authError,
-  signoutUser,
-  validateSignup,
-  signupUser
+export const changePassword = ({ password, newPassword }, callback) => dispatch => {
+  axios.post(`${ROOT_URL}/password/change`, {password, newPassword}, requestOptions())
+    .then((res) => {
+      dispatch(successMessage(res.data));
+      callback()
+    })
+    .catch((e) => {
+      dispatch(errorMessage(e.response.data));
+    })
+  ;
 }

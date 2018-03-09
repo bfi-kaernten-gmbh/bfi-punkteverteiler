@@ -31,9 +31,9 @@ class AdminSingleUserUpdate extends Component {
       <div className="outer-container fullHeight-gradiant">
         <div className="row justify-center container">
           <div className="card-dark shadow-bottom padding">
-            <h3 className="accent padding">{user.username}</h3>
-            <h4 className="white padding-left">{user.totalPoints} Punkte</h4>
-            <h4 className="white padding-left">{user.email} Punkte</h4>
+            <h3 className="accent padding-left">{user.username}</h3>
+            <h4 className="white padding-left">{user.email}</h4>
+            <h3 className="white padding">{user.totalPoints}</h3>
             <div>
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field

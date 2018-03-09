@@ -8,26 +8,10 @@ import {
   FILTER,
   TOGGLE_CHECKED,
   ADD_USER,
-  ERROR,
-  SUCCESS
 } from './types';
 
-import {ROOT_URL} from './';
-
-// const jwt = localStorage.getItem('token');
-// const REQUEST_OPTIONS = {
-//   headers: {
-//     authorization: localStorage.getItem('token')
-//   }
-// };
-
-const requestOptions = () => {
-  return {
-    headers: {
-      authorization: localStorage.getItem('token'),
-    }
-  }
-}
+import {ROOT_URL, requestOptions} from './';
+import {errorMessage, successMessage} from './message-actions';
 
 function fetchUser(id) {
   const request = axios.get(`${ROOT_URL}/users/${id}`, requestOptions());
@@ -93,15 +77,7 @@ export const addUsers = (emails) => {
   }
 }
 
-export const errorMessage = (message) => ({
-  type: ERROR,
-  message
-});
 
-export const successMessage = (message) => ({
-  type: SUCCESS,
-  message
-})
 
 export {
   fetchUser,

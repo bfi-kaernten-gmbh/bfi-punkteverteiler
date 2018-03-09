@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  fetchProfile } from '../../actions';
+import { fetchProfile } from '../../actions';
 
 import { UserLog } from '../reusable/pointLog';
+import { Cloud } from '../reusable/cloud';
 
 class UserView extends Component {
   state = {
@@ -26,8 +27,9 @@ class UserView extends Component {
         <div className="container">
           <h1 className="padding align-center">{`${user.firstName} ${user.lastName}`}</h1>
           <div className="margin padding row flex-align-center justify-center">
-            <h2 className="padding">{user.totalPoints}</h2>
-            <h3 className="padding">Punkte</h3>
+            <Cloud
+              points={user.totalPoints}
+            />
           </div>
         </div>
         <UserLog user={this.props.user} />

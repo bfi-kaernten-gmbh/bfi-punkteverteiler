@@ -3,8 +3,6 @@
 @mixin flex($vals) {
   @include prefix(flex, $vals);
 }
-
-.col,
 .col-1,
 .col-2,
 .col-3,

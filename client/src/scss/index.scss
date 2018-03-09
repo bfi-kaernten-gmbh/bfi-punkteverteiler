@@ -17,6 +17,7 @@
 @import "components/btn";
 @import "components/form";
 @import "components/card";
+@import "components/cloud";
 
 @import "animations/index";
 @import "animations/keyframes";
@@ -26,17 +27,26 @@
 
 /* Header bar */
 
-div {
-  &.bar {
-    padding: 15px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 50px;
-    background-color: $secondary;
-    position: fixed;
-    z-index: 99;
+nav {
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  background-color: $secondary;
+  position: fixed;
+  z-index: 99;
+
+  &.hidden {
+    display: none;
+  }
+
+  a {
+    display: inline-block;
+    margin: 0 12px;
+
   }
 }
+
 
 
 .messageContainer {

@@ -13,14 +13,3 @@ export default (state = { addedUsers: {} }, action) => {
       return state;
   }
 }
-
-// function messageReducer(state, action) {
-//   switch (action.type) {
-//     case ERROR:
-//       return { ...state, status: true, errorMessage: action.message };
-//     case SUCCESS:
-//       return { ...state, status: true, successMessage: action.message };
-//     default:
-//       return state;
-//   }
-// }

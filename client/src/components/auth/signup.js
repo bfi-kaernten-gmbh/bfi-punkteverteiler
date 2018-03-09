@@ -36,71 +36,69 @@ class Signup extends Component {
     let { firstName, lastName } = this.props.values || '';
     firstName = firstName || '';
     lastName = lastName || '';
-    return `${firstName}.${lastName}`.replace(/[\u00c4\u00e4äÄ]/g, "ae")
-      .replace(/[\u00dc\u00fcüÜ]/g, "ue")
-      .replace(/[\u00d6\u00f6öÖ]/g, "oe")
-      .replace(/\u00dfß/g, "ss")
-      .toLowerCase()
-    ;
+    if(lastName || firstName) {
+      return `${firstName}.${lastName}`.replace(/[\u00c4\u00e4äÄ]/g, "ae")
+        .replace(/[\u00dc\u00fcüÜ]/g, "ue")
+        .replace(/[\u00d6\u00f6öÖ]/g, "oe")
+        .replace(/\u00dfß/g, "ss")
+        .toLowerCase()
+      ;
+    }
   }
 
   render() {
-    // console.log(this.props);
     const { handleSubmit } = this.props;
     const { signupValid } = this.props.auth;
-    console.log(signupValid);
+
     if(!signupValid) {
       return <div>loading</div>;
     } else if (signupValid === 'error') {
       return <Redirect to="/donk" />;
     } else {
       return (
-        <div className="fullHeight-gradiant row justify-center">
-          <div className="container-middle-big">
-            <div className="card-dark padding">
-              <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
-                <Field
-                  name="email"
-                  type="email"
-                  label="Email"
-                  component={renderField}
-                  validate={validate.email}
-                />
-                <Field
-                  name="firstName"
-                  label="Vorname"
-                  component={renderField}
-                  validate={validate.required}
-                />
-                <Field
-                  name="lastName"
-                  label="Nachname"
-                  value="test"
-                  component={renderField}
-                  validate={validate.required}
-                />
-                <div>
-                  <label>Username: </label>
-                  {this.parseUsername()}
-                </div>
-                <Field
-                  name="password"
-                  label="Passwort"
-                  type="password"
-                  component={renderField}
-                  validate={validate.password}
-                />
-                <Field
-                  name="passwordConfirm"
-                  label="Passwort bestätigen"
-                  type="password"
-                  component={renderField}
-                  validate={validate.required}
-                />
-                <button>Signup</button>
-              </form>
-            </div>
-          </div>
+        <div className="fullScreenSection signin container-fullWidth row flex-align-stretch justify-start">
+          <form className="col-3 bg-dark-grey column flex-align-center justify-center" onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+            <Field
+              name="email"
+              type="email"
+              label="Email"
+              component={renderField}
+              validate={validate.email}
+            />
+            <Field
+              name="firstName"
+              label="Vorname"
+              component={renderField}
+              validate={validate.required}
+            />
+            <Field
+              name="lastName"
+              label="Nachname"
+              value="test"
+              component={renderField}
+              validate={validate.required}
+            />
+            <fieldset>
+              <label>Username: </label>
+              <p>{this.parseUsername()}</p>
+            </fieldset>
+            <Field
+              name="password"
+              label="Passwort"
+              type="password"
+              component={renderField}
+              validate={validate.password}
+            />
+            <Field
+              name="passwordConfirm"
+              label="Passwort bestätigen"
+              type="password"
+              component={renderField}
+              validate={validate.required}
+            />
+            <button className="btn">Signup</button>
+          </form>
+          <div className="shadow-left col"></div>
         </div>
 
       )
