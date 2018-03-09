@@ -51,9 +51,7 @@ function updateUser({ids, addPoints, description}) {
 
 
 const multiselect = (id) => ({ type: MULTISELECT,id });
-
 const filter = (value) => ({ type: FILTER, filter: value });
-
 const toggleChecked = (id) => ({ type: TOGGLE_CHECKED, id });
 
 export const addUsers = (emails) => {
@@ -74,6 +72,19 @@ export const addUsers = (emails) => {
         }
       })
     ;
+  }
+}
+
+export const pendingUsers = () => {
+  return dispatch => {
+    axios.get(`${ROOT_URL}/pending-users`, requestOptions())
+      .then((res) => {
+        // console.log(res.data);
+        dispatch({
+          type: ADD_USER,
+          emails: res.data
+        })
+      }).catch(e => {console.log(e);})
   }
 }
 

@@ -42,13 +42,13 @@ export default class Tag extends Component {
          />
       );
     } else {
-      return <span className="white" onClick={this.toggleEdit}>{text}</span>;
+      return <span className="white">{text}</span>;
     }
   }
 
   render() {
     return (
-      <div>
+      <div className="tag" onClick={this.toggleEdit}>
         {this.renderHelper()}
       </div>
     )

@@ -28,6 +28,7 @@ class UserView extends Component {
           <h1 className="padding align-center">{`${user.firstName} ${user.lastName}`}</h1>
           <div className="margin padding row flex-align-center justify-center">
             <Cloud
+              shadow
               points={user.totalPoints}
             />
           </div>

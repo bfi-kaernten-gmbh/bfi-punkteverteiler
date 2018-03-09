@@ -49,10 +49,9 @@ class MultiInput extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { input: input = '' } = this.props;
     return (
-      <div className="container-middle-small">
+      <div className="col-4 mlr">
         <div className="card-dark padding shadow-bottom">
           <h3 className="white padding-bottom">{this.props.title}</h3>
           <div className="fullWidth">
@@ -64,7 +63,7 @@ class MultiInput extends Component {
           </div>
           <button className="btn" onClick={this.handleSubmit}>Send</button>
         </div>
-        <div className="container margin-top">
+        <div className="container mt card-dark">
           {this.renderTags()}
         </div>
       </div>

@@ -37,7 +37,7 @@ export class UserLog extends Component {
       return (
         <div className="container-small shadow-small" key={pointLog._id}>
           <p>{date.toLocaleDateString('de-DE', dateOptions).replace(/,/g, ' -')} | Clouds: {pointLog.points}</p>
-          <p className="space-top"><span className="accent">Beschreibung: </span>{pointLog.description} dddddddddddddddddddd dddddddddd dddddddddddddddddddddddddddddd dddddddddd dddddddddd dddddddddddddddddddddddddddddd dddddddddddddddddddd</p>
+          <p className="space-top"><span className="accent">Beschreibung: </span>{pointLog.description}</p>
         </div>
       );
     })

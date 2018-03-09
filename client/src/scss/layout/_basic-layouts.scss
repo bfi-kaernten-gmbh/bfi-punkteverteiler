@@ -67,4 +67,19 @@
 
 .outer-container {
   padding-top: 50px;
+  &-mp {
+    padding-top: 70px;
+  }
+}
+
+.mlr {
+  margin: 0 12px;
+}
+
+.pl {
+  padding-left: 16px;
+}
+
+.mt {
+  margin-top: 16px;
 }

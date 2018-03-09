@@ -19,7 +19,6 @@ export default function(state = {}, action) {
   case FETCH_USERLIST:
     return _.mapValues(_.mapKeys(action.payload.data, '_id'), (obj) => ({...state[obj._id], ...obj }));
   case UPDATE_USER:
-    console.log(action.ids);
     var updatedUsers = _.mapValues(_.pick(state, action.ids), (obj) => ({
           ...obj,
           totalPoints: Number(obj.totalPoints) + Number(action.addPoints),

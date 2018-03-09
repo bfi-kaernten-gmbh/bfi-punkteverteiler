@@ -16,6 +16,9 @@ class App extends Component {
       );
     }
   }
+  fixLink = () => {
+    return
+  }
   renderAdminLinks() {
     if(this.props.auth.role === "admin") {
       return (
@@ -27,7 +30,7 @@ class App extends Component {
     } else {
       return (
         <div className="col">
-          <Link to={this.props.auth.role}>Home</Link>
+          <Link to={'/'+this.props.auth.role}>Home</Link>
         </div>
       )
     }
