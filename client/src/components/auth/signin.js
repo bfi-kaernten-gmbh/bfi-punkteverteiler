@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, getFormValues } from 'redux-form';
 import { connect } from 'react-redux'
-import { signinUser } from '../../actions';
+import { signinUser, authError, forgotPassword } from '../../actions';
 import { renderField } from '../helpers';
 
 class Signin extends Component {
+  state = {
+    forgot: false,
+  }
   componentDidMount() {
     if(this.props.authenticated) {
       this.props.history.push(this.props.role);
@@ -12,7 +15,18 @@ class Signin extends Component {
   }
 
   handleForgotPassword = () => {
-    console.log(this.props.values);
+    if (!this.props.values) {
+      if(!this.state.forgot) {
+        this.setState({forgot: true});
+        this.props.authError('Bitte geben sie Ihren Benutzernamen ein');
+      }
+    } else {
+      const { username } = this.props.values
+      if(username) {
+        console.log(username);
+        this.props.forgotPassword(username);
+      }
+    }
   }
 
   handleSubmit = ({username, password}) => {
@@ -53,8 +67,9 @@ class Signin extends Component {
           <button className="btn" action="submit">Sign in </button>
           <p
             onClick={this.handleForgotPassword}
-            className="fullwidth accent uppercase pointer">
-            forgot password?
+            className="fullwidth accent pointer"
+          >
+            Passwort vergessen?
           </p>
         </form>
         <div className="shadow-left col"></div>
@@ -75,5 +90,5 @@ const mapStateToProps = (state) => {
 export default reduxForm({
   form: 'signin'
 })(
-  connect(mapStateToProps, { signinUser })(Signin)
+  connect(mapStateToProps, { signinUser, authError, forgotPassword })(Signin)
 );

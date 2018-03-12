@@ -91,3 +91,15 @@ export const changePassword = ({ password, newPassword }, callback) => dispatch 
     })
   ;
 }
+
+
+export const forgotPassword = username => dispatch => {
+  axios.post(`${ROOT_URL}/password/forgot`, {username})
+    .then((res) => {
+      dispatch(successMessage(res.data));
+    })
+    .catch(e => {
+      console.log(e);
+      dispatch(errorMessage('Der Benutzer wurde nicht gefunden'));
+    })
+}
