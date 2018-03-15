@@ -18,7 +18,7 @@ export class UserLog extends Component {
       })
     } else {
       this.setState({
-        class: 'card-log closed'
+        class: 'card-log closed overflow-scroll'
       })
     }
   }
