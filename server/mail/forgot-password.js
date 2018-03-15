@@ -6,7 +6,7 @@ module.exports = (email, token) => new Promise((resolve, reject) => {
     from: 'itlabPunkteSystem@gmail.com',
     subject: 'Digi Pass Paswort Reset ',
     to: email,
-    html: `<p>text text text </p><a href="http://localhost:3000/forgot/${token}">click me</a>`
+    html: `<p>text text text </p><a href="http://localhost:3000/reset/${token}">click me</a>`
   };
   transporter.sendMail(mailOptions).then((info) => {
     console.log('Email send', info.response);

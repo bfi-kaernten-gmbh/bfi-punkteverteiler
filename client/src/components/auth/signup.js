@@ -14,14 +14,14 @@ const validate = {
 
 class Signup extends Component {
   componentWillMount() {
-    var { pathname: id } = this.props.history.location;
+    let { pathname: id } = this.props.history.location;
     id = id.replace('/signup/', '');
     this.props.validateSignup(id);
   }
 
   handleSubmit = (values) => {
     const username = this.parseUsername();
-    var {pathname: id} = this.props.history.location;
+    let {pathname: id} = this.props.history.location;
     id = id.replace('/signup/', '');
 
     this.props.signupUser({

@@ -29,7 +29,7 @@ class UserView extends Component {
           <div className="margin padding row flex-align-center justify-center">
             <Cloud
               shadow
-              points={user.totalPoints}
+              points={user.totalPoints || '0'}
             />
           </div>
         </div>

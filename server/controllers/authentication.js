@@ -91,7 +91,7 @@ exports.changePassword = (req, res, next) => {
 
   User.findOneAndUpdate({ username }, {password}).then((doc) => {
     console.log(doc);
-    res.send('Successfully changed Password');
+    res.send('Ihr Passwort wurde erfolgreich geändert');
   }).catch(e => res.send(e));
 }
 
@@ -100,7 +100,7 @@ exports.resetPassword = (req, res, next) => {
 
   User.findByIdAndUpdate({_id}, {password: hashedPassword}).then((doc) => {
     console.log(doc);
-    res.send('Successfully changed Password');
+    res.send('Ihr Passwort wurde erfolgreich geändert');
   }).catch(e => res.send(e));
 }
 
@@ -116,7 +116,6 @@ exports.forgotPassword = (req, res, next) => {
   const { username, email } = req.body;
 
   User.findOne({$or: [{username}, {email} ]}).then((user) => {
-    // console.log(user);
     if(!user) {
       return res.status(404).send('User not found');
     }
