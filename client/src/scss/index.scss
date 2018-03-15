@@ -14,6 +14,8 @@
 @import "singleStyles/border";
 @import "singleStyles/scrollable";
 
+@import "components/nav";
+@import "components/message";
 @import "components/btn";
 @import "components/form";
 @import "components/card";
@@ -23,50 +25,6 @@
 @import "animations/index";
 @import "animations/keyframes";
 
-
-
-
-/* Header bar */
-
-nav {
-  padding: 15px;
-  box-sizing: border-box;
-  width: 100%;
-  height: 50px;
-  background-color: $secondary;
-  position: fixed;
-  z-index: 99;
-
-  &.hidden {
-    display: none;
-  }
-
-  a {
-    display: inline-block;
-    margin: 0 12px;
-
-  }
-}
-
-
-
-.messageContainer {
-  position: fixed;
-  top: 50px;
-  z-index: 101;
-  height: 80px;
-  background-color: $secondary;
-  width: 100%;
-  color: white;
-  padding: 0 16px;
-
-  &.error {
-    background-color: rgb(159, 38, 38);
-  }
-  &.success {
-    background-color: rgb(60, 143, 43);
-  }
-}
 
 .admin-list-item {
   width: 100%;

@@ -15,11 +15,11 @@ class Message extends Component {
     ;
     if(className) {
       return (
-        <div className={`messageContainer row flex-align-center ${className}`}>
-          <div className="message">
-            {errorMessage ? errorMessage : successMessage}
+        <div className={`messageContainer row flex-align-center justify-center`}>
+          <div className={`message card padding ${className}`}>
+            <p className="align-center">{errorMessage ? errorMessage : successMessage}</p>
+            <button className="btn"  onClick={this.handleClose}>Close</button>
           </div>
-          <button className="btn" onClick={this.handleClose}>Close</button>
         </div>
       );
     }
@@ -29,7 +29,7 @@ class Message extends Component {
   }
 };
 
-const mapStateToProps = ({ admin: {errorMessage,successMessage} }) => {
+const mapStateToProps = ({ admin: { errorMessage, successMessage } }) => {
   return { errorMessage, successMessage };
 }
 

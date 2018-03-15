@@ -1,0 +1,34 @@
+// main: ../index.scss
+
+.messageContainer {
+  position: fixed;
+  top: 0;
+  z-index: 101;
+  height: 100vh;
+  background-color: $secondary-opacity;
+  width: 100%;
+  color: white;
+  padding: 0 16px;
+
+  .message {
+    min-width: 300px;
+    max-width: 350px;
+    &.error {
+      background-color: $error;
+    }
+    &.success {
+      background-color: $success;
+    }
+    .btn {
+      background-color: $secondary;
+      display: block;
+      margin: 0 auto;
+      margin-top: 16px;
+      &:hover {
+        border-color: $secondary;
+        background-color: transparent;
+        color: $secondary;
+      }
+    }
+  }
+}

@@ -1,6 +1,12 @@
 // main: ../index.scss
 
 .tag {
-  padding: 8px 0;
+  width: 100%;
+  padding: 6px 0;
+  display: inline-block;
   cursor: pointer;
+
+  span {
+    padding: 7px 12px;
+  }
 }

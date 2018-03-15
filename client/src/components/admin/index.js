@@ -66,12 +66,12 @@ class AdminView extends Component {
         <div className="col-6 column"></div>
 
           <div className="col-6 column justify-start flex-align-start margin-bottom-350">
-            <h3 className="white">Gefilterte User Liste</h3>
+            <h3 className="white">Filtered Userlist</h3>
             <UserFilteredList />
           </div>
 
           <div className="col-6 column ">
-            <h3 className="white">User Liste</h3>
+            <h3 className="white">Digipass Userlist</h3>
             { this.renderUserList() }
           </div>
 

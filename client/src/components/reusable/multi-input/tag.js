@@ -8,15 +8,21 @@ export default class Tag extends Component {
 
   handleKeyDown = (e) => {
     const { which: key } = e;
-    console.log(key);
-    if(key === 13) {
+    if(key === 13 || key === 9) {
       e.preventDefault();
-      this.toggleEdit();
+      this.disableEdit();
     }
   }
 
-  toggleEdit = () => {
-    this.setState({edit: !this.state.edit});
+  enableEdit = () => {
+    this.setState({ edit: true });
+    this.focusInput();
+  }
+  disableEdit = () => {
+    this.setState({ edit: false });
+  }
+
+  focusInput = () => {
     setTimeout(() => {
       if(this.state.edit) {
         this.inputName.focus();
@@ -37,7 +43,7 @@ export default class Tag extends Component {
           ref={(input) => { this.inputName = input; }}
           value={text}
           onChange={this.handleOnChange}
-          onBlur={this.toggleEdit}
+          onBlur={this.disableEdit}
           onKeyDown={this.handleKeyDown}
          />
       );
@@ -48,7 +54,7 @@ export default class Tag extends Component {
 
   render() {
     return (
-      <div className="tag" onClick={this.toggleEdit}>
+      <div className="tag" onClick={this.enableEdit}>
         {this.renderHelper()}
       </div>
     )
