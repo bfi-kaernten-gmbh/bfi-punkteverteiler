@@ -37,19 +37,19 @@ class AdminSingleUserUpdate extends Component {
             <div>
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                  label="Punkte"
+                  label="Clouds"
                   name="addPoints"
                   component={renderField}
                 />
                 <Field
-                  label="Beschreibung"
+                  label="Description"
                   name="description"
                   component={renderField}
                 />
-                <button className="btn" type="submit">Senden</button>
+                <button className="btn" type="submit">Send</button>
                 <Link to="/admin">
                   <button className="btn">
-                    Abbrechen
+                    Cancel
                   </button>
                 </Link>
               </form>

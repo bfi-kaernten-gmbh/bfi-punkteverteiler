@@ -28,7 +28,7 @@ export const signinUser = ({ username, password }, callback) => {
         callback(`/${role}`);
       })
       .catch((e) => {
-        dispatch(authError('Bad Login Info'));
+        dispatch(authError('Bad Login Info!'));
       });
   }
 }
@@ -100,7 +100,7 @@ export const forgotPassword = username => dispatch => {
     })
     .catch(e => {
       console.log(e);
-      dispatch(errorMessage('Der Benutzer wurde nicht gefunden'));
+      dispatch(errorMessage('User does not exist.'));
     })
 }
 

@@ -17,7 +17,7 @@ export class ListItem extends Component {
         />
         <h4>{this.props.name}</h4>
           <Link className="position-right" to={`/admin/${this.props.id}`}>
-            <button className="btn">bearbeiten</button>
+            <button className="btn">Edit</button>
           </Link>
 
       </div>

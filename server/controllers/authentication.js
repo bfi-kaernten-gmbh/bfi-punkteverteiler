@@ -49,7 +49,7 @@ exports.signup = (req, res, next) => {
 
   allowedToSignup.findById(id).then((allowed) => {
     if(!allowed) {
-      return res.status(400).send({error: 'you are not allowed to signup'})
+      return res.status(400).send({error: 'You are not allowed to signup'})
     }
 
     User.findOne({$or: [{username}, {email} ]}).then((existingUser) => {
@@ -91,7 +91,7 @@ exports.changePassword = (req, res, next) => {
 
   User.findOneAndUpdate({ username }, {password}).then((doc) => {
     console.log(doc);
-    res.send('Ihr Passwort wurde erfolgreich geändert');
+    res.send('Your Password was changed successfully');
   }).catch(e => res.send(e));
 }
 
@@ -100,7 +100,7 @@ exports.resetPassword = (req, res, next) => {
 
   User.findByIdAndUpdate({_id}, {password: hashedPassword}).then((doc) => {
     console.log(doc);
-    res.send('Ihr Passwort wurde erfolgreich geändert');
+    res.send('Your Password was changed successfully');
   }).catch(e => res.send(e));
 }
 

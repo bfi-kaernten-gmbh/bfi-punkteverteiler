@@ -1,9 +1,10 @@
 const nodemailer = require('nodemailer');
 const transporter = require('./config');
+const config = require('../config');
 
 let mailOptions = {
   from: 'itlabPunkteSystem@gmail.com',
-  subject: 'Einladung zum BFI Gewinnspiel',
+  subject: 'Anmeldung zum BFI-DigiPass.',
 };
 
 function createMail(emails) {
@@ -30,7 +31,7 @@ function createMail(emails) {
     this.mailOptions = {
       ...mailOptions,
       to: email,
-      html: `<p>text text text </p><a href="http://localhost:3000/signup/${_id}">signup here</a>`
+      html: `<p>Bitte klicke auf folgenden Link um die Anmeldung abzuschließen. </p><a href="http://${config.domain}/signup/${_id}">Signup Here</a><br><p>Liebe Grüße</p> <p>Deine digitale Personalabteilung</p>`
     }
     sendMail();
   }

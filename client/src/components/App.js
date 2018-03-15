@@ -24,7 +24,7 @@ class App extends Component {
       return (
         <div className="col">
           <Link to="/admin"> Home</Link>
-          <Link to="/add-users"> add Users</Link>
+          <Link to="/add-users"> Add Users</Link>
         </div>
       )
     } else {

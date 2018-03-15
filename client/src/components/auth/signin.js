@@ -54,22 +54,22 @@ class Signin extends Component {
         >
           <Field
             name="username"
-            label="Username:"
+            label="Username"
             component={renderField}
           />
           <Field
             name="password"
             type="password"
-            label="Password:"
+            label="Password"
             component={renderField}
           />
           {this.renderAlert()}
-          <button className="btn" action="submit">Sign in </button>
+          <button className="btn" action="submit">Sign in</button>
           <p
             onClick={this.handleForgotPassword}
             className="fullwidth accent pointer"
           >
-            Passwort vergessen?
+            Forgot password?
           </p>
         </form>
         <div className="shadow-left col"></div>

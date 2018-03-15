@@ -59,7 +59,7 @@ class AdminView extends Component {
       <div className="outer-container row flex-align-start justify-start fullHeight-gradiant">
         <div className="col-6 column justify-start flex-align-start">
           <div className="card-dark padding row fullWidth">
-            <label className="container nop white">Filter nach Username </label>
+            <label className="container nop white">Filter by Username </label>
             <input className="container" onChange={this.handleFilterInput} />
           </div>
         </div>
@@ -71,12 +71,12 @@ class AdminView extends Component {
           </div>
 
           <div className="col-6 column ">
-            <h3 className="white">Digipass Userlist</h3>
+            <h3 className="white">DigiPass Userlist</h3>
             { this.renderUserList() }
           </div>
 
           <form className=" add-multiple-points card-dark bottom-left" onSubmit={this.handleSubmit} >
-            <label>Punkte</label>
+            <label>Clouds</label>
             <input
               onChange={
                 this.handleChange = (e) => {this.setState({addPoints: e.target.value})}
@@ -86,7 +86,7 @@ class AdminView extends Component {
               label="Punkte"
               value={this.state.addPoints}
             />
-            <label>Beschreibung</label>
+            <label>Description</label>
             <textarea
               onChange={
                 this.handleChange = (e) => {this.setState({description: e.target.value})}
@@ -97,7 +97,7 @@ class AdminView extends Component {
               value={this.state.description}
             />
             <div className="container">
-              <button className="btn" >Speichern</button>
+              <button className="btn" >Save</button>
             </div>
           </form>
       </div>

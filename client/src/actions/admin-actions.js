@@ -42,7 +42,7 @@ function updateUser({ids, addPoints, description}) {
         ids,
         addPoints
       })
-      dispatch(successMessage('Die Punkte wurden erfolgreich hinzugefügt'));
+      dispatch(successMessage('Successfully added points.'));
     }).catch((e) => {
       console.log(e);
     });
@@ -66,9 +66,9 @@ export const addUsers = (emails) => {
       })
       .catch((e) => {
         if(e.response.data.op) {
-          dispatch(errorMessage(`The email "${e.response.data.op.email}" is already in use`));
+          dispatch(errorMessage(`The email "${e.response.data.op.email}" is already in use.`));
         } else {
-          dispatch(errorMessage('plese provide valid input'));
+          dispatch(errorMessage('A User with this email already exists or the input was invalid.'));
         }
       })
     ;

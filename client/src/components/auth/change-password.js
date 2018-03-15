@@ -47,7 +47,7 @@ class ChangePassword extends Component {
             component={renderField}
             validate={validate.password}
           />
-          <button className="btn center">Passwort Ändern</button>
+          <button className="btn center">Change password</button>
         </form>
       </div>
     )

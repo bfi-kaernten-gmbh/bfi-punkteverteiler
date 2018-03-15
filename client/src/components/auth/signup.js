@@ -67,13 +67,13 @@ class Signup extends Component {
             />
             <Field
               name="firstName"
-              label="Vorname"
+              label="First name"
               component={renderField}
               validate={validate.required}
             />
             <Field
               name="lastName"
-              label="Nachname"
+              label="Last name"
               value="test"
               component={renderField}
               validate={validate.required}
@@ -84,14 +84,14 @@ class Signup extends Component {
             </fieldset>
             <Field
               name="password"
-              label="Passwort"
+              label="Password"
               type="password"
               component={renderField}
               validate={validate.password}
             />
             <Field
               name="passwordConfirm"
-              label="Passwort bestätigen"
+              label="Confirm password"
               type="password"
               component={renderField}
               validate={validate.required}

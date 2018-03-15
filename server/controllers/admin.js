@@ -114,7 +114,7 @@ exports.pendingUsers = (req, res, next) => {
     .exec()
     .then((users) => {
       if (users.length <= 0) {
-        return res.status(404).send({message: 'no pending users'})
+        return res.status(404).send({message: 'No pending users'})
       }
       res.send(users);
     }).catch((e) => {

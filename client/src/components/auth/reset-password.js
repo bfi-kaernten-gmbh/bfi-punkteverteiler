@@ -28,18 +28,18 @@ class ResetPassword extends Component {
           <Field
             name="password"
             type="password"
-            label="Neues Passwort"
+            label="New password"
             component={renderField}
             validate={validate.password}
           />
           <Field
             name="newPassword"
             type="password"
-            label="Neues Passwort bestätigen"
+            label="Confirm new password"
             component={renderField}
             validate={validate.password}
           />
-          <button className="btn" type="submit">Passwort Ändern</button>
+          <button className="btn" type="submit">Change password</button>
         </form>
       </div>
     )
