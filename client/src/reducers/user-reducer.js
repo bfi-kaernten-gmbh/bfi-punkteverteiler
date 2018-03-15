@@ -7,8 +7,6 @@ import {
   TOGGLE_CHECKED
 } from '../actions/types';
 
-
-
 export default function(state = {}, action) {
   switch(action.type) {
   case FETCH_USER:

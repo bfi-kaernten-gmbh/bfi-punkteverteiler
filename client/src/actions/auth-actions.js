@@ -75,7 +75,7 @@ export const signupUser = (newUser, id, callback) => {
         dispatch({type: AUTH_USER, role})
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
-        callback(role);
+        callback(`/${role}`);
       })
   }
 }
@@ -101,5 +101,18 @@ export const forgotPassword = username => dispatch => {
     .catch(e => {
       console.log(e);
       dispatch(errorMessage('Der Benutzer wurde nicht gefunden'));
+    })
+}
+
+export const resetPassword = ({ token, newPassword }, callback) => dispatch => {
+  console.log( {token, newPassword});
+  axios.post(`${ROOT_URL}/password/reset`, {token, newPassword})
+    .then((res) => {
+      dispatch(successMessage(res.data))
+      callback('/');
+    })
+    .catch(e => {
+      console.log(e)
+      dispatch(errorMessage(e.response.data));
     })
 }

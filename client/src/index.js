@@ -20,6 +20,7 @@ import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
 import AddUsers from './components/admin/add-users';
 import ChangePassword from './components/auth/change-password';
+import ResetPassword from './components/auth/reset-password';
 
 
 import { AUTH_USER } from './actions/types';
@@ -54,6 +55,7 @@ ReactDOM.render(
           <Route path="/signup/:id" component={Signup} />
           <PrivateRoute path="/add-users" component={AddUsers} />
           <PrivateRoute path="/change-password" component={ChangePassword} />
+          <Route path="/reset/:token" component={ResetPassword} />
           <Route component={Signin} />
         </Switch>
       </div>
