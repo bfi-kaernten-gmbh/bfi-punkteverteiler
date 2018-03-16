@@ -4,7 +4,7 @@ const config = require('../config');
 
 module.exports = (email, token) => new Promise((resolve, reject) => {
   const mailOptions = {
-    from: 'itlabPunkteSystem@gmail.com',
+    from: 'digipass@itlabs.at',
     subject: 'DigiPass password reset',
     to: email,
     html: `<p>Klicken Sie auf folgenden Link um Ihr Passswort zurückzusetzen </p><a href="http://${config.domain}/reset/${token}">click me</a>`

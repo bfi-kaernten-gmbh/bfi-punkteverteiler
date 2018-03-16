@@ -3,7 +3,7 @@ const transporter = require('./config');
 const config = require('../config');
 
 let mailOptions = {
-  from: 'itlabPunkteSystem@gmail.com',
+  from: 'digipass@itlabs.at',
   subject: 'Anmeldung zum BFI-DigiPass.',
 };
 
