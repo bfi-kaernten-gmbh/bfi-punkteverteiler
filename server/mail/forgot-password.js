@@ -7,7 +7,7 @@ module.exports = (email, token) => new Promise((resolve, reject) => {
     from: 'digipass@itlabs.at',
     subject: 'DigiPass password reset',
     to: email,
-    html: `<p>Klicken Sie auf folgenden Link um Ihr Passswort zurückzusetzen </p><a href="http://${config.domain}/reset/${token}">click me</a>`
+    html: `<p>Klicken Sie auf folgenden Link um Ihr Passswort zurückzusetzen </p><a href="http://${config.domain}/#/reset/${token}">click me</a>`
   };
   transporter.sendMail(mailOptions).then((info) => {
     console.log('Email send', info.response);

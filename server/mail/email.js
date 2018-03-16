@@ -31,7 +31,7 @@ function createMail(emails) {
     this.mailOptions = {
       ...mailOptions,
       to: email,
-      html: `<p>Bitte klicke auf folgenden Link um die Anmeldung abzuschließen. </p><a href="http://${config.domain}/signup/${_id}">Signup Here</a><br><p>Liebe Grüße</p> <p>Deine digitale Personalabteilung</p>`
+      html: `<p>Bitte klicke auf folgenden Link um die Anmeldung abzuschließen. </p><a href="http://${config.domain}/#/signup/${_id}">Signup Here</a><br><p>Liebe Grüße</p> <p>Deine digitale Personalabteilung</p>`
     }
     sendMail();
   }
